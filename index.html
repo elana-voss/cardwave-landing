@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardwave: local-first character card editor and AI chat</title>
+  <meta name="description"
+    content="A local-first character card editor and chat client for Windows, Android, and web. Bring any AI provider you already use. Cards and chats stay on your device." />
+  <link rel="canonical" href="https://cardwave.cc/" />
+  <link rel="icon" href="logo_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
+</head>
+
+<body>
+
+  <header>
+    <h1><a href="index.html"><img src="logo_icon.png" alt="" /> Cardwave</a></h1>
+    <a class="gh" href="https://github.com/elana-voss/cardwave" target="_blank" rel="noopener noreferrer"
+      aria-label="GitHub">
+      <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+      </svg>
+    </a>
+  </header>
+
+  <p>A local-first character card editor and chat client. Bring any AI provider you already use. Nothing leaves your
+    computer unless you send it there.</p>
+
+  <p class="downloads">
+    <a href="https://github.com/elana-voss/cardwave/releases/latest/download/Cardwave-Windows.zip">Download for
+      Windows</a>
+    <a href="https://github.com/elana-voss/cardwave/releases/latest/download/Cardwave-Android.apk">Download for
+      Android</a>
+    <a href="https://app.cardwave.cc" target="_blank" rel="noopener noreferrer">Open Web App</a>
+  </p>
+
+  <img class="shot" src="landing_desktop.jpg" alt="Cardwave workspace with character editor and chat side-by-side" />
+
+  <h2>Privacy</h2>
+  <p>Cardwave stores cards, chats, keys, and settings on your disk. No account, no sync, no analytics in the app. The
+    only outbound calls are the ones you trigger: a chat message going to the provider whose API key you entered. There
+    is no Cardwave server in the path.</p>
+
+  <h2>Models</h2>
+  <p>Cardwave takes an API key and talks to the provider directly. Swap providers per chat. There is no Cardwave
+    subscription.</p>
+  <ul>
+    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
+      <strong>GPT</strong>- OpenAI
+    </li>
+    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
+      <strong>Claude</strong>
+      - Anthropic
+    </li>
+    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
+      <strong>Gemini</strong>- Google
+    </li>
+    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
+      - xAI
+    </li>
+    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- diverse
+      models</li>
+    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
+      - diverse models</li>
+  </ul>
+
+  <h2>Estimating costs</h2>
+  <p>Chat costs grow as a conversation lengthens, because each turn resends the history. The <a
+      href="chat-turn-budget-calculator.html">chat turn budget calculator</a> estimates how many turns a budget buys for
+    any model's per-token price.</p>
+
+  <h2>Cards</h2>
+  <p>The editor covers the full Character Cards V3 spec: name, description, personality, scenario, first message,
+    example dialogues, lorebooks, prompt macros. Drop a PNG into the cards folder and it opens in either the editor or
+    the chat.</p>
+
+  <h2>Where to find characters</h2>
+  <p>Cardwave opens cards from anywhere. See the <a href="where-to-find-characters.html">list of sites that host
+      character cards</a> you can download and drop into your cards folder.</p>
+
+  <h2>Scope</h2>
+  <p>Cardwave is free and built by one person. Released as-is. Bug reports and feature requests welcome via <a
+      href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+  </p>
+  <p><strong>Beta.</strong> Cardwave is in active development. Keep backups of your character cards.</p>
+
+  <hr />
+  <footer>Cardwave © 2026. <a href="disclaimer.html">Disclaimer &amp; Terms</a></footer>
+
+</body>
+
+</html>

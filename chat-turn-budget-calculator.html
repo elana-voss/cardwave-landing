@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat turn budget calculator — Cardwave</title>
+  <meta name="description" content="Estimate how many chat turns a budget buys for any AI model. Enter token prices, prompt sizes, and context window to get max turns and total cost." />
+  <link rel="canonical" href="https://cardwave.cc/chat-turn-budget-calculator.html" />
+  <link rel="icon" href="logo_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
+</head>
+<body>
+
+  <header>
+    <h1><a href="index.html"><img src="logo_icon.png" alt="" /> Cardwave</a></h1>
+    <a class="gh" href="https://github.com/elana-voss/cardwave" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </header>
+
+  <p class="page-title"><strong>Chat turn budget calculator</strong></p>
+
+  <p>Chat costs grow as a conversation lengthens, because every turn resends the history so far. Enter a model's per-token prices and your typical turn sizes to see how many turns a budget buys, and where the context window caps the cost.</p>
+
+  <p>A <strong>turn</strong> here means one user message plus the one AI response to it.</p>
+
+  <div class="calc-grid">
+    <div class="calc-field">
+      <label for="inputCost">Input cost / M tokens ($)</label>
+      <input type="text" inputmode="decimal" id="inputCost" value="0.2288" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field">
+      <label for="outputCost">Output cost / M tokens ($)</label>
+      <input type="text" inputmode="decimal" id="outputCost" value="0.3432" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field">
+      <label for="budget">Max budget (USD $)</label>
+      <input type="text" inputmode="decimal" id="budget" value="10.00" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field">
+      <label for="systemPrompt">System prompt (tokens)</label>
+      <input type="text" inputmode="numeric" id="systemPrompt" value="1000" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field">
+      <label for="inputTokens">User input (tokens)</label>
+      <input type="text" inputmode="numeric" id="inputTokens" value="50" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field">
+      <label for="outputTokens">Model response (tokens)</label>
+      <input type="text" inputmode="numeric" id="outputTokens" value="350" oninput="onNumericInput(this)" />
+    </div>
+    <div class="calc-field wide">
+      <label for="maxContext">Max context size (tokens)</label>
+      <input type="text" inputmode="numeric" id="maxContext" value="128000" oninput="onNumericInput(this)" />
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>Metrics</h2>
+
+    <div class="metrics">
+      <div class="metric">
+        <span class="label">Max turns</span>
+        <span id="resultTurns" class="value">—</span>
+      </div>
+      <div class="metric">
+        <span class="label">Final cost</span>
+        <span id="resultCost" class="value cost">—</span>
+      </div>
+    </div>
+
+    <div class="detail-rows">
+      <div><span>Window capping point</span><span id="capTurn" class="v">—</span></div>
+      <div><span>Cost of first turn</span><span id="firstTurnCost" class="v">—</span></div>
+      <div><span>Cost of capped turn</span><span id="cappedTurnCost" class="v">—</span></div>
+    </div>
+
+    <div class="calc-note">
+      <strong>Sliding window:</strong> the system prompt is a fixed baseline cost on every turn. Once history fills the remaining context window, the input size stops growing and turn costs flatten out.
+    </div>
+  </div>
+
+  <hr />
+  <footer>Cardwave © 2026. <a href="index.html">Home</a> · <a href="disclaimer.html">Disclaimer &amp; Terms</a></footer>
+
+  <script>
+    // Strip anything that isn't a digit; decimal-mode fields also keep a single dot.
+    function onNumericInput(el) {
+      const allowDot = el.inputMode === 'decimal';
+      let cleaned = allowDot ? el.value.replace(/[^0-9.]/g, '') : el.value.replace(/[^0-9]/g, '');
+      if (allowDot) {
+        const firstDot = cleaned.indexOf('.');
+        if (firstDot !== -1) {
+          cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, '');
+        }
+      }
+      if (cleaned !== el.value) {
+        el.value = cleaned;
+      }
+      calculateTurns();
+    }
+
+    function calculateTurns() {
+      const inputCostPerM = parseFloat(document.getElementById('inputCost').value) || 0;
+      const outputCostPerM = parseFloat(document.getElementById('outputCost').value) || 0;
+      const budget = parseFloat(document.getElementById('budget').value) || 0;
+      const sPrompt = parseInt(document.getElementById('systemPrompt').value) || 0;
+      const tIn = parseInt(document.getElementById('inputTokens').value) || 0;
+      const tOut = parseInt(document.getElementById('outputTokens').value) || 0;
+      const maxContext = parseInt(document.getElementById('maxContext').value) || 0;
+
+      if (budget <= 0 || (inputCostPerM <= 0 && outputCostPerM <= 0) || (sPrompt + tIn + tOut) > maxContext) {
+        document.getElementById('resultTurns').innerText = '0';
+        document.getElementById('resultCost').innerText = '$0.0000';
+        document.getElementById('firstTurnCost').innerText = '$0.000000';
+        document.getElementById('cappedTurnCost').innerText = '$0.000000';
+        document.getElementById('capTurn').innerText = 'Context Exceeded';
+        return;
+      }
+
+      const pIn = inputCostPerM / 1000000;
+      const pOut = outputCostPerM / 1000000;
+      const maxAllowedInput = Math.max(0, maxContext - tOut);
+
+      let totalCost = 0;
+      let n = 0;
+      let unlimited = false;
+      let cappedAtTurn = null;
+      let firstTurnCost = 0;
+      let cappedTurnCost = (maxAllowedInput * pIn) + (tOut * pOut);
+
+      while (true) {
+        let nextTurn = n + 1;
+        let history = (nextTurn - 1) * (tIn + tOut);
+        let turnInputTokens = Math.min(maxAllowedInput, sPrompt + history + tIn);
+        let currentTurnCost = (turnInputTokens * pIn) + (tOut * pOut);
+
+        if (nextTurn === 1) {
+          firstTurnCost = currentTurnCost;
+        }
+
+        if (turnInputTokens === maxAllowedInput && cappedAtTurn === null) {
+          cappedAtTurn = nextTurn;
+        }
+
+        // A turn that costs nothing repeats forever within any budget; stop
+        // rather than loop endlessly. Cost only grows, so this can only be turn 1.
+        if (currentTurnCost <= 0) {
+          unlimited = true;
+          break;
+        }
+
+        if (totalCost + currentTurnCost > budget) {
+          break;
+        }
+
+        totalCost += currentTurnCost;
+        n++;
+      }
+
+      document.getElementById('resultTurns').innerText = unlimited ? 'No limit' : n.toLocaleString();
+      document.getElementById('resultCost').innerText = '$' + totalCost.toFixed(4);
+      document.getElementById('firstTurnCost').innerText = '$' + firstTurnCost.toFixed(6);
+      document.getElementById('cappedTurnCost').innerText = '$' + cappedTurnCost.toFixed(6);
+
+      if (cappedAtTurn && cappedAtTurn <= n) {
+        document.getElementById('capTurn').innerText = `Turn ${cappedAtTurn}`;
+      } else {
+        document.getElementById('capTurn').innerText = 'Never Reached';
+      }
+    }
+
+    window.onload = calculateTurns;
+  </script>
+</body>
+</html>

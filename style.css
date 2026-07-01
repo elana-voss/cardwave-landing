@@ -1,0 +1,110 @@
+/* Cardwave site — shared styles for index.html and disclaimer.html */
+
+body {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #111;
+  line-height: 1.55;
+}
+
+a { color: #0083e9; }
+
+header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0 8px; }
+header h1 { margin: 0; }
+header .gh { display: inline-flex; color: #111; }
+header .gh:hover { color: #0083e9; }
+
+h1 { margin: 0 0 8px; font-size: 32px; line-height: 1; }
+h1 a { display: inline-flex; align-items: center; gap: 14px; color: inherit; text-decoration: none; }
+/* Nudge the logo down to compensate for the bubble's visual mass sitting
+   above the image's geometric center. Without this, the text reads as
+   slightly low relative to the bubble. */
+h1 img { width: 44px; height: auto; display: block; position: relative; top: 3px; }
+
+h2 { margin-top: 40px; font-size: 20px; }
+ul { padding-left: 20px; }
+li { margin: 4px 0; }
+hr { border: 0; border-top: 1px solid #eee; margin: 40px 0 20px; }
+
+footer { color: #888; font-size: 14px; }
+
+/* index.html */
+img.shot { display: block; width: 100%; height: auto; margin: 24px 0; border: 1px solid #eee; }
+.downloads { margin: 20px 0 24px; }
+.downloads a {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #0083e9;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 0 6px 6px 0;
+  font-weight: 500;
+}
+.downloads a:hover { background: #006bc4; }
+
+/* disclaimer.html */
+.page-title { font-size: 28px; margin: 32px 0 6px; }
+.updated { color: #888; font-size: 14px; margin: 0 0 8px; }
+
+/* chat-turn-budget-calculator.html */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  margin: 24px 0 32px;
+}
+.calc-field { display: flex; flex-direction: column; }
+.calc-field.wide { grid-column: 1 / -1; }
+.calc-field label { font-size: 13px; font-weight: 500; color: #444; margin-bottom: 4px; }
+.calc-field input {
+  font: inherit;
+  font-size: 15px;
+  padding: 9px 11px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+}
+.calc-field input:focus {
+  outline: none;
+  border-color: #0083e9;
+  box-shadow: 0 0 0 3px rgba(0, 131, 233, 0.15);
+}
+
+.results { border: 1px solid #eee; border-radius: 10px; padding: 20px; background: #fafafa; }
+.results h2 { margin: 0 0 16px; font-size: 18px; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.metric { background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 14px; text-align: center; }
+.metric .label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin-bottom: 4px;
+}
+.metric .value { font-size: 30px; font-weight: 700; color: #0083e9; }
+.metric .value.cost { color: #111; }
+
+.detail-rows { font-size: 14px; color: #555; }
+.detail-rows div { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #eee; }
+.detail-rows div:last-child { border-bottom: 0; }
+.detail-rows .v { font-weight: 600; color: #111; }
+
+.calc-note {
+  margin-top: 20px;
+  padding: 12px 14px;
+  background: #eaf4fe;
+  border: 1px solid #cfe5fb;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1b4e7a;
+}
+
+@media (max-width: 480px) {
+  .calc-grid, .metrics { grid-template-columns: 1fr; }
+}
