@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CCV4, a new character card format — Cardwave</title>
+  <meta name="description"
+    content="CCV4 is a draft character card format built from small addressable text blocks in TOML, stored in PNG chunks. Overview, with a link to the full specification, algorithm, reference example, and live playground." />
+  <link rel="canonical" href="https://cardwave.cc/ccv4.html" />
+  <link rel="icon" href="logo_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.92em; background: #f4f4f4; border-radius: 4px; padding: 1px 5px; }
+    pre { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 13px; line-height: 1.5; background: #f6f8fa; border: 1px solid #eee; border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+    pre code { background: none; padding: 0; }
+  </style>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
+</head>
+
+<body>
+
+  <header>
+    <h1><a href="index.html"><img src="logo_icon.png" alt="" /> Cardwave</a></h1>
+    <a class="gh" href="https://github.com/elana-voss/cardwave" target="_blank" rel="noopener noreferrer"
+      aria-label="GitHub">
+      <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+      </svg>
+    </a>
+  </header>
+
+  <p class="page-title"><strong>CCV4, a new character card format</strong></p>
+
+  <p>The full CCV4 site has the specification, the prompt-assembly algorithm, a reference example, and a live playground you can edit.</p>
+  <p class="downloads">
+    <a href="https://elana-voss.github.io/ccv4/" target="_blank" rel="noopener">Open the CCV4 site &nearr;</a>
+  </p>
+
+  <p>CCV4 is a draft format for AI character cards, meant to replace the SillyTavern v1, v2 and v3 formats. A card is a normal PNG. The artwork previews everywhere, and the card data travels inside the file: TOML text in private chunks, media assets as raw bytes next to it.</p>
+
+  <h2>Text blocks</h2>
+  <p>Everything a card says is a text block: a small TOML table addressed by type and id. Type names are singular and telling: <code>name</code>, <code>description</code>, <code>personality</code>, <code>wardrobe</code>, <code>scenario</code>, <code>greeting</code>, <code>prompt</code>, <code>lore</code>.</p>
+  <pre>[description.esmeralda]
+text = "A dancer on the square of Notre Dame, admired by all of Paris ..."</pre>
+
+  <h2>The character table</h2>
+  <p>A character is a flat combination of blocks. No inheritance, no defaults, no hidden magic. Its <code>prompt</code> list is the full prompt template, sent to the LLM in exactly that order. Lowercase strings reference blocks, one liners can stay inline, and UPPERCASE entries are placeholders the app fills.</p>
+  <pre>[character.esmeralda]
+name-card = "Esmeralda"                  # label in the app's card list
+name-char = "name.esmeralda"             # what {{char}} resolves to
+greetings = ["greeting.coin", "greeting.knife"]
+prompt = [
+  "name.esmeralda",
+  "description.esmeralda",
+  "personality.esmeralda",
+  { text = "Paris, 1482, at night." },
+  "CHAT-HISTORY",
+]</pre>
+  <p>The picked greeting is simply the first message of the chat. There is no greeting slot.</p>
+
+  <h2>Blocks are shared</h2>
+  <p>Cards reference blocks, they do not own them. Two cards can point at the same description: edit it once and both change. One file can hold a whole cast, parallel language versions of any block, and the same person on the best day of her year or on the worst.</p>
+  <pre>[character.esmeralda-festival]
+prompt = [ "description.esmeralda", "wardrobe.festival", "CHAT-HISTORY" ]
+
+[character.esmeralda-sanctuary]
+prompt = [ "description.esmeralda", "wardrobe.sanctuary", "CHAT-HISTORY" ]</pre>
+
+  <h2>Lorebooks</h2>
+  <p>A <code>lore</code> block wakes up when one of its keywords appears in the chat. A <code>lorebook</code> bundles lore blocks, and the <code>LOREBOOK</code> placeholder marks where triggered entries land in the prompt. Characters can share a lorebook the same way they share any block.</p>
+  <pre>[lore.shadow]
+keywords = ["priest", "shadow", "cathedral"]
+text = "A priest watches the square from the cathedral, every single day."
+
+[lorebook.old-paris]
+entries = ["lore.shadow"]</pre>
+
+  <h2>Card data and user data</h2>
+  <p>Every chunk filename starts with <code>card/</code> for authored work or <code>user/</code> for personal data like chat sessions. Sharing a card means copying the PNG and dropping the <code>user/</code> chunks. No parsing, no rebuild, your chats never leave your machine.</p>
+  <pre>esmeralda.png
+├─ IHDR, IDAT, IEND     standard PNG, the visible artwork
+├─ toMl  card/character.toml    the cards, blocks and prompts
+├─ toMl  card/lore.toml         lorebooks and lore blocks
+├─ asEt  card/assets/voice.ogg  raw asset bytes, referenced as asset://
+└─ toMl  user/session-01.toml   your chat, dropped when you share  ✂</pre>
+  <p>Every CCV4 chunk is a private PNG chunk: <code>toMl</code> for a TOML file, <code>asEt</code> for one binary asset. Each carries a filename, and the <code>card/</code> or <code>user/</code> prefix decides what stays when you share. A viewer that does not know CCV4 ignores every one of them and still shows the picture.</p>
+
+  <p>Best way to get a feel for it: <a href="https://elana-voss.github.io/ccv4/ccv4-demo.html" target="_blank" rel="noopener">edit the eight examples live in the playground</a>, or read the <a href="https://elana-voss.github.io/ccv4/" target="_blank" rel="noopener">full specification and algorithm</a>.</p>
+
+  <hr />
+  <footer>Cardwave © 2026. <a href="index.html">Home</a> · <a href="disclaimer.html">Disclaimer &amp; Terms</a></footer>
+
+</body>
+
+</html>
