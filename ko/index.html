@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cardwave: local-first character card editor and AI chat</title>
+  <title>Cardwave: 로컬 우선 캐릭터 카드 에디터 & AI 채팅</title>
   <meta name="description"
-    content="A local-first character card editor and chat client for Windows, Linux, Android, and web. Bring any AI provider you already use. Cards and chats stay on your device." />
-  <link rel="canonical" href="https://cardwave.cc/" />
+    content="Windows, Linux, Android, 웹을 지원하는 로컬 우선 캐릭터 카드 에디터 겸 채팅 클라이언트. 이미 쓰고 있는 AI 제공사를 그대로 연결하세요. 카드와 채팅은 내 기기에만 저장됩니다." />
+  <link rel="canonical" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
@@ -18,18 +18,18 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
-  <link rel="icon" href="logo_icon.png" />
+  <link rel="icon" href="/logo_icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
 
 <body>
 
   <header>
-    <h1><a href="index.html"><img src="logo_icon.png" alt="" /> Cardwave</a></h1>
+    <h1><a href="/ko/"><img src="/logo_icon.png" alt="" /> Cardwave</a></h1>
     <a class="gh" href="https://github.com/elana-voss/cardwave" target="_blank" rel="noopener noreferrer"
       aria-label="GitHub">
       <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -39,18 +39,18 @@
     </a>
   </header>
 
-  <p>A local-first character card editor and chat client. Bring any AI provider you already use. Nothing leaves your
-    computer unless you send it there.</p>
+  <p>로컬 우선 캐릭터 카드 에디터 겸 채팅 클라이언트. 이미 쓰고 있는 AI 제공사를 그대로 연결하세요. 직접 보내지 않는 한 어떤 것도 컴퓨터 밖으로 나가지
+    않습니다.</p>
 
-  <nav class="langs" aria-label="Languages">
-    <span lang="en" aria-current="page">English</span> ·
+  <nav class="langs" aria-label="언어">
+    <a lang="en" href="/">English</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
     <a lang="ja" href="/ja/">日本語</a> ·
     <a lang="zh-CN" href="/zh-cn/">简体中文</a> ·
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
-    <a lang="ko" href="/ko/">한국어</a> ·
+    <span lang="ko" aria-current="page">한국어</span> ·
     <a lang="hi" href="/hi/">हिन्दी</a>
   </nav>
 
@@ -70,19 +70,17 @@
         <path
           d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02 1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0729L4.841 5.4207a.4161.4161 0 00-.5676-.1521.4157.4157 0 00-.1521.5676L6.2986 9.3214C2.9765 11.1867.5765 14.6589.2 18.761h23.6c-.3765-4.1021-2.7765-7.5743-6.099-9.4396" />
       </svg>Android</a>
-    <a href="https://app.cardwave.cc" target="_blank" rel="noopener noreferrer">Open Web App</a>
+    <a href="https://app.cardwave.cc" target="_blank" rel="noopener noreferrer">웹 앱 열기</a>
   </p>
 
-  <img class="shot" src="landing_desktop.jpg" alt="Cardwave workspace with character editor and chat side-by-side" />
+  <img class="shot" src="/landing_desktop.jpg" alt="캐릭터 에디터와 채팅이 나란히 표시된 Cardwave 작업 공간" />
 
-  <h2>Privacy</h2>
-  <p>Cardwave stores cards, chats, keys, and settings on your disk. No account, no sync, no analytics in the app. The
-    only outbound calls are the ones you trigger: a chat message going to the provider whose API key you entered. There
-    is no Cardwave server in the path.</p>
+  <h2>프라이버시</h2>
+  <p>Cardwave는 카드, 채팅, 키, 설정을 내 디스크에 저장합니다. 계정 없음, 동기화 없음, 앱 내 분석 없음. 외부로 나가는 요청은 내가 직접 트리거한
+    것뿐입니다: 입력한 API 키의 제공사로 전송되는 채팅 메시지. 그 경로에 Cardwave 서버는 없습니다.</p>
 
-  <h2>Models</h2>
-  <p>Cardwave takes an API key and talks to the provider directly. Swap providers per chat. There is no Cardwave
-    subscription.</p>
+  <h2>모델</h2>
+  <p>Cardwave는 API 키를 받아 제공사와 직접 통신합니다. 채팅마다 제공사를 바꿀 수 있습니다. Cardwave 구독은 없습니다.</p>
   <ul>
     <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
       <strong>GPT</strong>- OpenAI
@@ -97,37 +95,36 @@
     <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
       - xAI
     </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- diverse
-      models</li>
+    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- 다양한
+      모델</li>
     <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - diverse models</li>
+      - 다양한 모델</li>
   </ul>
 
-  <h2>Cards</h2>
-  <p>The editor covers the full Character Cards V3 spec. Drop a PNG into the cards folder and it opens in either the
-    editor or
-    the chat.</p>
+  <h2>카드</h2>
+  <p>에디터는 Character Cards V3 사양을 완전히 지원합니다. PNG를 카드 폴더에 넣으면 에디터나 채팅에서 바로 열립니다.</p>
 
-  <h2>Where to find characters</h2>
-  <p>Cardwave opens cards from anywhere. See the <a href="where-to-find-characters.html">list of sites that host
-      character cards</a> you can download and drop into your cards folder.</p>
+  <h2>캐릭터 찾는 곳</h2>
+  <p>Cardwave는 어디서 가져온 카드든 열 수 있습니다. 다운로드해서 카드 폴더에 넣을 수 있는 <a
+      href="/where-to-find-characters.html">캐릭터 카드 호스팅 사이트 목록</a>을 확인하세요.</p>
 
-  <h2>Estimating costs</h2>
-  <p>Chat costs grow as a conversation lengthens, because each turn resends the history. The <a
-      href="chat-turn-budget-calculator.html">chat turn budget calculator</a> estimates how many turns a budget buys for
-    any model's per-token price.</p>
+  <h2>비용 추정</h2>
+  <p>채팅 비용은 대화가 길어질수록 커집니다. 매 턴마다 히스토리를 다시 전송하기 때문입니다. <a
+      href="/chat-turn-budget-calculator.html">채팅 턴 예산 계산기</a>는 모델별 토큰 단가로 예산이 몇 턴을 감당하는지 추정합니다.</p>
 
-  <h2>Scope</h2>
-  <p>Cardwave is free and built by one person. Released as-is. Bug reports and feature requests welcome via <a
-      href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+  <h2>프로젝트 범위</h2>
+  <p>Cardwave는 무료이며 한 사람이 만듭니다. 있는 그대로 배포됩니다. 버그 신고와 기능 요청은 <a
+      href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub
+      Issues</a>로 환영합니다.
   </p>
-  <p><strong>Beta.</strong> Cardwave is in active development. Keep backups of your character cards.</p>
+  <p><strong>베타.</strong> Cardwave는 활발히 개발 중입니다. 캐릭터 카드는 백업해 두세요.</p>
 
-  <h2>CCV4 card format</h2>
-  <p>CCV4 is a draft character card format built from small addressable text blocks in TOML, stored in PNG chunks. Read the <a href="ccv4.html">CCV4 overview</a>, with the full specification, the prompt-assembly algorithm, a reference example, and a live playground.</p>
+  <h2>CCV4 카드 포맷</h2>
+  <p>CCV4는 TOML로 된 작고 주소 지정 가능한 텍스트 블록을 PNG 청크에 저장하는 초안 단계의 캐릭터 카드 포맷입니다. 전체 사양, 프롬프트 조립 알고리즘,
+    참조 예제, 라이브 플레이그라운드가 포함된 <a href="/ccv4.html">CCV4 개요</a>를 읽어 보세요.</p>
 
   <hr />
-  <footer>Cardwave © 2026. <a href="disclaimer.html">Disclaimer &amp; Terms</a></footer>
+  <footer>Cardwave © 2026. <a href="/disclaimer.html">면책 조항 및 약관</a></footer>
 
 </body>
 

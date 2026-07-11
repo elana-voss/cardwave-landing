@@ -31,6 +31,9 @@ hr { border: 0; border-top: 1px solid #eee; margin: 40px 0 20px; }
 footer { color: #888; font-size: 14px; }
 
 /* index.html */
+.langs { font-size: 15px; }
+.langs a, .langs span { white-space: nowrap; }
+.langs span[aria-current] { color: #888; }
 img.shot { display: block; width: 100%; height: auto; margin: 24px 0; border: 1px solid #eee; }
 .downloads { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 20px 0 24px; }
 .downloads a {
