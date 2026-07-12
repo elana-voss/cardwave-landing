@@ -46,6 +46,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cardwave.cc/ccv4.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cardwave.cc/where-to-find-characters.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
