@@ -6,16 +6,19 @@ wrote (GitHub Pages serves the files as they are). Standard library only.
 - src/index.template.html: the page. `{{key}}` is a text of the language's file; `{{@name}}` is filled in here
   (the language row, the hreflang alternates, the picture box, the page's own address and language).
 - src/text/<code>.txt: one language's texts, a line `key = value` each; inline HTML is allowed, and `{where}`,
-  `{calculator}`, `{ccv4}`, `{disclaimer}` and `{issues}` become their links. en.txt is the golden file: every
+  `{calculator}`, `{ccv4}`, `{disclaimer}`, `{providers}` and `{issues}` become their links. en.txt is the golden file: every
   other language is translated from it, and the build stops when a file lacks one of its keys or has one more.
 - Writes index.html (English) and <code>/index.html for every other language, each page's links absolute
   ("/style.css"), so the pages work only served from the site's root (GitHub Pages, or `python -m http.server`).
 - The picture box shows a slide only where screenshots/<name>.webp exists, in SLIDES' order; the first loads
   at once, the rest lazily. A new slide needs its picture, its name in SLIDES and a caption `slide_<name>`.
-- The English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here.
+- Writes providers.html (English only) from src/providers.json, which cardwave-next's tools/provider_page.py
+  writes from the app's own provider list: the online services in columns, the local servers apart.
+- The other English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here.
 """
 
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -41,6 +44,7 @@ LANGS = [
 
 # The English-only pages in the sitemap: page, how often it changes, priority.
 OTHER_PAGES = [
+    ("providers.html", "monthly", "0.7"),
     ("ccv4.html", "monthly", "0.7"),
     ("where-to-find-characters.html", "monthly", "0.7"),
     ("chat-turn-budget-calculator.html", "monthly", "0.7"),
@@ -54,6 +58,7 @@ LINKS = {
     "calculator": "/chat-turn-budget-calculator.html",
     "ccv4": "/ccv4.html",
     "disclaimer": "/disclaimer.html",
+    "providers": "/providers.html",
     "issues": "https://github.com/elana-voss/cardwave/issues",
 }
 
@@ -188,6 +193,79 @@ def render(template, code, hl, locale, texts):
     return out
 
 
+PROVIDERS_HEAD = """<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="{description}" />
+  <link rel="canonical" href="{url}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cardwave" />
+  <meta property="og:url" content="{url}" />
+  <meta property="og:title" content="{title}" />
+  <meta property="og:description" content="{description}" />
+  <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
+  <meta property="og:image:width" content="1440" />
+  <meta property="og:image:height" content="900" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/logo_icon.png" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
+</head>
+
+<body>
+
+  <header>
+    <h1><a href="/"><img src="/logo_icon.png" alt="" /> Cardwave</a></h1>
+  </header>
+"""
+
+
+def providers_page():
+    """providers.html: every online provider the app knows by its key, linked to its site; the local servers apart."""
+    data = json.loads((ROOT / "src" / "providers.json").read_text(encoding="utf-8"))
+    online = sorted((p for p in data if not p["local"]), key=lambda p: p["name"].casefold())
+    local = sorted((p for p in data if p["local"]), key=lambda p: p["name"].casefold())
+
+    def item(p):
+        name = html.escape(p["name"])
+        if not p["url"]:
+            return f"    <li>{name}</li>"
+        url = html.escape(p["url"], quote=True)
+        return f'    <li><a href="{url}" target="_blank" rel="noopener noreferrer">{name}</a></li>'
+
+    title = "AI providers Cardwave supports"
+    description = f"The {len(online)} AI services Cardwave knows by their API key, and the local servers it works with."
+    return "\n".join([
+        PROVIDERS_HEAD.format(title=title, description=description, url=SITE + "/providers.html"),
+        f'  <p class="page-title"><strong>{title}</strong></p>',
+        f"  <p>Paste an API key from any of these {len(online)} services and Cardwave knows whose it is. "
+        "Any other OpenAI-compatible server works too, by its address.</p>",
+        '  <ul class="providers">',
+        *[item(p) for p in online],
+        "  </ul>",
+        "",
+        "  <h2>On your own computer</h2>",
+        "  <p>Cardwave runs GGUF models itself, and it also works with these local servers.</p>",
+        '  <ul class="providers">',
+        *[item(p) for p in local],
+        "  </ul>",
+        "",
+        "  <hr />",
+        '  <footer>Cardwave © 2026. <a href="/">Home</a></footer>',
+        "",
+        "</body>",
+        "",
+        "</html>",
+        "",
+    ])
+
+
 def sitemap():
     urls = []
     for code, _, _, _ in LANGS:
@@ -209,8 +287,9 @@ def main():
         target = ROOT / "index.html" if code == "en" else ROOT / code / "index.html"
         target.parent.mkdir(exist_ok=True)
         target.write_text(render(template, code, hl, locale, all_texts[code]), encoding="utf-8", newline="\n")
+    (ROOT / "providers.html").write_text(providers_page(), encoding="utf-8", newline="\n")
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8", newline="\n")
-    print(f"wrote {len(LANGS)} pages and sitemap.xml")
+    print(f"wrote {len(LANGS)} pages, providers.html and sitemap.xml")
 
 
 if __name__ == "__main__":
