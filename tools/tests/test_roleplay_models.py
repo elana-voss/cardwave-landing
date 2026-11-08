@@ -59,6 +59,8 @@ class Ranking(unittest.TestCase):
         self.assertIn('href="https://openrouter.ai/deepseek/deepseek-v4.1-flash"', page)
         self.assertIn("24.1%", page)
         self.assertIn("$0.056", page)
+        self.assertIn("<td>$0.66</td><td>$1.98</td>", page)
+        self.assertEqual([rm.money(v) for v in (0.423864, 3, 0.029, 0.03, None)], ["$0.424", "$3.00", "$0.029", "$0.03", "—"])
         self.assertIn("<td>—</td>", page)
 
     def test_failed_fetch_leaves_page(self):

@@ -1,0 +1,48 @@
+# Renews roleplay-models.html weekly (and by hand) from OpenRouter's task ranking (the secret OPENROUTER_API_KEY) and
+# models.dev's prices; commits the page only when it changed, then starts pages.yml, since a push by GITHUB_TOKEN starts
+# no workflow but a workflow_dispatch by it does. A failed fetch or a ranking without the roleplay entry fails the run
+# and changes nothing. Runs only on main, the branch the site deploys from.
+name: Roleplay models
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: roleplay-models
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test
+        run: python3 -m unittest discover -s tools/tests
+
+      - name: Write the page
+        run: python3 tools/roleplay_models.py
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
+      - name: Commit and deploy if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- roleplay-models.html; then
+            echo "The page is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Roleplay models: OpenRouter's ranking renewed" -- roleplay-models.html
+          git push
+          gh workflow run pages.yml --ref main

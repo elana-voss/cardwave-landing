@@ -67,7 +67,11 @@ def rows(models, prices):
 
 
 def money(value):
-    return "—" if value is None else "${:g}".format(value)
+    """Dollars to three decimals at most and two at least: $0.029, $0.03, $3.00."""
+    if value is None:
+        return "—"
+    text = "{:.3f}".format(value)
+    return "$" + (text[:-1] if text.endswith("0") else text)
 
 
 def share(value):
@@ -138,6 +142,7 @@ TEMPLATE = """<!doctype html>
     .ranking th, .ranking td {{ padding: 8px 10px; border-bottom: 1px solid #e5e5e5; text-align: right; white-space: nowrap; }}
     .ranking th:nth-child(2), .ranking td:nth-child(2) {{ text-align: left; white-space: normal; }}
     .ranking th {{ font-weight: 600; color: #555; font-size: 14px; }}
+    @media (max-width: 480px) {{ .ranking th, .ranking td {{ padding: 8px 4px; font-size: 14px; }} }}
     .source {{ color: #888; font-size: 14px; }}
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
