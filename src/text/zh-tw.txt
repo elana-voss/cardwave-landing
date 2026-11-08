@@ -40,6 +40,8 @@ where_h = 去哪裡找角色
 where_p = Cardwave 能開啟來自任何地方的角色卡。查看<a href="{where}">提供角色卡的網站清單</a>，下載後匯入 Cardwave 即可。
 costs_h = 費用估算
 costs_p = 聊天費用會隨對話變長而增加，因為每一輪都會重新傳送歷史紀錄。<a href="{calculator}">聊天輪次預算計算機</a>可按任何模型的每 token 價格，估算一筆預算能聊多少輪。
+roleplay_h = 熱門角色扮演模型
+roleplay_p = 查看<a href="{roleplay}">角色扮演中最常用的模型</a>，資料來自 OpenRouter 的排行榜，每週更新，並附上每個模型的每 token 價格。
 scope_h = 專案範圍
 scope_p = Cardwave 免費，由一個人開發，按現狀發佈。
 beta_h = 測試版

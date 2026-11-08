@@ -40,6 +40,8 @@ where_h = Tempat menemukan karakter
 where_p = Cardwave membuka kartu dari mana saja. Lihat <a href="{where}">daftar situs yang menyediakan kartu karakter</a> yang dapat kamu unduh dan impor ke Cardwave.
 costs_h = Memperkirakan biaya
 costs_p = Biaya obrolan bertambah seiring percakapan memanjang, karena setiap giliran mengirim ulang riwayatnya. <a href="{calculator}">Kalkulator anggaran giliran obrolan</a> memperkirakan berapa giliran yang bisa dibeli sebuah anggaran dengan harga per token model mana pun.
+roleplay_h = Model roleplay populer
+roleplay_p = Lihat <a href="{roleplay}">model yang paling banyak dipakai untuk roleplay</a>, dari peringkat OpenRouter dan diperbarui setiap minggu, masing-masing dengan harga per token.
 scope_h = Cakupan
 scope_p = Cardwave gratis dan dibuat oleh satu orang. Dirilis apa adanya.
 beta_h = Beta

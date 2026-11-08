@@ -66,6 +66,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://cardwave.cc/roleplay-models.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cardwave.cc/ccv4.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

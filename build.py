@@ -45,6 +45,7 @@ LANGS = [
 # The English-only pages in the sitemap: page, how often it changes, priority.
 OTHER_PAGES = [
     ("providers.html", "monthly", "0.7"),
+    ("roleplay-models.html", "weekly", "0.7"),
     ("ccv4.html", "monthly", "0.7"),
     ("where-to-find-characters.html", "monthly", "0.7"),
     ("chat-turn-budget-calculator.html", "monthly", "0.7"),
@@ -59,6 +60,7 @@ LINKS = {
     "ccv4": "/ccv4.html",
     "disclaimer": "/disclaimer.html",
     "providers": "/providers.html",
+    "roleplay": "/roleplay-models.html",
     "issues": "https://github.com/elana-voss/cardwave/issues",
 }
 
