@@ -1,0 +1,49 @@
+title = Cardwave: KI-Charakterchat und Karteneditor für Windows
+description = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows. Bring deinen eigenen KI-Anbieter mit. Karten, Chats und Schlüssel bleiben auf deinem Computer.
+langs_label = Sprachen
+download = Für Windows herunterladen
+intro = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows. Nutze jeden KI-Anbieter, den du schon verwendest. Deine Karten, Chats und Schlüssel bleiben auf deinem Computer.
+shots_label = Bilder von Cardwave
+shot_prev = Vorheriges Bild
+shot_next = Nächstes Bild
+shot_dot = Bild {n}
+slide_chat = Ein Chat mit einem Charakter
+slide_library = Deine Bibliothek der Charaktere
+slide_card = Die Seite eines Charakters, auf der du die Karte bearbeitest
+slide_companion = Die Begleitung auf deinem Desktop
+slide_lorebook = Ein Lorebook
+slide_chat_dark = Ein Chat im dunklen Design
+features_h = Funktionen
+f_chat = <strong>Chat.</strong> Sprich mit einem Charakter oder mit mehreren, die abwechselnd reden oder sich untereinander weiter unterhalten. Geh zu jeder Nachricht zurück und probier einen anderen Weg.
+f_cards = <strong>Karten.</strong> Erstelle einen Charakter von Grund auf oder im Gespräch mit der KI und bearbeite ihn auf seiner eigenen Seite.
+f_library = <strong>Bibliothek.</strong> Finde einen Charakter nach Name, Tag oder Inhalt. Die KI versieht deine Karten mit Tags und fasst sie zusammen.
+f_memory = <strong>Erinnerung.</strong> Charaktere behalten, was geschehen ist, und können auf Dokumente zurückgreifen, die du ihnen gibst.
+f_companion = <strong>Begleitung.</strong> Eine 3D-Figur auf deinem Desktop, die mit dir spricht, ihre Antworten vorliest und dir Gesellschaft leistet, auch als Assistentin für den Alltag.
+f_voices = <strong>Stimmen.</strong> Antworten werden in der eigenen Stimme jedes Charakters vorgelesen, auf deinem Computer. Diktiere, statt zu tippen.
+f_pictures = <strong>Bilder.</strong> Erstelle ein Bild direkt im Chat.
+f_tools = <strong>Werkzeuge.</strong> Lass das Modell im Web suchen, in einem Ordner arbeiten oder Befehle ausführen, jeweils nur, wenn du es erlaubst.
+f_coding = <strong>Programmierteam.</strong> Gib ihm ein Ziel und einen Ordner, und ein Team von KI-Agenten arbeitet für dich daran.
+f_local = <strong>Lokale Modelle.</strong> Führe Modelle auf deinem eigenen Computer aus, ohne Schlüssel und ohne Konto.
+f_tabs = <strong>Tabs und Designs.</strong> Halte mehrere Chats und Karten in Tabs offen. Hell, dunkel oder eines von fünf weiteren Designs.
+f_locked = <strong>Gesperrt und gesichert.</strong> Ein Passwort sperrt die App; eine Sicherung ist eine einzige Datei.
+f_language = <strong>Deine Sprache.</strong> Cardwave spricht zwölf Sprachen.
+privacy_h = Datenschutz
+privacy_p = Cardwave speichert Karten, Chats, Schlüssel und Einstellungen auf deinem Computer, in einer verschlüsselten Datenbank. Keine Anmeldung, keine Synchronisierung, keine Analyse in der App. Online geht es nur für das, worum du es bittest: eine Nachricht an den Anbieter, dessen API-Schlüssel du eingegeben hast, einen Download, den du startest (das Suchmodell, eine Stimme), die Web-Werkzeuge, die du einschaltest, und einen Blick auf GitHub nach einer neuen Version, den du in den Einstellungen abschalten kannst.
+byo_h = Bring deine eigene KI mit
+byo_p1 = Nutze die KI, die du schon verwendest. Füge einen API-Schlüssel ein, und Cardwave erkennt, von wem er ist: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT und <a href="{providers}">mehr als 150 weitere</a>. Jeder OpenAI-kompatible Server funktioniert auch, über seine Adresse.
+byo_p2 = Oder führe Modelle auf deinem eigenen Computer aus: Zeig Cardwave einen Ordner mit GGUF-Dateien, und es führt sie selbst aus, auf deiner Grafikkarte, wo es geht.
+providers_h = Unterstützte Anbieter
+providers_p = Sieh dir die <a href="{providers}">Liste der KI-Anbieter an, die Cardwave unterstützt</a>, jeder mit einem Link zu seiner Website.
+cards_h = Karten
+cards_p = Cardwave importiert SillyTavern-PNG-Karten und CCV4-Karten, über Erstellen oder per Ablegen in deiner Bibliothek. Es exportiert eine Karte als SillyTavern V3 oder CCV4 und einen Chat im Chatformat von SillyTavern.
+where_h = Wo du Charaktere findest
+where_p = Cardwave öffnet Karten von überall. Sieh dir die <a href="{where}">Liste der Seiten mit Charakterkarten</a> an, die du herunterladen und in Cardwave importieren kannst.
+costs_h = Kosten abschätzen
+costs_p = Die Kosten eines Chats wachsen, je länger das Gespräch wird, weil jede Runde den Verlauf erneut sendet. Der <a href="{calculator}">Rechner für das Budget pro Chatrunde</a> schätzt, wie viele Runden ein Budget beim Preis pro Token eines beliebigen Modells hergibt.
+scope_h = Umfang
+scope_p = Cardwave ist kostenlos und wird von einer Person gebaut. Veröffentlicht wie es ist.
+beta_h = Beta
+beta_p = Cardwave wird aktiv entwickelt, und dies ist die erste öffentliche Version. Ein Update behält vielleicht nicht, was eine frühere Version gespeichert hat; exportiere also die Karten, die dir wichtig sind, und halte eine Sicherung bereit. Fehler und Wünsche gehören in die <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+ccv4_h = Kartenformat CCV4
+ccv4_p = CCV4 ist ein Entwurf für ein Format von Charakterkarten aus kleinen adressierbaren Textblöcken in TOML, gespeichert in PNG-Chunks. Lies die <a href="{ccv4}">Übersicht zu CCV4</a> mit der vollständigen Spezifikation, dem Algorithmus zum Zusammensetzen des Prompts, einem Referenzbeispiel und einem Live-Playground.
+footer = Cardwave © 2026. <a href="{disclaimer}">Haftungsausschluss &amp; Nutzungsbedingungen</a>

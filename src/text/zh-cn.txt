@@ -3,18 +3,47 @@ description = 适用于 Windows 的 AI 角色聊天应用与角色卡编辑器�
 langs_label = 语言
 download = 下载 Windows 版
 intro = 适用于 Windows 的 AI 角色聊天应用与角色卡编辑器。接入你已在使用的任意 AI 服务商。你的角色卡、聊天和密钥都留在你的电脑上。
+shots_label = Cardwave 截图
+shot_prev = 上一张
+shot_next = 下一张
+shot_dot = 第 {n} 张
+slide_chat = 与角色聊天
+slide_library = 你的角色库
+slide_card = 角色页面，在这里编辑角色卡
+slide_companion = 桌面上的伙伴
+slide_lorebook = 世界书
+slide_chat_dark = 深色主题下的聊天
+features_h = 功能
+f_chat = <strong>聊天。</strong>与一个或多个角色交谈，他们轮流发言，或彼此继续聊下去。可以回到任意一条消息，换一条路走。
+f_cards = <strong>角色卡。</strong>从零开始创建角色，或在与 AI 的对话中创建，并在角色自己的页面上编辑。
+f_library = <strong>角色库。</strong>按名字、标签或内容找到角色。AI 会为你的角色卡加标签并写摘要。
+f_memory = <strong>记忆。</strong>角色记得发生过的事，并能参考你给它们的文档。
+f_companion = <strong>伙伴。</strong>桌面上的 3D 形象，和你聊天、朗读自己的回复、陪伴你，也能当日常助手。
+f_voices = <strong>语音。</strong>在你的电脑上用每个角色自己的声音朗读回复。可以用语音输入代替打字。
+f_pictures = <strong>图片。</strong>在聊天中生成图片。
+f_tools = <strong>工具。</strong>让模型搜索网页、在一个文件夹里工作或运行命令，每一项都只在你允许时进行。
+f_coding = <strong>编程团队。</strong>给它一个目标和一个文件夹，一组 AI 智能体就会替你完成工作。
+f_local = <strong>本地模型。</strong>在你自己的电脑上运行模型，无需密钥和账号。
+f_tabs = <strong>标签页和主题。</strong>在标签页中同时打开多个聊天和角色卡。浅色、深色或另外五种主题之一。
+f_locked = <strong>上锁和备份。</strong>用密码锁住应用；备份就是一个文件。
+f_language = <strong>你的语言。</strong>Cardwave 支持十二种语言。
 privacy_h = 隐私
-privacy_old = Cardwave 把角色卡、聊天、密钥和设置保存在你的电脑上。无需注册，没有同步，应用内没有分析统计。它只在你要求时联网：发给你填写了 API 密钥的服务商的消息、你启动的下载（搜索模型、语音）、你开启的网页工具，以及在 GitHub 上检查新版本（可在设置中关闭）。中间没有任何 Cardwave 服务器。
+privacy_p = Cardwave 把角色卡、聊天、密钥和设置保存在你电脑上的加密数据库中。无需注册，没有同步，应用内没有分析统计。它只在你要求时联网：发给你填写了 API 密钥的服务商的消息、你启动的下载（搜索模型、语音）、你开启的网页工具，以及在 GitHub 上检查新版本（可在设置中关闭）。
+byo_h = 使用你自己的 AI
+byo_p1 = 用你已经在用的 AI。粘贴一个 API 密钥，Cardwave 就知道它属于谁：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT，以及<a href="{providers}">其他 150 多家</a>。任何兼容 OpenAI 的服务器也可以，按地址连接。
+byo_p2 = 也可以在你自己的电脑上运行模型：把 Cardwave 指向一个存放 GGUF 文件的文件夹，它会自己运行这些模型，能用显卡时就用显卡。
+providers_h = 支持的服务商
+providers_p = 查看 <a href="{providers}">Cardwave 支持的 AI 服务商列表</a>，每家都附有其网站链接。
 cards_h = 角色卡
-where_h = 去哪里找角色
-costs_h = 费用估算
-scope_h = 项目范围
-ccv4_h = CCV4 卡片格式
 cards_p = Cardwave 可以通过“创建”或拖放到资料库来导入 SillyTavern PNG 角色卡和 CCV4 角色卡。角色卡可导出为 SillyTavern V3 或 CCV4，聊天可导出为 SillyTavern 的聊天格式。
+where_h = 去哪里找角色
 where_p = Cardwave 能打开来自任何地方的角色卡。查看<a href="{where}">提供角色卡的网站列表</a>，下载后导入 Cardwave 即可。
+costs_h = 费用估算
 costs_p = 聊天费用会随对话变长而增加，因为每一轮都会重新发送历史记录。<a href="{calculator}">聊天轮次预算计算器</a>可按任意模型的每 token 价格，估算一笔预算能聊多少轮。
-scope_old = Cardwave 免费，由一个人开发，按现状发布。欢迎通过 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 提交错误报告和功能建议。
-beta_old = <strong>测试版。</strong>Cardwave 正在积极开发中。请备份你的角色卡。
+scope_h = 项目范围
+scope_p = Cardwave 免费，由一个人开发，按现状发布。
+beta_h = 测试版
+beta_p = Cardwave 正在积极开发中，这是它的第一个公开版本。更新后可能无法保留旧版本保存的内容，所以请导出你在意的角色卡并保留备份。问题和建议请提交到 <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>。
+ccv4_h = CCV4 卡片格式
 ccv4_p = CCV4 是一个草案阶段的角色卡格式，由 TOML 编写的小型可寻址文本块组成，存储在 PNG 数据块中。阅读 <a href="{ccv4}">CCV4 概览</a>，包含完整规范、提示词组装算法、参考示例和在线演练场。
 footer = Cardwave © 2026. <a href="{disclaimer}">免责声明与条款</a>
-features_old = <strong>与角色聊天。</strong> 回复边写边显示。可以重新生成、编辑、保留每个版本，并从任意消息开出分支。把多个角色拉进同一个聊天：他们轮流发言，或彼此一直聊下去。 | <strong>创建和编辑角色卡。</strong> 角色卡的页面就是它的编辑器，每段文本都保留之前的草稿。可以从零写一张卡，也可以回答 AI 的问题，让它和你一起写出角色。 | <strong>好找的资料库。</strong> 按文字和按含义搜索，搜索模型在你的电脑上运行。AI 为每张卡写标签、一句话简介和摘要。人设和世界书就在你的角色旁边。 | <strong>记忆。</strong> 每 20 条消息，AI 会记下聊天中的事实和事件，角色在回复前会想起自己知道的事。可以给聊天或角色提供文档作为参考。 | <strong>语音和图片。</strong> 消息在你的电脑上朗读，每个角色用自己的声音，或用一段录音制作的声音。在聊天中用服务商的图像模型或 ComfyUI 生成图片。 | <strong>工具。</strong> 让模型搜索网页、处理某个文件夹中的文件，或在沙盒中运行命令，每一项都只在你允许时进行。一个编程团队可以替你在文件夹里朝一个目标工作。 | <strong>加锁与备份。</strong> 密码可以锁住应用。备份是一个加锁的文件，可以在这台或另一台电脑上恢复。 | <strong>你的语言。</strong> Cardwave 支持 12 种语言，并有浅色和深色两种主题。

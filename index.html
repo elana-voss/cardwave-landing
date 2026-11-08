@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave: AI character chat and card editor for Windows</title>
-  <meta name="description"
-    content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
+  <meta name="description" content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
   <link rel="canonical" href="https://cardwave.cc/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,34 +18,31 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/" />
   <meta property="og:title" content="Cardwave: AI character chat and card editor for Windows" />
-  <meta property="og:description"
-    content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
+  <meta property="og:description" content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave: AI character chat and card editor for Windows" />
-  <meta name="twitter:description"
-    content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
+  <meta name="twitter:description" content="An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
-  <link rel="icon" href="logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="/logo_icon.png" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
 
 <body>
 
   <header>
-    <h1><a href="index.html"><img src="logo_icon.png" alt="" /> Cardwave</a></h1>
+    <h1><a href="/"><img src="/logo_icon.png" alt="" /> Cardwave</a></h1>
     <a class="gh" href="https://github.com/elana-voss/cardwave" target="_blank" rel="noopener noreferrer"
       aria-label="GitHub">
       <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="Languages">
     <span lang="en" aria-current="page">English</span> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <a lang="hi" href="/hi/">हिन्दी</a> ·
-    <a lang="vi" href="/vi/">Tiếng Việt</a>
+    <a lang="vi" href="/vi/">Tiếng Việt</a> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,70 +76,98 @@
       </svg>Download for Windows</a>
   </p>
 
-  <img class="shot" src="landing_desktop.jpg" alt="Cardwave's window on Windows" />
+  <figure class="shots" aria-label="Pictures of Cardwave">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="A chat with a character" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="Your library of characters" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="A character&#x27;s page, where you edit the card" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="A lorebook" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="Previous picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="Next picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="Picture 1" aria-current="true"></button>
+      <button type="button" aria-label="Picture 2" aria-current="false"></button>
+      <button type="button" aria-label="Picture 3" aria-current="false"></button>
+      <button type="button" aria-label="Picture 4" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">A chat with a character</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
-  <h2>What it does</h2>
+  <h2>Features</h2>
   <ul>
-    <li><strong>Chat with characters.</strong> Replies stream in as they are written. Regenerate, edit, keep every version and branch from any message. Bring several characters into one chat: they take turns, or keep talking among themselves.</li>
-    <li><strong>Make and edit cards.</strong> A card's page is its editor, and every text keeps its earlier drafts. Write a card from scratch, or answer the AI's questions and it writes the character with you.</li>
-    <li><strong>A library that finds things.</strong> Search by words and by meaning, with a search model that runs on your computer. The AI writes each card's tags, a one-line pitch and a summary. Personas and lorebooks sit beside your characters.</li>
-    <li><strong>Memory.</strong> Every 20 messages the AI notes the facts and events of a chat, and a character recalls what it knows before it replies. Give a chat or a character documents to draw on.</li>
-    <li><strong>Voices and pictures.</strong> Messages are read aloud on your computer, each character in its own voice, or in one made from a recording. Make a picture in a chat with your provider's image model or ComfyUI.</li>
-    <li><strong>Tools.</strong> Let the model search the web, work with the files of one folder or run commands in a sandbox, each only as you allow. A coding team can work on a goal in a folder for you.</li>
-    <li><strong>Locked and backed up.</strong> A password locks the app. A backup is one locked file that restores on this computer or another.</li>
-    <li><strong>Your language.</strong> Cardwave speaks 12 languages, in a light and a dark theme.</li>
+    <li><strong>Chat.</strong> Talk with one character or several, who take turns or carry on among themselves. Go back and try another path at any message.</li>
+    <li><strong>Cards.</strong> Make a character from scratch or in a conversation with the AI, and edit it on its own page.</li>
+    <li><strong>Library.</strong> Find a character by name, tag or what it is about. The AI tags and summarises your cards.</li>
+    <li><strong>Memory.</strong> Characters remember what happened and can draw on documents you give them.</li>
+    <li><strong>Companion.</strong> A 3D figure on your desktop that talks with you, reads its replies aloud and keeps you company, also as an everyday assistant.</li>
+    <li><strong>Voices.</strong> Replies read aloud in each character's own voice, on your computer. Dictate instead of typing.</li>
+    <li><strong>Pictures.</strong> Make an image inside a chat.</li>
+    <li><strong>Tools.</strong> Let the model search the web, work in one folder or run commands, each only as you allow.</li>
+    <li><strong>Coding team.</strong> Give it a goal and a folder, and a team of AI agents works on it for you.</li>
+    <li><strong>Local models.</strong> Run models on your own computer, with no key and no account.</li>
+    <li><strong>Tabs and themes.</strong> Keep several chats and cards open in tabs. Light, dark or one of five more themes.</li>
+    <li><strong>Locked and backed up.</strong> A password locks the app; a backup is one file.</li>
+    <li><strong>Your language.</strong> Cardwave speaks twelve languages.</li>
   </ul>
 
   <h2>Privacy</h2>
-  <p>Cardwave keeps cards, chats, keys and settings on your computer. No sign-up, no sync, no analytics in the app. It goes online only for what you ask of it: a message to the provider whose API key you entered, a download you start (the search model, a voice), the web tools you switch on, and a look on GitHub for a new version, which Settings can switch off. There is no Cardwave server in the path.</p>
+  <p>Cardwave keeps cards, chats, keys and settings on your computer, in an encrypted database. No sign-up, no sync, no analytics in the app. It goes online only for what you ask of it: a message to the provider whose API key you entered, a download you start (the search model, a voice), the web tools you switch on, and a look on GitHub for a new version, which Settings can switch off.</p>
 
-  <h2>Models</h2>
-  <p>Cardwave takes an API key and talks to the provider directly. Paste a key and Cardwave tells whose it is, then helps you pick a chat model and a cheaper model for its own background work. Pick a provider below, or add your own. Keep several setups as presets and switch between them. There is no Cardwave subscription.</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- diverse
-      models</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - diverse models</li>
-  </ul>
-  <p>Running something else? Add it by hand. Point Cardwave at any OpenAI-compatible server, including a local model on
-    your own machine, by entering its address. Cardwave fetches its model list, or you type the models in yourself. A
-    local server needs no API key.</p>
+  <h2>Bring your own AI</h2>
+  <p>Bring the AI you already use. Paste an API key and Cardwave knows whose it is: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT and <a href="/providers.html">more than 150 others</a>. Any OpenAI-compatible server works too, by its address.</p>
+  <p>Or run models on your own computer: point Cardwave at a folder of GGUF files and it runs them itself, on your graphics card where it can.</p>
+
+  <h2>Supported providers</h2>
+  <p>See the <a href="/providers.html">list of AI providers Cardwave supports</a>, each with a link to its site.</p>
 
   <h2>Cards</h2>
   <p>Cardwave imports SillyTavern PNG cards and CCV4 cards, from Create or dropped onto your library. It exports a card as SillyTavern V3 or CCV4, and a chat in SillyTavern's chat format.</p>
 
   <h2>Where to find characters</h2>
-  <p>Cardwave opens cards from anywhere. See the <a href="where-to-find-characters.html">list of sites that host character cards</a> you can download and import into Cardwave.</p>
+  <p>Cardwave opens cards from anywhere. See the <a href="/where-to-find-characters.html">list of sites that host character cards</a> you can download and import into Cardwave.</p>
 
   <h2>Estimating costs</h2>
-  <p>Chat costs grow as a conversation lengthens, because each turn resends the history. The <a
-      href="chat-turn-budget-calculator.html">chat turn budget calculator</a> estimates how many turns a budget buys for
-    any model's per-token price.</p>
+  <p>Chat costs grow as a conversation lengthens, because each turn resends the history. The <a href="/chat-turn-budget-calculator.html">chat turn budget calculator</a> estimates how many turns a budget buys for any model's per-token price.</p>
 
   <h2>Scope</h2>
-  <p>Cardwave is free and built by one person. Released as-is. Bug reports and feature requests welcome via <a
-      href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-  </p>
-  <p><strong>Beta.</strong> Cardwave is in active development. Keep backups of your character cards.</p>
+  <p>Cardwave is free and built by one person. Released as-is.</p>
+
+  <h2>Beta</h2>
+  <p>Cardwave is in active development, and this is its first public release. An update may not keep what an earlier version stored, so export the cards you care about and keep a backup. Bugs and wishes go to <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <h2>CCV4 card format</h2>
-  <p>CCV4 is a draft character card format built from small addressable text blocks in TOML, stored in PNG chunks. Read the <a href="ccv4.html">CCV4 overview</a>, with the full specification, the prompt-assembly algorithm, a reference example, and a live playground.</p>
+  <p>CCV4 is a draft character card format built from small addressable text blocks in TOML, stored in PNG chunks. Read the <a href="/ccv4.html">CCV4 overview</a>, with the full specification, the prompt-assembly algorithm, a reference example, and a live playground.</p>
 
   <hr />
-  <footer>Cardwave © 2026. <a href="disclaimer.html">Disclaimer &amp; Terms</a></footer>
+  <footer>Cardwave © 2026. <a href="/disclaimer.html">Disclaimer &amp; Terms</a></footer>
 
 </body>
 

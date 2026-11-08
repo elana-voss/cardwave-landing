@@ -3,18 +3,47 @@ description = Una app de chat con personajes de IA y editor de tarjetas para Win
 langs_label = Idiomas
 download = Descargar para Windows
 intro = Una app de chat con personajes de IA y editor de tarjetas para Windows. Usa cualquier proveedor de IA que ya tengas. Tus tarjetas, chats y claves se quedan en tu computadora.
+shots_label = Imágenes de Cardwave
+shot_prev = Imagen anterior
+shot_next = Imagen siguiente
+shot_dot = Imagen {n}
+slide_chat = Un chat con un personaje
+slide_library = Tu biblioteca de personajes
+slide_card = La página de un personaje, donde editas la tarjeta
+slide_companion = El compañero en tu escritorio
+slide_lorebook = Un lorebook
+slide_chat_dark = Un chat con el tema oscuro
+features_h = Funciones
+f_chat = <strong>Chat.</strong> Habla con un personaje o con varios, que se turnan o siguen conversando entre ellos. Vuelve a cualquier mensaje y prueba otro camino.
+f_cards = <strong>Tarjetas.</strong> Crea un personaje desde cero o conversando con la IA, y edítalo en su propia página.
+f_library = <strong>Biblioteca.</strong> Encuentra un personaje por nombre, etiqueta o de qué trata. La IA etiqueta y resume tus tarjetas.
+f_memory = <strong>Memoria.</strong> Los personajes recuerdan lo que pasó y pueden apoyarse en documentos que les des.
+f_companion = <strong>Compañero.</strong> Una figura 3D en tu escritorio que habla contigo, lee en voz alta sus respuestas y te hace compañía, también como asistente para el día a día.
+f_voices = <strong>Voces.</strong> Respuestas leídas en voz alta con la voz propia de cada personaje, en tu computadora. Dicta en lugar de escribir.
+f_pictures = <strong>Imágenes.</strong> Crea una imagen dentro de un chat.
+f_tools = <strong>Herramientas.</strong> Deja que el modelo busque en la web, trabaje en una carpeta o ejecute comandos, cada cosa solo si tú lo permites.
+f_coding = <strong>Equipo de programación.</strong> Dale un objetivo y una carpeta, y un equipo de agentes de IA trabaja en ello por ti.
+f_local = <strong>Modelos locales.</strong> Ejecuta modelos en tu propia computadora, sin clave y sin cuenta.
+f_tabs = <strong>Pestañas y temas.</strong> Mantén varios chats y tarjetas abiertos en pestañas. Claro, oscuro o uno de otros cinco temas.
+f_locked = <strong>Protegida y respaldada.</strong> Una contraseña bloquea la app; una copia de seguridad es un solo archivo.
+f_language = <strong>Tu idioma.</strong> Cardwave habla doce idiomas.
 privacy_h = Privacidad
-privacy_old = Cardwave guarda tarjetas, chats, claves y configuración en tu computadora. Sin registro, sin sincronización, sin analítica en la app. Solo se conecta a internet para lo que tú le pides: un mensaje al proveedor cuya clave de API ingresaste, una descarga que tú inicias (el modelo de búsqueda, una voz), las herramientas web que activas, y una consulta a GitHub por una nueva versión, que puedes desactivar en Configuración. No hay ningún servidor de Cardwave en el camino.
+privacy_p = Cardwave guarda tarjetas, chats, claves y configuración en tu computadora, en una base de datos cifrada. Sin registro, sin sincronización, sin analítica en la app. Solo se conecta a internet para lo que tú le pides: un mensaje al proveedor cuya clave de API ingresaste, una descarga que tú inicias (el modelo de búsqueda, una voz), las herramientas web que activas, y una consulta a GitHub por una nueva versión, que puedes desactivar en Configuración.
+byo_h = Usa tu propia IA
+byo_p1 = Usa la IA que ya tienes. Pega una clave de API y Cardwave sabe de quién es: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT y <a href="{providers}">más de 150 otros</a>. Cualquier servidor compatible con OpenAI también funciona, por su dirección.
+byo_p2 = O ejecuta modelos en tu propia computadora: indica a Cardwave una carpeta de archivos GGUF y los ejecuta por sí mismo, en tu tarjeta gráfica cuando puede.
+providers_h = Proveedores compatibles
+providers_p = Consulta la <a href="{providers}">lista de proveedores de IA compatibles con Cardwave</a>, cada uno con un enlace a su sitio.
 cards_h = Tarjetas
-where_h = Dónde encontrar personajes
-costs_h = Estimar costos
-scope_h = Alcance
-ccv4_h = Formato de tarjeta CCV4
 cards_p = Cardwave importa tarjetas PNG de SillyTavern y tarjetas CCV4, desde Crear o soltándolas en tu biblioteca. Exporta una tarjeta como SillyTavern V3 o CCV4, y un chat en el formato de chat de SillyTavern.
+where_h = Dónde encontrar personajes
 where_p = Cardwave abre tarjetas desde cualquier lugar. Consulta la <a href="{where}">lista de sitios que alojan tarjetas de personaje</a> que puedes descargar e importar en Cardwave.
+costs_h = Estimar costos
 costs_p = El costo del chat crece a medida que la conversación se alarga, porque cada nuevo mensaje reenvía el historial. La <a href="{calculator}">calculadora de presupuesto por turnos</a> estima cuántos turnos compra un presupuesto con el precio por token de cualquier modelo.
-scope_old = Cardwave es gratuito y está hecho por una sola persona. Se publica tal cual. Los reportes de errores y las solicitudes de funciones son bienvenidos vía <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-beta_old = <strong>Beta.</strong> Cardwave está en desarrollo activo. Mantén copias de seguridad de tus tarjetas de personaje.
+scope_h = Alcance
+scope_p = Cardwave es gratuito y está hecho por una sola persona. Se publica tal cual.
+beta_h = Beta
+beta_p = Cardwave está en desarrollo activo, y esta es su primera versión pública. Una actualización puede no conservar lo que guardó una versión anterior, así que exporta las tarjetas que te importan y guarda una copia de seguridad. Los errores y los deseos van a <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+ccv4_h = Formato de tarjeta CCV4
 ccv4_p = CCV4 es un borrador de formato de tarjeta de personaje construido con pequeños bloques de texto direccionables en TOML, almacenados en chunks de PNG. Lee el <a href="{ccv4}">resumen de CCV4</a>, con la especificación completa, el algoritmo de ensamblado del prompt, un ejemplo de referencia y un playground en vivo.
 footer = Cardwave © 2026. <a href="{disclaimer}">Aviso legal y términos</a>
-features_old = <strong>Chatea con personajes.</strong> Las respuestas aparecen mientras se escriben. Regenera, edita, conserva cada versión y ramifica desde cualquier mensaje. Reúne a varios personajes en un chat: hablan por turnos o siguen conversando entre ellos. | <strong>Crea y edita tarjetas.</strong> La página de una tarjeta es su editor, y cada texto guarda sus borradores anteriores. Escribe una tarjeta desde cero, o responde las preguntas de la IA y escribirá el personaje contigo. | <strong>Una biblioteca que encuentra.</strong> Busca por palabras y por significado, con un modelo de búsqueda que se ejecuta en tu computadora. La IA escribe las etiquetas de cada tarjeta, una presentación de una línea y un resumen. Las Personas y los Lorebooks están junto a tus personajes. | <strong>Memoria.</strong> Cada 20 mensajes la IA anota los hechos y sucesos de un chat, y un personaje recuerda lo que sabe antes de responder. Dale a un chat o a un personaje documentos en los que apoyarse. | <strong>Voces e imágenes.</strong> Los mensajes se leen en voz alta en tu computadora, cada personaje con su propia voz o con una creada a partir de una grabación. Crea una imagen en un chat con el modelo de imágenes de tu proveedor o con ComfyUI. | <strong>Herramientas.</strong> Deja que el modelo busque en la web, trabaje con los archivos de una carpeta o ejecute comandos en un entorno aislado, cada cosa solo si tú lo permites. Un equipo de programación puede trabajar por ti en un objetivo dentro de una carpeta. | <strong>Protegida y respaldada.</strong> Una contraseña bloquea la app. Una copia de seguridad es un solo archivo protegido que se restaura en esta computadora o en otra. | <strong>Tu idioma.</strong> Cardwave habla 12 idiomas, con un tema claro y uno oscuro.

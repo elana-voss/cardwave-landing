@@ -1,0 +1,49 @@
+title = Cardwave: obrolan karakter AI dan editor kartu untuk Windows
+description = Aplikasi obrolan karakter AI dan editor kartu untuk Windows. Bawa penyedia AI kamu sendiri. Kartu, obrolan, dan kunci tetap di komputer kamu.
+langs_label = Bahasa
+download = Unduh untuk Windows
+intro = Aplikasi obrolan karakter AI dan editor kartu untuk Windows. Gunakan penyedia AI mana pun yang sudah kamu pakai. Kartu, obrolan, dan kunci kamu tetap di komputer kamu.
+shots_label = Gambar Cardwave
+shot_prev = Gambar sebelumnya
+shot_next = Gambar berikutnya
+shot_dot = Gambar {n}
+slide_chat = Obrolan dengan sebuah karakter
+slide_library = Pustaka karakter kamu
+slide_card = Halaman karakter, tempat kamu menyunting kartunya
+slide_companion = Pendamping di desktop kamu
+slide_lorebook = Sebuah lorebook
+slide_chat_dark = Obrolan dengan tema gelap
+features_h = Fitur
+f_chat = <strong>Obrolan.</strong> Bicaralah dengan satu karakter atau beberapa, yang bergiliran berbicara atau terus mengobrol di antara mereka sendiri. Kembali ke pesan mana pun dan coba jalan lain.
+f_cards = <strong>Kartu.</strong> Buat karakter dari nol atau dalam percakapan dengan AI, lalu sunting di halamannya sendiri.
+f_library = <strong>Pustaka.</strong> Temukan karakter berdasarkan nama, tag, atau isinya. AI memberi tag dan meringkas kartu kamu.
+f_memory = <strong>Ingatan.</strong> Karakter mengingat apa yang terjadi dan dapat bersandar pada dokumen yang kamu berikan.
+f_companion = <strong>Pendamping.</strong> Sosok 3D di desktop kamu yang berbicara dengan kamu, membacakan balasannya, dan menemani kamu, juga sebagai asisten sehari-hari.
+f_voices = <strong>Suara.</strong> Balasan dibacakan dengan suara masing-masing karakter, di komputer kamu. Dikte alih-alih mengetik.
+f_pictures = <strong>Gambar.</strong> Buat gambar langsung di dalam obrolan.
+f_tools = <strong>Alat.</strong> Biarkan model mencari di web, bekerja di satu folder, atau menjalankan perintah, masing-masing hanya jika kamu izinkan.
+f_coding = <strong>Tim pemrograman.</strong> Beri tim itu sebuah tujuan dan sebuah folder, dan sekelompok agen AI mengerjakannya untuk kamu.
+f_local = <strong>Model lokal.</strong> Jalankan model di komputer kamu sendiri, tanpa kunci dan tanpa akun.
+f_tabs = <strong>Tab dan tema.</strong> Biarkan beberapa obrolan dan kartu terbuka di tab. Terang, gelap, atau salah satu dari lima tema lain.
+f_locked = <strong>Terkunci dan dicadangkan.</strong> Kata sandi mengunci aplikasi; cadangan hanyalah satu file.
+f_language = <strong>Bahasamu.</strong> Cardwave berbicara dalam dua belas bahasa.
+privacy_h = Privasi
+privacy_p = Cardwave menyimpan kartu, obrolan, kunci, dan pengaturan di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi. Aplikasi ini hanya terhubung ke internet untuk hal yang kamu minta: pesan ke penyedia yang kunci API-nya kamu masukkan, unduhan yang kamu mulai (model pencarian, sebuah suara), alat web yang kamu aktifkan, dan pemeriksaan versi baru di GitHub, yang dapat dimatikan di Pengaturan.
+byo_h = Bawa AI kamu sendiri
+byo_p1 = Gunakan AI yang sudah kamu pakai. Tempelkan kunci API dan Cardwave tahu milik siapa: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT, dan <a href="{providers}">lebih dari 150 lainnya</a>. Server apa pun yang kompatibel dengan OpenAI juga bisa, lewat alamatnya.
+byo_p2 = Atau jalankan model di komputer kamu sendiri: arahkan Cardwave ke folder berisi file GGUF dan ia menjalankannya sendiri, di kartu grafis kamu bila bisa.
+providers_h = Penyedia yang didukung
+providers_p = Lihat <a href="{providers}">daftar penyedia AI yang didukung Cardwave</a>, masing-masing dengan tautan ke situsnya.
+cards_h = Kartu
+cards_p = Cardwave mengimpor kartu PNG SillyTavern dan kartu CCV4, dari Buat atau dengan menjatuhkannya ke pustaka kamu. Kartu dapat diekspor sebagai SillyTavern V3 atau CCV4, dan obrolan dalam format obrolan SillyTavern.
+where_h = Tempat menemukan karakter
+where_p = Cardwave membuka kartu dari mana saja. Lihat <a href="{where}">daftar situs yang menyediakan kartu karakter</a> yang dapat kamu unduh dan impor ke Cardwave.
+costs_h = Memperkirakan biaya
+costs_p = Biaya obrolan bertambah seiring percakapan memanjang, karena setiap giliran mengirim ulang riwayatnya. <a href="{calculator}">Kalkulator anggaran giliran obrolan</a> memperkirakan berapa giliran yang bisa dibeli sebuah anggaran dengan harga per token model mana pun.
+scope_h = Cakupan
+scope_p = Cardwave gratis dan dibuat oleh satu orang. Dirilis apa adanya.
+beta_h = Beta
+beta_p = Cardwave sedang aktif dikembangkan, dan ini rilis publik pertamanya. Pembaruan mungkin tidak mempertahankan apa yang disimpan versi sebelumnya, jadi ekspor kartu yang penting bagi kamu dan simpan cadangan. Bug dan keinginan silakan kirim ke <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
+ccv4_h = Format kartu CCV4
+ccv4_p = CCV4 adalah rancangan format kartu karakter yang tersusun dari blok teks kecil yang dapat dialamatkan dalam TOML, disimpan dalam chunk PNG. Baca <a href="{ccv4}">ikhtisar CCV4</a>, dengan spesifikasi lengkap, algoritma penyusunan prompt, contoh referensi, dan playground langsung.
+footer = Cardwave © 2026. <a href="{disclaimer}">Penafian &amp; Ketentuan</a>

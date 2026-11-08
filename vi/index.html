@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave: trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows</title>
-  <meta name="description"
-    content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
+  <meta name="description" content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
   <link rel="canonical" href="https://cardwave.cc/vi/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,26 +18,23 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/vi/" />
   <meta property="og:title" content="Cardwave: trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows" />
-  <meta property="og:description"
-    content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
+  <meta property="og:description" content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave: trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows" />
-  <meta name="twitter:description"
-    content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
+  <meta name="twitter:description" content="Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="Ngôn ngữ">
     <a lang="en" href="/">English</a> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <a lang="hi" href="/hi/">हिन्दी</a> ·
-    <span lang="vi" aria-current="page">Tiếng Việt</span>
+    <span lang="vi" aria-current="page">Tiếng Việt</span> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,47 +76,77 @@
       </svg>Tải về cho Windows</a>
   </p>
 
-  <img class="shot" src="/landing_desktop.jpg" alt="Cửa sổ Cardwave trên Windows" />
+  <figure class="shots" aria-label="Hình ảnh Cardwave">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="Trò chuyện với một nhân vật" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="Thư viện nhân vật của bạn" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="Trang của một nhân vật, nơi bạn chỉnh sửa thẻ" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="Một lorebook" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="Ảnh trước"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="Ảnh sau"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="Ảnh 1" aria-current="true"></button>
+      <button type="button" aria-label="Ảnh 2" aria-current="false"></button>
+      <button type="button" aria-label="Ảnh 3" aria-current="false"></button>
+      <button type="button" aria-label="Ảnh 4" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">Trò chuyện với một nhân vật</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
-  <h2>Ứng dụng làm được gì</h2>
+  <h2>Tính năng</h2>
   <ul>
-    <li><strong>Trò chuyện với nhân vật.</strong> Câu trả lời hiện ra ngay khi đang được viết. Tạo lại, chỉnh sửa, giữ mọi phiên bản và rẽ nhánh từ bất kỳ tin nhắn nào. Đưa nhiều nhân vật vào một cuộc trò chuyện: họ lần lượt lên tiếng, hoặc cứ thế trò chuyện với nhau.</li>
-    <li><strong>Tạo và chỉnh sửa thẻ.</strong> Trang của một thẻ chính là trình chỉnh sửa của nó, và mỗi đoạn văn bản đều giữ lại các bản nháp trước. Viết thẻ từ đầu, hoặc trả lời các câu hỏi của AI để nó cùng bạn viết nên nhân vật.</li>
-    <li><strong>Thư viện dễ tìm.</strong> Tìm theo từ ngữ và theo ý nghĩa, với một mô hình tìm kiếm chạy trên máy tính của bạn. AI viết thẻ phân loại, lời giới thiệu một dòng và bản tóm tắt cho mỗi thẻ. Persona và sổ bối cảnh nằm ngay cạnh các nhân vật của bạn.</li>
-    <li><strong>Trí nhớ.</strong> Cứ mỗi 20 tin nhắn, AI ghi lại các sự thật và sự kiện của cuộc trò chuyện, và nhân vật nhớ lại những gì nó biết trước khi trả lời. Hãy đưa cho một cuộc trò chuyện hay một nhân vật tài liệu để tham khảo.</li>
-    <li><strong>Giọng nói và hình ảnh.</strong> Tin nhắn được đọc thành tiếng ngay trên máy tính của bạn, mỗi nhân vật bằng giọng riêng, hoặc bằng giọng tạo từ một bản ghi âm. Tạo hình ảnh trong cuộc trò chuyện bằng mô hình hình ảnh của nhà cung cấp hoặc ComfyUI.</li>
-    <li><strong>Công cụ.</strong> Cho phép mô hình tìm kiếm trên web, làm việc với các tệp của một thư mục hoặc chạy lệnh trong môi trường cách ly, mỗi việc chỉ trong phạm vi bạn cho phép. Một nhóm lập trình có thể thay bạn làm việc hướng tới một mục tiêu trong một thư mục.</li>
-    <li><strong>Khóa và sao lưu.</strong> Mật khẩu khóa ứng dụng lại. Bản sao lưu là một tệp duy nhất đã được khóa, khôi phục được trên máy tính này hoặc máy khác.</li>
-    <li><strong>Ngôn ngữ của bạn.</strong> Cardwave có 12 ngôn ngữ, với giao diện sáng và tối.</li>
+    <li><strong>Trò chuyện.</strong> Nói chuyện với một hay nhiều nhân vật, họ lần lượt lên tiếng hoặc tiếp tục trò chuyện với nhau. Quay lại bất kỳ tin nhắn nào và thử một hướng khác.</li>
+    <li><strong>Thẻ.</strong> Tạo nhân vật từ đầu hoặc qua một cuộc trò chuyện với AI, rồi chỉnh sửa trên trang riêng của nhân vật.</li>
+    <li><strong>Thư viện.</strong> Tìm nhân vật theo tên, nhãn hoặc nội dung. AI gắn nhãn và tóm tắt các thẻ của bạn.</li>
+    <li><strong>Trí nhớ.</strong> Nhân vật nhớ những gì đã xảy ra và có thể dựa vào tài liệu bạn đưa cho họ.</li>
+    <li><strong>Người đồng hành.</strong> Một hình 3D trên màn hình của bạn, trò chuyện với bạn, đọc to câu trả lời và ở bên bạn, cũng như một trợ lý hằng ngày.</li>
+    <li><strong>Giọng nói.</strong> Câu trả lời được đọc to bằng giọng riêng của từng nhân vật, ngay trên máy tính của bạn. Đọc thay vì gõ.</li>
+    <li><strong>Hình ảnh.</strong> Tạo một bức ảnh ngay trong cuộc trò chuyện.</li>
+    <li><strong>Công cụ.</strong> Cho mô hình tìm kiếm trên web, làm việc trong một thư mục hoặc chạy lệnh, mỗi việc chỉ khi bạn cho phép.</li>
+    <li><strong>Nhóm lập trình.</strong> Giao cho nhóm một mục tiêu và một thư mục, và một nhóm tác tử AI làm việc đó thay bạn.</li>
+    <li><strong>Mô hình cục bộ.</strong> Chạy mô hình trên chính máy tính của bạn, không cần khóa, không cần tài khoản.</li>
+    <li><strong>Tab và giao diện.</strong> Mở nhiều cuộc trò chuyện và thẻ cùng lúc trong các tab. Sáng, tối hoặc một trong năm giao diện khác.</li>
+    <li><strong>Khóa và sao lưu.</strong> Mật khẩu khóa ứng dụng; bản sao lưu là một tệp duy nhất.</li>
+    <li><strong>Ngôn ngữ của bạn.</strong> Cardwave nói mười hai ngôn ngữ.</li>
   </ul>
 
   <h2>Quyền riêng tư</h2>
-  <p>Cardwave lưu thẻ, cuộc trò chuyện, khóa và cài đặt trên máy tính của bạn. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng. Ứng dụng chỉ kết nối mạng cho những gì bạn yêu cầu: tin nhắn gửi tới nhà cung cấp có khóa API bạn đã nhập, bản tải về do bạn bắt đầu (mô hình tìm kiếm, một giọng nói), các công cụ web bạn bật, và việc kiểm tra phiên bản mới trên GitHub, có thể tắt trong Cài đặt. Không có máy chủ Cardwave nào ở giữa.</p>
+  <p>Cardwave lưu thẻ, cuộc trò chuyện, khóa và cài đặt trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng. Ứng dụng chỉ kết nối mạng cho những gì bạn yêu cầu: tin nhắn gửi tới nhà cung cấp có khóa API bạn đã nhập, bản tải về do bạn bắt đầu (mô hình tìm kiếm, một giọng nói), các công cụ web bạn bật, và việc kiểm tra phiên bản mới trên GitHub, có thể tắt trong Cài đặt.</p>
 
-  <h2>Mô hình</h2>
-  <p>Cardwave nhận một khóa API và trao đổi trực tiếp với nhà cung cấp. Dán khóa vào và Cardwave cho biết đó là khóa của ai, rồi giúp bạn chọn một mô hình để trò chuyện và một mô hình rẻ hơn cho công việc chạy nền của chính nó. Chọn một nhà cung cấp bên dưới, hoặc thêm nhà cung cấp của riêng bạn. Lưu nhiều thiết lập thành cấu hình sẵn và chuyển qua lại giữa chúng. Cardwave không có gói đăng ký nào.</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- nhiều mô
-      hình đa dạng</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - nhiều mô hình đa dạng</li>
-  </ul>
-  <p>Dùng thứ khác? Tự thêm vào. Trỏ Cardwave đến bất kỳ máy chủ tương thích OpenAI nào, bao gồm cả mô hình chạy cục bộ
-    trên máy của bạn, bằng cách nhập địa chỉ của nó. Cardwave lấy danh sách mô hình, hoặc bạn tự nhập các mô hình. Máy
-    chủ cục bộ không cần khóa API.</p>
+  <h2>Dùng AI của riêng bạn</h2>
+  <p>Dùng AI bạn vẫn đang dùng. Dán một khóa API và Cardwave biết đó là của ai: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT và <a href="/providers.html">hơn 150 nhà cung cấp khác</a>. Bất kỳ máy chủ nào tương thích OpenAI cũng dùng được, theo địa chỉ của nó.</p>
+  <p>Hoặc chạy mô hình trên chính máy tính của bạn: chỉ cho Cardwave một thư mục chứa tệp GGUF và ứng dụng tự chạy chúng, trên card đồ họa của bạn khi có thể.</p>
+
+  <h2>Nhà cung cấp được hỗ trợ</h2>
+  <p>Xem <a href="/providers.html">danh sách nhà cung cấp AI mà Cardwave hỗ trợ</a>, mỗi nhà cung cấp kèm một liên kết tới trang của họ.</p>
 
   <h2>Thẻ</h2>
   <p>Cardwave nhập thẻ PNG của SillyTavern và thẻ CCV4, từ nút Tạo hoặc bằng cách thả vào thư viện của bạn. Ứng dụng xuất thẻ dưới dạng SillyTavern V3 hoặc CCV4, và cuộc trò chuyện theo định dạng trò chuyện của SillyTavern.</p>
@@ -126,21 +155,16 @@
   <p>Cardwave mở được thẻ từ bất cứ đâu. Xem <a href="/where-to-find-characters.html">danh sách các trang web lưu trữ thẻ nhân vật</a> mà bạn có thể tải về và nhập vào Cardwave.</p>
 
   <h2>Ước tính chi phí</h2>
-  <p>Chi phí trò chuyện tăng lên khi cuộc trò chuyện dài ra, vì mỗi lượt lại gửi lại toàn bộ lịch sử. <a
-      href="/chat-turn-budget-calculator.html">Công cụ tính ngân sách lượt trò chuyện</a> ước tính một khoản ngân sách
-    mua được bao nhiêu lượt theo đơn giá mỗi token của bất kỳ mô hình nào.</p>
+  <p>Chi phí trò chuyện tăng lên khi cuộc trò chuyện dài ra, vì mỗi lượt lại gửi lại toàn bộ lịch sử. <a href="/chat-turn-budget-calculator.html">Công cụ tính ngân sách lượt trò chuyện</a> ước tính một khoản ngân sách mua được bao nhiêu lượt theo đơn giá mỗi token của bất kỳ mô hình nào.</p>
 
   <h2>Phạm vi</h2>
-  <p>Cardwave miễn phí và do một người xây dựng. Được phát hành nguyên trạng. Rất hoan nghênh các báo cáo lỗi và yêu cầu
-    tính năng qua <a href="https://github.com/elana-voss/cardwave/issues" target="_blank"
-      rel="noopener noreferrer">GitHub Issues</a>.
-  </p>
-  <p><strong>Bản beta.</strong> Cardwave đang được phát triển tích cực. Hãy giữ bản sao lưu các thẻ nhân vật của bạn.</p>
+  <p>Cardwave miễn phí và do một người xây dựng. Được phát hành nguyên trạng.</p>
+
+  <h2>Bản beta</h2>
+  <p>Cardwave đang được phát triển tích cực, và đây là bản phát hành công khai đầu tiên. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu. Lỗi và mong muốn xin gửi tới <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <h2>Định dạng thẻ CCV4</h2>
-  <p>CCV4 là một định dạng thẻ nhân vật ở dạng bản nháp, được xây dựng từ các khối văn bản nhỏ có thể định địa chỉ bằng
-    TOML, lưu trong các chunk của PNG. Đọc <a href="/ccv4.html">bản tổng quan CCV4</a>, gồm đặc tả đầy đủ, thuật toán lắp
-    ráp prompt, một ví dụ tham chiếu và một sân chơi trực tiếp.</p>
+  <p>CCV4 là một định dạng thẻ nhân vật ở dạng bản nháp, được xây dựng từ các khối văn bản nhỏ có thể định địa chỉ bằng TOML, lưu trong các chunk của PNG. Đọc <a href="/ccv4.html">bản tổng quan CCV4</a>, gồm đặc tả đầy đủ, thuật toán lắp ráp prompt, một ví dụ tham chiếu và một sân chơi trực tiếp.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Tuyên bố miễn trừ &amp; Điều khoản</a></footer>

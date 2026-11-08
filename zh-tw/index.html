@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave：適用於 Windows 的 AI 角色聊天與角色卡編輯器</title>
-  <meta name="description"
-    content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
+  <meta name="description" content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
   <link rel="canonical" href="https://cardwave.cc/zh-tw/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,26 +18,23 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/zh-tw/" />
   <meta property="og:title" content="Cardwave：適用於 Windows 的 AI 角色聊天與角色卡編輯器" />
-  <meta property="og:description"
-    content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
+  <meta property="og:description" content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="zh_TW" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave：適用於 Windows 的 AI 角色聊天與角色卡編輯器" />
-  <meta name="twitter:description"
-    content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
+  <meta name="twitter:description" content="適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。" />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="語言">
     <a lang="en" href="/">English</a> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <span lang="zh-TW" aria-current="page">繁體中文</span> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <a lang="hi" href="/hi/">हिन्दी</a> ·
-    <a lang="vi" href="/vi/">Tiếng Việt</a>
+    <a lang="vi" href="/vi/">Tiếng Việt</a> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,45 +76,77 @@
       </svg>下載 Windows 版</a>
   </p>
 
-  <img class="shot" src="/landing_desktop.jpg" alt="Windows 上的 Cardwave 視窗" />
+  <figure class="shots" aria-label="Cardwave 截圖">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="與角色聊天" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="你的角色庫" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="角色頁面，在這裡編輯角色卡" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="世界書" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="上一張"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="下一張"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="第 1 張" aria-current="true"></button>
+      <button type="button" aria-label="第 2 張" aria-current="false"></button>
+      <button type="button" aria-label="第 3 張" aria-current="false"></button>
+      <button type="button" aria-label="第 4 張" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">與角色聊天</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
   <h2>功能</h2>
   <ul>
-    <li><strong>與角色聊天。</strong> 回覆邊寫邊顯示。可以重新產生、編輯、保留每個版本，並從任何訊息開出分支。把多個角色拉進同一個聊天：他們輪流發言，或彼此一直聊下去。</li>
-    <li><strong>建立和編輯角色卡。</strong> 角色卡的頁面就是它的編輯器，每段文字都保留先前的草稿。可以從零寫一張卡，也可以回答 AI 的問題，讓它和你一起寫出角色。</li>
-    <li><strong>好找的資料庫。</strong> 依文字和依含義搜尋，搜尋模型在你的電腦上執行。AI 為每張卡寫標籤、一句話簡介和摘要。使用者角色和世界書就在你的角色旁邊。</li>
-    <li><strong>記憶。</strong> 每 20 則訊息，AI 會記下聊天中的事實和事件，角色在回覆前會想起自己知道的事。可以給聊天或角色提供文件作為參考。</li>
-    <li><strong>語音和圖片。</strong> 訊息在你的電腦上朗讀，每個角色用自己的聲音，或用一段錄音製作的聲音。在聊天中用服務商的圖像模型或 ComfyUI 產生圖片。</li>
-    <li><strong>工具。</strong> 讓模型搜尋網頁、處理某個資料夾中的檔案，或在沙箱中執行指令，每一項都只在你允許時進行。一個程式設計團隊可以替你在資料夾裡朝一個目標工作。</li>
-    <li><strong>加鎖與備份。</strong> 密碼可以鎖住應用程式。備份是一個加鎖的檔案，可以在這台或另一台電腦上還原。</li>
-    <li><strong>你的語言。</strong> Cardwave 支援 12 種語言，並有淺色和深色兩種主題。</li>
+    <li><strong>聊天。</strong>與一個或多個角色交談，他們輪流發言，或彼此繼續聊下去。可以回到任何一則訊息，換一條路走。</li>
+    <li><strong>角色卡。</strong>從零開始建立角色，或在與 AI 的對話中建立，並在角色自己的頁面上編輯。</li>
+    <li><strong>角色庫。</strong>依名字、標籤或內容找到角色。AI 會為你的角色卡加上標籤並撰寫摘要。</li>
+    <li><strong>記憶。</strong>角色記得發生過的事，並能參考你給它們的文件。</li>
+    <li><strong>夥伴。</strong>桌面上的 3D 形象，和你聊天、朗讀自己的回覆、陪伴你，也能當日常助理。</li>
+    <li><strong>語音。</strong>在你的電腦上用每個角色自己的聲音朗讀回覆。可以用語音輸入代替打字。</li>
+    <li><strong>圖片。</strong>在聊天中產生圖片。</li>
+    <li><strong>工具。</strong>讓模型搜尋網路、在一個資料夾裡工作或執行指令，每一項都只在你允許時進行。</li>
+    <li><strong>程式團隊。</strong>給它一個目標和一個資料夾，一組 AI 代理就會替你完成工作。</li>
+    <li><strong>本機模型。</strong>在你自己的電腦上執行模型，不需要金鑰和帳號。</li>
+    <li><strong>分頁和主題。</strong>在分頁中同時開啟多個聊天和角色卡。淺色、深色或另外五種主題之一。</li>
+    <li><strong>上鎖和備份。</strong>用密碼鎖住應用程式；備份就是一個檔案。</li>
+    <li><strong>你的語言。</strong>Cardwave 支援十二種語言。</li>
   </ul>
 
   <h2>隱私</h2>
-  <p>Cardwave 把角色卡、聊天、金鑰和設定儲存在你的電腦上。無需註冊，沒有同步，應用程式內沒有分析統計。它只在你要求時連網：傳給你填寫了 API 金鑰的服務商的訊息、你啟動的下載（搜尋模型、語音）、你開啟的網頁工具，以及在 GitHub 上檢查新版本（可在設定中關閉）。中間沒有任何 Cardwave 伺服器。</p>
+  <p>Cardwave 把角色卡、聊天、金鑰和設定儲存在你電腦上的加密資料庫中。無需註冊，沒有同步，應用程式內沒有分析統計。它只在你要求時連網：傳給你填寫了 API 金鑰的服務商的訊息、你啟動的下載（搜尋模型、語音）、你開啟的網頁工具，以及在 GitHub 上檢查新版本（可在設定中關閉）。</p>
 
-  <h2>模型</h2>
-  <p>Cardwave 使用 API 金鑰直接與服務商通訊。貼上金鑰後，Cardwave 會辨識它屬於哪家服務商，再幫你選擇聊天模型，以及一個更便宜的模型來做它自己的背景工作。從下面選擇一個服務商，或新增你自己的。可以把多套設定儲存為預設並隨時切換。Cardwave 沒有訂閱。</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter-
-      多種模型</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - 多種模型</li>
-  </ul>
-  <p>使用其他服務？手動新增即可。輸入位址，將 Cardwave 指向任何相容 OpenAI 的伺服器，包括你自己機器上的本機模型。Cardwave 會取得其模型清單，或者你自己輸入模型。本機伺服器無需 API 金鑰。</p>
+  <h2>使用你自己的 AI</h2>
+  <p>用你已經在用的 AI。貼上一個 API 金鑰，Cardwave 就知道它屬於誰：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT，以及<a href="/providers.html">其他 150 多家</a>。任何相容 OpenAI 的伺服器也可以，依位址連線。</p>
+  <p>也可以在你自己的電腦上執行模型：把 Cardwave 指向一個存放 GGUF 檔案的資料夾，它會自己執行這些模型，能用顯示卡時就用顯示卡。</p>
+
+  <h2>支援的服務商</h2>
+  <p>查看 <a href="/providers.html">Cardwave 支援的 AI 服務商清單</a>，每家都附有其網站連結。</p>
 
   <h2>角色卡</h2>
   <p>Cardwave 可以透過「建立」或拖放到資料庫來匯入 SillyTavern PNG 角色卡和 CCV4 角色卡。角色卡可匯出為 SillyTavern V3 或 CCV4，聊天可匯出為 SillyTavern 的聊天格式。</p>
@@ -124,18 +155,16 @@
   <p>Cardwave 能開啟來自任何地方的角色卡。查看<a href="/where-to-find-characters.html">提供角色卡的網站清單</a>，下載後匯入 Cardwave 即可。</p>
 
   <h2>費用估算</h2>
-  <p>聊天費用會隨對話變長而增加，因為每一輪都會重新傳送歷史紀錄。<a href="/chat-turn-budget-calculator.html">聊天輪次預算計算機</a>可按任何模型的每
-    token 價格，估算一筆預算能聊多少輪。</p>
+  <p>聊天費用會隨對話變長而增加，因為每一輪都會重新傳送歷史紀錄。<a href="/chat-turn-budget-calculator.html">聊天輪次預算計算機</a>可按任何模型的每 token 價格，估算一筆預算能聊多少輪。</p>
 
   <h2>專案範圍</h2>
-  <p>Cardwave 免費，由一個人開發，按現狀發佈。歡迎透過 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank"
-      rel="noopener noreferrer">GitHub Issues</a> 回報錯誤與提出功能需求。
-  </p>
-  <p><strong>測試版。</strong>Cardwave 正在積極開發中。請備份你的角色卡。</p>
+  <p>Cardwave 免費，由一個人開發，按現狀發佈。</p>
+
+  <h2>測試版</h2>
+  <p>Cardwave 正在積極開發中，這是它的第一個公開版本。更新後可能無法保留舊版本儲存的內容，所以請匯出你在意的角色卡並保留備份。問題和建議請提交到 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>。</p>
 
   <h2>CCV4 卡片格式</h2>
-  <p>CCV4 是草案階段的角色卡格式，由 TOML 撰寫的小型可定址文字區塊組成，儲存在 PNG 區塊中。閱讀 <a href="/ccv4.html">CCV4
-      總覽</a>，內含完整規範、提示詞組裝演算法、參考範例與線上遊樂場。</p>
+  <p>CCV4 是草案階段的角色卡格式，由 TOML 撰寫的小型可定址文字區塊組成，儲存在 PNG 區塊中。閱讀 <a href="/ccv4.html">CCV4 總覽</a>，內含完整規範、提示詞組裝演算法、參考範例與線上遊樂場。</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">免責聲明與條款</a></footer>

@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave: Windows के लिए AI कैरेक्टर चैट और कार्ड एडिटर</title>
-  <meta name="description"
-    content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
+  <meta name="description" content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
   <link rel="canonical" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,26 +18,23 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/hi/" />
   <meta property="og:title" content="Cardwave: Windows के लिए AI कैरेक्टर चैट और कार्ड एडिटर" />
-  <meta property="og:description"
-    content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
+  <meta property="og:description" content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="hi_IN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave: Windows के लिए AI कैरेक्टर चैट और कार्ड एडिटर" />
-  <meta name="twitter:description"
-    content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
+  <meta name="twitter:description" content="Windows के लिए AI कैरेक्टर चैट ऐप और कार्ड एडिटर। अपना AI प्रोवाइडर खुद चुनें। कार्ड, चैट और कीज़ आपके कंप्यूटर पर ही रहती हैं।" />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="भाषाएँ">
     <a lang="en" href="/">English</a> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <span lang="hi" aria-current="page">हिन्दी</span> ·
-    <a lang="vi" href="/vi/">Tiếng Việt</a>
+    <a lang="vi" href="/vi/">Tiếng Việt</a> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,47 +76,77 @@
       </svg>Windows के लिए डाउनलोड करें</a>
   </p>
 
-  <img class="shot" src="/landing_desktop.jpg" alt="Windows पर Cardwave की विंडो" />
+  <figure class="shots" aria-label="Cardwave की तस्वीरें">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="एक कैरेक्टर के साथ चैट" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="आपके कैरेक्टर्स की लाइब्रेरी" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="एक कैरेक्टर का पेज, जहाँ आप कार्ड एडिट करते हैं" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="एक लोरबुक" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="पिछली तस्वीर"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="अगली तस्वीर"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="तस्वीर 1" aria-current="true"></button>
+      <button type="button" aria-label="तस्वीर 2" aria-current="false"></button>
+      <button type="button" aria-label="तस्वीर 3" aria-current="false"></button>
+      <button type="button" aria-label="तस्वीर 4" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">एक कैरेक्टर के साथ चैट</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
-  <h2>यह क्या करता है</h2>
+  <h2>फ़ीचर्स</h2>
   <ul>
-    <li><strong>कैरेक्टर्स से चैट।</strong> जवाब लिखे जाते ही दिखने लगते हैं। दोबारा जनरेट करें, एडिट करें, हर वर्शन रखें और किसी भी मैसेज से नई ब्रांच बनाएँ। कई कैरेक्टर्स को एक चैट में लाएँ: वे बारी-बारी से बोलते हैं, या आपस में बात करते रहते हैं।</li>
-    <li><strong>कार्ड बनाएँ और एडिट करें।</strong> कार्ड का पेज ही उसका एडिटर है, और हर टेक्स्ट अपने पुराने ड्राफ़्ट सँभालकर रखता है। शुरू से कार्ड लिखें, या AI के सवालों के जवाब दें और वह आपके साथ कैरेक्टर लिखेगा।</li>
-    <li><strong>चीज़ें ढूँढ़ने वाली लाइब्रेरी।</strong> शब्दों से और अर्थ से खोजें, एक सर्च मॉडल के साथ जो आपके कंप्यूटर पर चलता है। AI हर कार्ड के टैग, एक लाइन का परिचय और सारांश लिखता है। पर्सोना और लोरबुक आपके कैरेक्टर्स के साथ ही रहते हैं।</li>
-    <li><strong>याददाश्त।</strong> हर 20 मैसेज पर AI चैट की बातें और घटनाएँ नोट करता है, और कैरेक्टर जवाब देने से पहले वह याद करता है जो वह जानता है। किसी चैट या कैरेक्टर को सहारे के लिए डॉक्यूमेंट दें।</li>
-    <li><strong>आवाज़ें और तस्वीरें।</strong> मैसेज आपके कंप्यूटर पर ही पढ़कर सुनाए जाते हैं, हर कैरेक्टर अपनी आवाज़ में, या किसी रिकॉर्डिंग से बनी आवाज़ में। अपने प्रोवाइडर के इमेज मॉडल या ComfyUI से चैट में तस्वीर बनाएँ।</li>
-    <li><strong>टूल्स।</strong> मॉडल को वेब पर खोजने, एक फ़ोल्डर की फ़ाइलों पर काम करने या सैंडबॉक्स में कमांड चलाने दें, हर काम सिर्फ़ उतना जितना आप अनुमति दें। एक कोडिंग टीम आपके लिए किसी फ़ोल्डर में एक लक्ष्य पर काम कर सकती है।</li>
-    <li><strong>लॉक और बैकअप।</strong> एक पासवर्ड ऐप को लॉक करता है। बैकअप एक लॉक की हुई फ़ाइल है, जो इस कंप्यूटर पर या किसी दूसरे पर रिस्टोर होती है।</li>
-    <li><strong>आपकी भाषा।</strong> Cardwave 12 भाषाओं में उपलब्ध है, लाइट और डार्क थीम के साथ।</li>
+    <li><strong>चैट।</strong> एक कैरेक्टर से या कई से बात करें, जो बारी-बारी से बोलते हैं या आपस में बातचीत जारी रखते हैं। किसी भी मैसेज पर लौटकर दूसरा रास्ता आज़माएँ।</li>
+    <li><strong>कार्ड्स।</strong> कैरेक्टर शुरू से बनाएँ या AI के साथ बातचीत में, और उसे उसके अपने पेज पर एडिट करें।</li>
+    <li><strong>लाइब्रेरी।</strong> नाम, टैग या विषय से कैरेक्टर ढूँढें। AI आपके कार्ड्स पर टैग लगाता है और उनका सारांश लिखता है।</li>
+    <li><strong>याददाश्त।</strong> कैरेक्टर्स याद रखते हैं कि क्या हुआ, और आपके दिए दस्तावेज़ों का सहारा ले सकते हैं।</li>
+    <li><strong>साथी।</strong> आपके डेस्कटॉप पर एक 3D आकृति जो आपसे बात करती है, अपने जवाब ज़ोर से पढ़ती है और आपका साथ देती है, रोज़मर्रा के सहायक के रूप में भी।</li>
+    <li><strong>आवाज़ें।</strong> जवाब हर कैरेक्टर की अपनी आवाज़ में, आपके कंप्यूटर पर ही, ज़ोर से पढ़े जाते हैं। टाइप करने की जगह बोलकर लिखवाएँ।</li>
+    <li><strong>तस्वीरें।</strong> चैट के अंदर ही तस्वीर बनाएँ।</li>
+    <li><strong>टूल्स।</strong> मॉडल को वेब पर खोजने, एक फ़ोल्डर में काम करने या कमांड चलाने दें, हर काम सिर्फ़ आपकी अनुमति से।</li>
+    <li><strong>कोडिंग टीम।</strong> उसे एक लक्ष्य और एक फ़ोल्डर दें, और AI एजेंट्स की एक टीम आपके लिए उस पर काम करती है।</li>
+    <li><strong>लोकल मॉडल।</strong> अपने ही कंप्यूटर पर मॉडल चलाएँ, बिना की और बिना अकाउंट के।</li>
+    <li><strong>टैब्स और थीम्स।</strong> कई चैट्स और कार्ड्स टैब्स में खुले रखें। लाइट, डार्क या पाँच और थीम्स में से कोई एक।</li>
+    <li><strong>लॉक और बैकअप।</strong> एक पासवर्ड ऐप को लॉक करता है; बैकअप एक ही फ़ाइल है।</li>
+    <li><strong>आपकी भाषा।</strong> Cardwave बारह भाषाएँ बोलता है।</li>
   </ul>
 
   <h2>गोपनीयता</h2>
-  <p>Cardwave कार्ड, चैट, कीज़ और सेटिंग्स आपके कंप्यूटर पर रखता है। कोई साइन-अप नहीं, कोई सिंक नहीं, ऐप में कोई एनालिटिक्स नहीं। यह सिर्फ़ उसी के लिए ऑनलाइन जाता है जो आप कहते हैं: उस प्रोवाइडर को मैसेज जिसकी API key आपने डाली है, आपका शुरू किया डाउनलोड (सर्च मॉडल, कोई आवाज़), आपके चालू किए वेब टूल्स, और GitHub पर नए वर्शन की जाँच, जिसे सेटिंग्स में बंद किया जा सकता है। बीच में कोई Cardwave सर्वर नहीं है।</p>
+  <p>Cardwave कार्ड, चैट, कीज़ और सेटिंग्स आपके कंप्यूटर पर, एक एन्क्रिप्टेड डेटाबेस में रखता है। कोई साइन-अप नहीं, कोई सिंक नहीं, ऐप में कोई एनालिटिक्स नहीं। यह सिर्फ़ उसी के लिए ऑनलाइन जाता है जो आप कहते हैं: उस प्रोवाइडर को मैसेज जिसकी API key आपने डाली है, आपका शुरू किया डाउनलोड (सर्च मॉडल, कोई आवाज़), आपके चालू किए वेब टूल्स, और GitHub पर नए वर्शन की जाँच, जिसे सेटिंग्स में बंद किया जा सकता है।</p>
 
-  <h2>मॉडल</h2>
-  <p>Cardwave एक API key लेता है और सीधे प्रोवाइडर से बात करता है। key पेस्ट करें और Cardwave बता देता है कि वह किसकी है, फिर चैट के लिए एक मॉडल और अपने बैकग्राउंड काम के लिए एक सस्ता मॉडल चुनने में मदद करता है। नीचे से कोई प्रोवाइडर चुनें, या अपना जोड़ें। कई सेटअप प्रीसेट के रूप में रखें और उनके बीच बदलें। Cardwave का कोई सब्सक्रिप्शन नहीं है।</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- विविध
-      मॉडल</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - विविध मॉडल</li>
-  </ul>
-  <p>कुछ और इस्तेमाल कर रहे हैं? इसे खुद जोड़ें। इसका पता डालकर Cardwave को किसी भी OpenAI-संगत सर्वर की ओर इंगित करें, जिसमें आपकी
-    अपनी मशीन पर चलने वाला लोकल मॉडल भी शामिल है। Cardwave इसकी मॉडल सूची ले आता है, या आप मॉडल खुद टाइप करते हैं। लोकल सर्वर को
-    किसी API कुंजी की ज़रूरत नहीं होती।</p>
+  <h2>अपना AI लाएँ</h2>
+  <p>वही AI इस्तेमाल करें जो आप पहले से करते हैं। एक API key पेस्ट करें और Cardwave जान लेता है कि वह किसकी है: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT और <a href="/providers.html">150 से ज़्यादा दूसरे</a>। कोई भी OpenAI-संगत सर्वर भी उसके पते से काम करता है।</p>
+  <p>या अपने ही कंप्यूटर पर मॉडल चलाएँ: Cardwave को GGUF फ़ाइलों का एक फ़ोल्डर बताएँ और वह उन्हें ख़ुद चलाता है, जहाँ हो सके आपके ग्राफ़िक्स कार्ड पर।</p>
+
+  <h2>समर्थित प्रोवाइडर</h2>
+  <p><a href="/providers.html">Cardwave के समर्थित AI प्रोवाइडर्स की सूची</a> देखें, हर एक के साथ उसकी साइट का लिंक।</p>
 
   <h2>कार्ड</h2>
   <p>Cardwave SillyTavern PNG कार्ड और CCV4 कार्ड इम्पोर्ट करता है, "बनाएँ" से या उन्हें अपनी लाइब्रेरी में ड्रॉप करके। यह कार्ड को SillyTavern V3 या CCV4 के रूप में, और चैट को SillyTavern के चैट फ़ॉर्मैट में एक्सपोर्ट करता है।</p>
@@ -126,21 +155,16 @@
   <p>Cardwave कहीं से भी कार्ड खोलता है। <a href="/where-to-find-characters.html">कैरेक्टर कार्ड होस्ट करने वाली साइट्स की सूची</a> देखें, जिन्हें आप डाउनलोड करके Cardwave में इम्पोर्ट कर सकते हैं।</p>
 
   <h2>लागत का अनुमान</h2>
-  <p>चैट की लागत बातचीत लंबी होने के साथ बढ़ती है, क्योंकि हर टर्न में इतिहास दोबारा भेजा जाता है। <a
-      href="/chat-turn-budget-calculator.html">चैट टर्न बजट कैलकुलेटर</a> अनुमान लगाता है कि किसी भी मॉडल की प्रति-टोकन
-    कीमत पर एक बजट में कितने टर्न मिलेंगे।</p>
+  <p>चैट की लागत बातचीत लंबी होने के साथ बढ़ती है, क्योंकि हर टर्न में इतिहास दोबारा भेजा जाता है। <a href="/chat-turn-budget-calculator.html">चैट टर्न बजट कैलकुलेटर</a> अनुमान लगाता है कि किसी भी मॉडल की प्रति-टोकन कीमत पर एक बजट में कितने टर्न मिलेंगे।</p>
 
   <h2>दायरा</h2>
-  <p>Cardwave मुफ़्त है और एक व्यक्ति द्वारा बनाया गया है। जैसा है वैसा जारी। बग रिपोर्ट और फ़ीचर अनुरोध <a
-      href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>
-    पर स्वागत योग्य हैं।
-  </p>
-  <p><strong>बीटा।</strong> Cardwave सक्रिय विकास में है। अपने कैरेक्टर कार्ड्स का बैकअप रखें।</p>
+  <p>Cardwave मुफ़्त है और एक व्यक्ति द्वारा बनाया गया है। जैसा है वैसा जारी।</p>
+
+  <h2>बीटा</h2>
+  <p>Cardwave सक्रिय विकास में है, और यह इसकी पहली सार्वजनिक रिलीज़ है। हो सकता है कि कोई अपडेट वह न रखे जो पिछले वर्शन ने सहेजा था, इसलिए जिन कार्ड्स की आपको परवाह है उन्हें एक्सपोर्ट करें और बैकअप रखें। बग और इच्छाएँ <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> पर भेजें।</p>
 
   <h2>CCV4 कार्ड फ़ॉर्मैट</h2>
-  <p>CCV4 एक ड्राफ़्ट कैरेक्टर कार्ड फ़ॉर्मैट है, जो TOML में छोटे एड्रेसेबल टेक्स्ट ब्लॉक्स से बना है और PNG चंक्स में
-    स्टोर होता है। <a href="/ccv4.html">CCV4 का ओवरव्यू</a> पढ़ें — पूरे स्पेसिफ़िकेशन, प्रॉम्प्ट-असेंबली एल्गोरिद्म, एक
-    रेफ़रेंस उदाहरण और लाइव प्लेग्राउंड के साथ।</p>
+  <p>CCV4 एक ड्राफ़्ट कैरेक्टर कार्ड फ़ॉर्मैट है, जो TOML में छोटे एड्रेसेबल टेक्स्ट ब्लॉक्स से बना है और PNG चंक्स में स्टोर होता है। <a href="/ccv4.html">CCV4 का ओवरव्यू</a> पढ़ें — पूरे स्पेसिफ़िकेशन, प्रॉम्प्ट-असेंबली एल्गोरिद्म, एक रेफ़रेंस उदाहरण और लाइव प्लेग्राउंड के साथ।</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">अस्वीकरण और शर्तें</a></footer>

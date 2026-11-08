@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave: chat com personagens de IA e editor de cartões para Windows</title>
-  <meta name="description"
-    content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
+  <meta name="description" content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
   <link rel="canonical" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,26 +18,23 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/pt-br/" />
   <meta property="og:title" content="Cardwave: chat com personagens de IA e editor de cartões para Windows" />
-  <meta property="og:description"
-    content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
+  <meta property="og:description" content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave: chat com personagens de IA e editor de cartões para Windows" />
-  <meta name="twitter:description"
-    content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
+  <meta name="twitter:description" content="Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="Idiomas">
     <a lang="en" href="/">English</a> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <a lang="ru" href="/ru/">Русский</a> ·
     <span lang="pt-BR" aria-current="page">Português (Brasil)</span> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <a lang="hi" href="/hi/">हिन्दी</a> ·
-    <a lang="vi" href="/vi/">Tiếng Việt</a>
+    <a lang="vi" href="/vi/">Tiếng Việt</a> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,47 +76,77 @@
       </svg>Baixar para Windows</a>
   </p>
 
-  <img class="shot" src="/landing_desktop.jpg" alt="A janela do Cardwave no Windows" />
+  <figure class="shots" aria-label="Imagens do Cardwave">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="Um chat com um personagem" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="Sua biblioteca de personagens" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="A página de um personagem, onde você edita o cartão" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="Um lorebook" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="Imagem anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="Próxima imagem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="Imagem 1" aria-current="true"></button>
+      <button type="button" aria-label="Imagem 2" aria-current="false"></button>
+      <button type="button" aria-label="Imagem 3" aria-current="false"></button>
+      <button type="button" aria-label="Imagem 4" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">Um chat com um personagem</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
-  <h2>O que ele faz</h2>
+  <h2>Recursos</h2>
   <ul>
-    <li><strong>Converse com personagens.</strong> As respostas aparecem enquanto são escritas. Gere de novo, edite, guarde cada versão e crie ramificações a partir de qualquer mensagem. Reúna vários personagens em um chat: eles falam em turnos ou continuam conversando entre si.</li>
-    <li><strong>Crie e edite cartões.</strong> A página de um cartão é o seu editor, e cada texto guarda seus rascunhos anteriores. Escreva um cartão do zero, ou responda às perguntas da IA e ela escreve o personagem com você.</li>
-    <li><strong>Uma biblioteca que encontra.</strong> Busque por palavras e por significado, com um modelo de busca que roda no seu computador. A IA escreve as tags de cada cartão, uma apresentação de uma linha e um resumo. Personas e Lorebooks ficam ao lado dos seus personagens.</li>
-    <li><strong>Memória.</strong> A cada 20 mensagens a IA anota os fatos e acontecimentos de um chat, e um personagem relembra o que sabe antes de responder. Dê a um chat ou a um personagem documentos para consultar.</li>
-    <li><strong>Vozes e imagens.</strong> As mensagens são lidas em voz alta no seu computador, cada personagem com sua própria voz ou com uma criada a partir de uma gravação. Crie uma imagem em um chat com o modelo de imagens do seu provedor ou com o ComfyUI.</li>
-    <li><strong>Ferramentas.</strong> Deixe o modelo pesquisar na web, trabalhar com os arquivos de uma pasta ou executar comandos em uma área isolada, cada coisa só se você permitir. Uma equipe de programação pode trabalhar para você em um objetivo dentro de uma pasta.</li>
-    <li><strong>Protegido e com backup.</strong> Uma senha bloqueia o app. Um backup é um único arquivo protegido que é restaurado neste computador ou em outro.</li>
-    <li><strong>Seu idioma.</strong> O Cardwave fala 12 idiomas, com um tema claro e um escuro.</li>
+    <li><strong>Chat.</strong> Converse com um personagem ou com vários, que se revezam ou continuam conversando entre si. Volte a qualquer mensagem e tente outro caminho.</li>
+    <li><strong>Cartões.</strong> Crie um personagem do zero ou numa conversa com a IA, e edite-o na própria página dele.</li>
+    <li><strong>Biblioteca.</strong> Encontre um personagem pelo nome, por uma tag ou pelo assunto. A IA cria tags e resumos para os seus cartões.</li>
+    <li><strong>Memória.</strong> Os personagens lembram o que aconteceu e podem se apoiar em documentos que você der a eles.</li>
+    <li><strong>Companheiro.</strong> Uma figura 3D na sua área de trabalho que conversa com você, lê as respostas em voz alta e faz companhia, também como assistente no dia a dia.</li>
+    <li><strong>Vozes.</strong> Respostas lidas em voz alta com a voz de cada personagem, no seu computador. Dite em vez de digitar.</li>
+    <li><strong>Imagens.</strong> Crie uma imagem dentro de um chat.</li>
+    <li><strong>Ferramentas.</strong> Deixe o modelo pesquisar na web, trabalhar em uma pasta ou executar comandos, cada coisa só se você permitir.</li>
+    <li><strong>Equipe de programação.</strong> Dê a ela um objetivo e uma pasta, e uma equipe de agentes de IA trabalha nisso para você.</li>
+    <li><strong>Modelos locais.</strong> Rode modelos no seu próprio computador, sem chave e sem conta.</li>
+    <li><strong>Abas e temas.</strong> Mantenha vários chats e cartões abertos em abas. Claro, escuro ou um de mais cinco temas.</li>
+    <li><strong>Protegido e com backup.</strong> Uma senha bloqueia o app; um backup é um único arquivo.</li>
+    <li><strong>Seu idioma.</strong> O Cardwave fala doze idiomas.</li>
   </ul>
 
   <h2>Privacidade</h2>
-  <p>O Cardwave guarda cartões, chats, chaves e configurações no seu computador. Sem cadastro, sem sincronização, sem analytics no app. Ele só se conecta à internet para o que você pede: uma mensagem ao provedor cuja chave de API você informou, um download que você inicia (o modelo de busca, uma voz), as ferramentas da web que você ativa, e uma consulta ao GitHub por uma nova versão, que você pode desativar nas Configurações. Não há nenhum servidor do Cardwave no caminho.</p>
+  <p>O Cardwave guarda cartões, chats, chaves e configurações no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app. Ele só se conecta à internet para o que você pede: uma mensagem ao provedor cuja chave de API você informou, um download que você inicia (o modelo de busca, uma voz), as ferramentas da web que você ativa, e uma consulta ao GitHub por uma nova versão, que você pode desativar nas Configurações.</p>
 
-  <h2>Modelos</h2>
-  <p>O Cardwave usa uma chave de API e fala diretamente com o provedor. Cole uma chave e o Cardwave diz de quem ela é, e depois ajuda você a escolher um modelo para o chat e outro mais barato para o seu próprio trabalho em segundo plano. Escolha um provedor abaixo, ou adicione o seu. Guarde várias configurações como predefinições e alterne entre elas. Não existe assinatura do Cardwave.</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- modelos
-      diversos</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - modelos diversos</li>
-  </ul>
-  <p>Usa outra coisa? Adicione manualmente. Aponte o Cardwave para qualquer servidor compatível com OpenAI, incluindo
-    um modelo local na sua própria máquina, informando o endereço. O Cardwave busca a lista de modelos, ou você digita
-    os modelos você mesmo. Um servidor local não precisa de chave de API.</p>
+  <h2>Use a sua própria IA</h2>
+  <p>Use a IA que você já usa. Cole uma chave de API e o Cardwave sabe de quem ela é: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT e <a href="/providers.html">mais de 150 outros</a>. Qualquer servidor compatível com a OpenAI também funciona, pelo endereço dele.</p>
+  <p>Ou rode modelos no seu próprio computador: aponte o Cardwave para uma pasta de arquivos GGUF e ele mesmo os executa, na sua placa de vídeo quando possível.</p>
+
+  <h2>Provedores compatíveis</h2>
+  <p>Veja a <a href="/providers.html">lista de provedores de IA compatíveis com o Cardwave</a>, cada um com um link para o site dele.</p>
 
   <h2>Cartões</h2>
   <p>O Cardwave importa cartões PNG do SillyTavern e cartões CCV4, pelo botão Criar ou soltando-os na sua biblioteca. Ele exporta um cartão como SillyTavern V3 ou CCV4, e um chat no formato de chat do SillyTavern.</p>
@@ -126,22 +155,16 @@
   <p>O Cardwave abre cartões de qualquer lugar. Veja a <a href="/where-to-find-characters.html">lista de sites que hospedam cartões de personagem</a> que você pode baixar e importar no Cardwave.</p>
 
   <h2>Estimando custos</h2>
-  <p>O custo do chat cresce conforme a conversa se alonga, porque cada nova mensagem reenvia o histórico. A <a
-      href="/chat-turn-budget-calculator.html">calculadora de orçamento de turnos</a> estima quantos turnos um orçamento
-    compra para o preço por token de qualquer modelo.</p>
+  <p>O custo do chat cresce conforme a conversa se alonga, porque cada nova mensagem reenvia o histórico. A <a href="/chat-turn-budget-calculator.html">calculadora de orçamento de turnos</a> estima quantos turnos um orçamento compra para o preço por token de qualquer modelo.</p>
 
   <h2>Escopo</h2>
-  <p>O Cardwave é gratuito e feito por uma pessoa só. Distribuído como está. Relatos de bugs e pedidos de recursos são
-    bem-vindos via <a href="https://github.com/elana-voss/cardwave/issues" target="_blank"
-      rel="noopener noreferrer">GitHub Issues</a>.
-  </p>
-  <p><strong>Beta.</strong> O Cardwave está em desenvolvimento ativo. Mantenha backups dos seus cartões de personagem.
-  </p>
+  <p>O Cardwave é gratuito e feito por uma pessoa só. Distribuído como está.</p>
+
+  <h2>Beta</h2>
+  <p>O Cardwave está em desenvolvimento ativo, e esta é a primeira versão pública. Uma atualização pode não manter o que uma versão anterior guardou, então exporte os cartões que importam para você e mantenha um backup. Bugs e pedidos vão para o <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <h2>Formato de cartão CCV4</h2>
-  <p>CCV4 é um rascunho de formato de cartão de personagem feito de pequenos blocos de texto endereçáveis em TOML,
-    armazenados em chunks de PNG. Leia a <a href="/ccv4.html">visão geral do CCV4</a>, com a especificação completa, o
-    algoritmo de montagem de prompt, um exemplo de referência e um playground ao vivo.</p>
+  <p>CCV4 é um rascunho de formato de cartão de personagem feito de pequenos blocos de texto endereçáveis em TOML, armazenados em chunks de PNG. Leia a <a href="/ccv4.html">visão geral do CCV4</a>, com a especificação completa, o algoritmo de montagem de prompt, um exemplo de referência e um playground ao vivo.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Aviso legal e termos</a></footer>

@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardwave: чат с ИИ-персонажами и редактор карточек для Windows</title>
-  <meta name="description"
-    content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
+  <meta name="description" content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
   <link rel="canonical" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
+  <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
   <link rel="alternate" hreflang="ru" href="https://cardwave.cc/ru/" />
   <link rel="alternate" hreflang="pt-BR" href="https://cardwave.cc/pt-br/" />
   <link rel="alternate" hreflang="es" href="https://cardwave.cc/es/" />
@@ -18,26 +18,23 @@
   <link rel="alternate" hreflang="ko" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="hi" href="https://cardwave.cc/hi/" />
   <link rel="alternate" hreflang="vi" href="https://cardwave.cc/vi/" />
+  <link rel="alternate" hreflang="id" href="https://cardwave.cc/id/" />
   <link rel="alternate" hreflang="x-default" href="https://cardwave.cc/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/ru/" />
   <meta property="og:title" content="Cardwave: чат с ИИ-персонажами и редактор карточек для Windows" />
-  <meta property="og:description"
-    content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
+  <meta property="og:description" content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="ru_RU" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cardwave: чат с ИИ-персонажами и редактор карточек для Windows" />
-  <meta name="twitter:description"
-    content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
+  <meta name="twitter:description" content="Приложение для чата с ИИ-персонажами и редактор карточек для Windows. Подключите своего ИИ-провайдера. Карточки, чаты и ключи остаются на вашем компьютере." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
@@ -59,6 +56,7 @@
 
   <nav class="langs" aria-label="Языки">
     <a lang="en" href="/">English</a> ·
+    <a lang="de" href="/de/">Deutsch</a> ·
     <span lang="ru" aria-current="page">Русский</span> ·
     <a lang="pt-BR" href="/pt-br/">Português (Brasil)</a> ·
     <a lang="es" href="/es/">Español</a> ·
@@ -67,7 +65,8 @@
     <a lang="zh-TW" href="/zh-tw/">繁體中文</a> ·
     <a lang="ko" href="/ko/">한국어</a> ·
     <a lang="hi" href="/hi/">हिन्दी</a> ·
-    <a lang="vi" href="/vi/">Tiếng Việt</a>
+    <a lang="vi" href="/vi/">Tiếng Việt</a> ·
+    <a lang="id" href="/id/">Bahasa Indonesia</a>
   </nav>
 
   <p class="downloads">
@@ -77,47 +76,77 @@
       </svg>Скачать для Windows</a>
   </p>
 
-  <img class="shot" src="/landing_desktop.jpg" alt="Окно Cardwave в Windows" />
+  <figure class="shots" aria-label="Снимки Cardwave">
+    <div class="shots-box">
+      <div class="shots-track" tabindex="0">
+        <img src="/screenshots/chat.webp" width="1440" height="900" alt="Чат с персонажем" />
+        <img src="/screenshots/library.webp" width="1440" height="900" alt="Ваша библиотека персонажей" loading="lazy" />
+        <img src="/screenshots/card.webp" width="1440" height="900" alt="Страница персонажа, где вы редактируете карточку" loading="lazy" />
+        <img src="/screenshots/lorebook.webp" width="1440" height="900" alt="Лорбук" loading="lazy" />
+      </div>
+      <button type="button" class="shots-prev" aria-label="Предыдущий снимок"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <button type="button" class="shots-next" aria-label="Следующий снимок"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+    <div class="shots-dots">
+      <button type="button" aria-label="Снимок 1" aria-current="true"></button>
+      <button type="button" aria-label="Снимок 2" aria-current="false"></button>
+      <button type="button" aria-label="Снимок 3" aria-current="false"></button>
+      <button type="button" aria-label="Снимок 4" aria-current="false"></button>
+    </div>
+    <figcaption class="shots-caption">Чат с персонажем</figcaption>
+  </figure>
+  <script>
+    (function () {
+      var box = document.querySelector(".shots"); if (!box) return;
+      var track = box.querySelector(".shots-track"), slides = track.children;
+      var dots = box.querySelectorAll(".shots-dots button"), caption = box.querySelector(".shots-caption");
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function at() { return Math.round(track.scrollLeft / track.clientWidth); }
+      function go(i) {
+        i = (i + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: still.matches ? "auto" : "smooth" });
+      }
+      function show() {
+        var i = at();
+        dots.forEach(function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+        caption.textContent = slides[i].alt;
+      }
+      box.querySelector(".shots-prev").onclick = function () { go(at() - 1); };
+      box.querySelector(".shots-next").onclick = function () { go(at() + 1); };
+      dots.forEach(function (d, j) { d.onclick = function () { go(j); }; });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); go(at() + (e.key === "ArrowLeft" ? -1 : 1)); }
+      });
+      track.addEventListener("scroll", show, { passive: true });
+    })();
+  </script>
 
-  <h2>Что умеет Cardwave</h2>
+  <h2>Возможности</h2>
   <ul>
-    <li><strong>Чат с персонажами.</strong> Ответы появляются по мере написания. Генерируйте заново, редактируйте, храните все версии и создавайте ветки от любого сообщения. Соберите нескольких персонажей в одном чате: они говорят по очереди или продолжают беседу между собой.</li>
-    <li><strong>Создание и правка карточек.</strong> Страница карточки — это и есть её редактор, и каждый текст хранит свои прежние черновики. Напишите карточку с нуля или ответьте на вопросы ИИ, и он напишет персонажа вместе с вами.</li>
-    <li><strong>Библиотека, которая находит.</strong> Ищите по словам и по смыслу с моделью поиска, которая работает на вашем компьютере. ИИ пишет для каждой карточки теги, описание в одну строку и краткое содержание. Персоны и лорбуки находятся рядом с вашими персонажами.</li>
-    <li><strong>Память.</strong> Каждые 20 сообщений ИИ записывает факты и события чата, и персонаж вспоминает то, что знает, прежде чем ответить. Дайте чату или персонажу документы, на которые можно опираться.</li>
-    <li><strong>Голоса и картинки.</strong> Сообщения читаются вслух прямо на вашем компьютере, каждый персонаж своим голосом или голосом, созданным по записи. Создайте картинку в чате с помощью модели изображений вашего провайдера или ComfyUI.</li>
-    <li><strong>Инструменты.</strong> Позвольте модели искать в интернете, работать с файлами одной папки или выполнять команды в песочнице — каждое только с вашего разрешения. Команда ИИ-программистов может работать над задачей в папке за вас.</li>
-    <li><strong>Защита и резервные копии.</strong> Пароль запирает приложение. Резервная копия — это один защищённый файл, который восстанавливается на этом или другом компьютере.</li>
-    <li><strong>Ваш язык.</strong> Cardwave говорит на 12 языках, со светлой и тёмной темой.</li>
+    <li><strong>Чат.</strong> Общайтесь с одним персонажем или с несколькими: они говорят по очереди или продолжают разговор между собой. Вернитесь к любому сообщению и попробуйте другой путь.</li>
+    <li><strong>Карточки.</strong> Создайте персонажа с нуля или в разговоре с ИИ и редактируйте его на его собственной странице.</li>
+    <li><strong>Библиотека.</strong> Находите персонажа по имени, тегу или по тому, о чём он. ИИ расставляет теги и пишет краткое описание ваших карточек.</li>
+    <li><strong>Память.</strong> Персонажи помнят, что произошло, и могут опираться на документы, которые вы им дадите.</li>
+    <li><strong>Компаньон.</strong> 3D-фигура на вашем рабочем столе, которая разговаривает с вами, читает свои ответы вслух и составляет вам компанию, в том числе как помощник на каждый день.</li>
+    <li><strong>Голоса.</strong> Ответы звучат вслух собственным голосом каждого персонажа, прямо на вашем компьютере. Диктуйте вместо того, чтобы печатать.</li>
+    <li><strong>Изображения.</strong> Создавайте изображение прямо в чате.</li>
+    <li><strong>Инструменты.</strong> Позвольте модели искать в интернете, работать в одной папке или выполнять команды, каждое только с вашего разрешения.</li>
+    <li><strong>Команда программистов.</strong> Дайте ей цель и папку, и команда ИИ-агентов поработает над ней за вас.</li>
+    <li><strong>Локальные модели.</strong> Запускайте модели на своём компьютере, без ключа и без аккаунта.</li>
+    <li><strong>Вкладки и темы.</strong> Держите несколько чатов и карточек открытыми во вкладках. Светлая, тёмная или одна из ещё пяти тем.</li>
+    <li><strong>Под замком и с резервной копией.</strong> Пароль блокирует приложение; резервная копия — это один файл.</li>
+    <li><strong>Ваш язык.</strong> Cardwave говорит на двенадцати языках.</li>
   </ul>
 
   <h2>Конфиденциальность</h2>
-  <p>Cardwave хранит карточки, чаты, ключи и настройки на вашем компьютере. Без регистрации, без синхронизации, без аналитики в приложении. В сеть оно выходит только по вашей просьбе: сообщение провайдеру, чей API-ключ вы ввели, загрузка, которую вы запустили (модель поиска, голос), веб-инструменты, которые вы включили, и проверка новой версии на GitHub, которую можно отключить в настройках. Никакого сервера Cardwave на этом пути нет.</p>
+  <p>Cardwave хранит карточки, чаты, ключи и настройки на вашем компьютере, в зашифрованной базе данных. Без регистрации, без синхронизации, без аналитики в приложении. В сеть оно выходит только по вашей просьбе: сообщение провайдеру, чей API-ключ вы ввели, загрузка, которую вы запустили (модель поиска, голос), веб-инструменты, которые вы включили, и проверка новой версии на GitHub, которую можно отключить в настройках.</p>
 
-  <h2>Модели</h2>
-  <p>Cardwave принимает API-ключ и общается с провайдером напрямую. Вставьте ключ, и Cardwave определит, чей он, а затем поможет выбрать модель для чата и более дешёвую модель для своей фоновой работы. Выберите провайдера ниже или добавьте своего. Сохраните несколько настроек как пресеты и переключайтесь между ними. Подписки Cardwave не существует.</p>
-  <ul>
-    <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-      <strong>GPT</strong>- OpenAI
-    </li>
-    <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>
-      <strong>Claude</strong>
-      - Anthropic
-    </li>
-    <li><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a>
-      <strong>Gemini</strong>- Google
-    </li>
-    <li><a href="https://console.x.ai" target="_blank" rel="noopener noreferrer">console.x.ai</a> <strong>Grok</strong>
-      - xAI
-    </li>
-    <li><a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer">openrouter.ai</a> OpenRouter- разные
-      модели</li>
-    <li><a href="https://nano-gpt.com/r/giwTPUq9" target="_blank" rel="noopener noreferrer">nano-gpt.com</a> NanoGPT
-      - разные модели</li>
-  </ul>
-  <p>Используете что-то другое? Добавьте вручную. Укажите Cardwave любой сервер, совместимый с OpenAI, включая
-    локальную модель на вашем компьютере, введя его адрес. Cardwave получит список моделей, или вы введёте модели сами.
-    Локальному серверу API-ключ не нужен.</p>
+  <h2>Свой ИИ</h2>
+  <p>Используйте ИИ, которым уже пользуетесь. Вставьте API-ключ, и Cardwave узнает, чей он: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT и <a href="/providers.html">более 150 других</a>. Любой сервер, совместимый с OpenAI, тоже подойдёт, по его адресу.</p>
+  <p>Или запускайте модели на своём компьютере: укажите Cardwave папку с файлами GGUF, и он запустит их сам, на вашей видеокарте, где это возможно.</p>
+
+  <h2>Поддерживаемые провайдеры</h2>
+  <p>Смотрите <a href="/providers.html">список ИИ-провайдеров, которых поддерживает Cardwave</a>, каждый со ссылкой на свой сайт.</p>
 
   <h2>Карточки</h2>
   <p>Cardwave импортирует PNG-карточки SillyTavern и карточки CCV4 — через «Создать» или перетаскиванием в библиотеку. Он экспортирует карточку в формате SillyTavern V3 или CCV4, а чат — в формате чата SillyTavern.</p>
@@ -126,21 +155,16 @@
   <p>Cardwave открывает карточки откуда угодно. Посмотрите <a href="/where-to-find-characters.html">список сайтов с карточками персонажей</a>, которые можно скачать и импортировать в Cardwave.</p>
 
   <h2>Оценка расходов</h2>
-  <p>Стоимость чата растёт по мере удлинения беседы, потому что каждое новое сообщение заново отправляет историю. <a
-      href="/chat-turn-budget-calculator.html">Калькулятор бюджета чата</a> оценивает, на сколько ходов хватит бюджета
-    при цене за токен любой модели.</p>
+  <p>Стоимость чата растёт по мере удлинения беседы, потому что каждое новое сообщение заново отправляет историю. <a href="/chat-turn-budget-calculator.html">Калькулятор бюджета чата</a> оценивает, на сколько ходов хватит бюджета при цене за токен любой модели.</p>
 
   <h2>О проекте</h2>
-  <p>Cardwave бесплатен и создаётся одним человеком. Распространяется «как есть». Сообщения об ошибках и предложения
-    приветствуются через <a href="https://github.com/elana-voss/cardwave/issues" target="_blank"
-      rel="noopener noreferrer">GitHub Issues</a>.
-  </p>
-  <p><strong>Бета.</strong> Cardwave активно разрабатывается. Делайте резервные копии карточек персонажей.</p>
+  <p>Cardwave бесплатен и создаётся одним человеком. Распространяется «как есть».</p>
+
+  <h2>Бета</h2>
+  <p>Cardwave активно разрабатывается, и это его первый публичный выпуск. Обновление может не сохранить то, что хранила прежняя версия, поэтому экспортируйте важные для вас карточки и держите резервную копию. Об ошибках и пожеланиях пишите в <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <h2>Формат карточек CCV4</h2>
-  <p>CCV4 — черновой формат карточек персонажей из небольших адресуемых текстовых блоков в TOML, хранящихся в
-    PNG-чанках. Читайте <a href="/ccv4.html">обзор CCV4</a> с полной спецификацией, алгоритмом сборки промпта,
-    эталонным примером и интерактивной песочницей.</p>
+  <p>CCV4 — черновой формат карточек персонажей из небольших адресуемых текстовых блоков в TOML, хранящихся в PNG-чанках. Читайте <a href="/ccv4.html">обзор CCV4</a> с полной спецификацией, алгоритмом сборки промпта, эталонным примером и интерактивной песочницей.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Отказ от ответственности и условия</a></footer>
