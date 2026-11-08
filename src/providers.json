@@ -381,7 +381,7 @@
  },
  {
   "name": "KoboldCpp",
-  "url": null,
+  "url": "https://github.com/LostRuins/koboldcpp",
   "local": true
  },
  {
@@ -406,7 +406,7 @@
  },
  {
   "name": "LM Studio",
-  "url": null,
+  "url": "https://lmstudio.ai",
   "local": true
  },
  {
@@ -531,7 +531,7 @@
  },
  {
   "name": "Ollama",
-  "url": null,
+  "url": "https://ollama.com",
   "local": true
  },
  {
