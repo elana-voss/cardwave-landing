@@ -14,9 +14,14 @@ wrote (GitHub Pages serves the files as they are). Standard library only.
   at once, the rest lazily. A new slide needs its picture, its name in SLIDES and a caption `slide_<name>`.
 - Writes providers.html (English only) from src/providers.json, which cardwave-next's tools/provider_page.py
   writes from the app's own provider list: the online services in columns, the local servers apart.
-- The other English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here.
+- The other English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here; their
+  stylesheet link, and roleplay-models.html's, is renewed here (stamp_pages).
+- style.css and the pictures are linked as `/<path>?v=<hash of the file>` (asset()): a browser holding an older copy
+  (http.server and GitHub Pages let it keep one for hours) must not pair the old style with a new page, which
+  showed every slide at once with bare buttons.
 """
 
+import hashlib
 import html
 import json
 import re
@@ -96,6 +101,30 @@ SCRIPT = """  <script>
   </script>"""
 
 
+def asset(name):
+    """The address of a file of the site with its content's hash, so a changed file is never taken from a cache."""
+    digest = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:10]
+    return f"/{name}?v={digest}"
+
+
+STYLE_LINK = re.compile(r'<link rel="stylesheet" href="/?style\.css(\?v=\w+)?" />')
+STAMPED = ["ccv4.html", "chat-turn-budget-calculator.html", "disclaimer.html", "where-to-find-characters.html",
+           "roleplay-models.html"]
+
+
+def stamp_pages():
+    """The pages not written here link the current style.css."""
+    link = f'<link rel="stylesheet" href="{asset("style.css")}" />'
+    for name in STAMPED:
+        path = ROOT / name
+        text = path.read_text(encoding="utf-8")
+        new, count = STYLE_LINK.subn(link, text)
+        if count != 1:
+            sys.exit(f"{name}: expected one stylesheet link, found {count}")
+        if new != text:
+            path.write_bytes(new.encode("utf-8"))
+
+
 def read_texts(code):
     """The texts of one language, as written in its file."""
     texts = {}
@@ -151,7 +180,7 @@ def shots(texts):
     for i, name in enumerate(names):
         alt = html.escape(texts[key(name)], quote=True)
         lazy = "" if i == 0 else ' loading="lazy"'
-        imgs.append(f'        <img src="/screenshots/{name}.webp" width="1440" height="900" alt="{alt}"{lazy} />')
+        imgs.append(f'        <img src="{asset(f"screenshots/{name}.webp")}" width="1440" height="900" alt="{alt}"{lazy} />')
     dots = []
     for i, _ in enumerate(names):
         label = html.escape(texts["shot_dot"].replace("{n}", str(i + 1)), quote=True)
@@ -179,6 +208,7 @@ def render(template, code, hl, locale, texts):
     own = {
         "@lang": hl, "@url": SITE + page_url(code), "@locale": locale, "@home": page_url(code),
         "@alternates": alternates(), "@langs": lang_row(code), "@shots": shots(texts),
+        "@style": asset("style.css"),
     }
 
     def fill(match):
@@ -216,7 +246,7 @@ PROVIDERS_HEAD = """<!doctype html>
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="{style}" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
 </head>
 
@@ -244,7 +274,8 @@ def providers_page():
     title = "AI providers Cardwave supports"
     description = f"The {len(online)} AI services Cardwave knows by their API key, and the local servers it works with."
     return "\n".join([
-        PROVIDERS_HEAD.format(title=title, description=description, url=SITE + "/providers.html"),
+        PROVIDERS_HEAD.format(title=title, description=description, url=SITE + "/providers.html",
+                              style=asset("style.css")),
         f'  <p class="page-title"><strong>{title}</strong></p>',
         f"  <p>Paste an API key from any of these {len(online)} services and Cardwave knows whose it is. "
         "Any other OpenAI-compatible server works too, by its address.</p>",
@@ -291,6 +322,7 @@ def main():
         target.write_text(render(template, code, hl, locale, all_texts[code]), encoding="utf-8", newline="\n")
     (ROOT / "providers.html").write_text(providers_page(), encoding="utf-8", newline="\n")
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8", newline="\n")
+    stamp_pages()
     print(f"wrote {len(LANGS)} pages, providers.html and sitemap.xml")
 
 

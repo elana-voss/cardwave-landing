@@ -22,6 +22,8 @@ import sys
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+from build import asset  # noqa: E402  the stylesheet's address with its hash, as every page links it
 PAGE = os.path.join(ROOT, "roleplay-models.html")
 RANKING_URL = "https://openrouter.ai/api/v1/classifications/task?window=7d"
 PRICES_URL = "https://models.dev/api.json"
@@ -85,7 +87,7 @@ def render(as_of, days, table):
             i, html.escape(r["slug"]), html.escape(r["name"]), share(r["usage"]), share(r["tokens"]),
             money(r["input"]), money(r["output"]))
         for i, r in enumerate(table, 1))
-    return TEMPLATE.format(as_of=html.escape(as_of), days=days, rows=body)
+    return TEMPLATE.format(as_of=html.escape(as_of), days=days, rows=body, style=asset("style.css"))
 
 
 def write_page(path, answer, prices):
@@ -135,7 +137,7 @@ TEMPLATE = """<!doctype html>
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{style}" />
   <style>
     .table-wrap {{ overflow-x: auto; }}
     .ranking {{ width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }}
