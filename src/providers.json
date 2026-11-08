@@ -1,0 +1,842 @@
+[
+ {
+  "name": "302.AI",
+  "url": "https://doc.302.ai",
+  "local": false
+ },
+ {
+  "name": "Abacus",
+  "url": "https://abacus.ai/help/api",
+  "local": false
+ },
+ {
+  "name": "abliteration.ai",
+  "url": "https://docs.abliteration.ai/models",
+  "local": false
+ },
+ {
+  "name": "above.dev",
+  "url": "https://above.dev/docs",
+  "local": false
+ },
+ {
+  "name": "Agnes AI",
+  "url": "https://agnes-ai.com/doc",
+  "local": false
+ },
+ {
+  "name": "ai&",
+  "url": "https://docs.aiand.com/",
+  "local": false
+ },
+ {
+  "name": "AI-ROUTER",
+  "url": "https://ai-router.dev/openai-compatible-api-gateway/",
+  "local": false
+ },
+ {
+  "name": "AI/ML API",
+  "url": "https://aimlapi.com",
+  "local": false
+ },
+ {
+  "name": "AI21",
+  "url": "https://ai21.com",
+  "local": false
+ },
+ {
+  "name": "ainetcafe",
+  "url": "https://ainetcafe.com/k3/guides/",
+  "local": false
+ },
+ {
+  "name": "Aixy",
+  "url": "https://docs.aixy-gateway.com/integrations/overview",
+  "local": false
+ },
+ {
+  "name": "AKI.IO",
+  "url": "https://aki.io/docs/",
+  "local": false
+ },
+ {
+  "name": "Alibaba (China)",
+  "url": "https://www.alibabacloud.com/help/en/model-studio/models",
+  "local": false
+ },
+ {
+  "name": "Alibaba Cloud Model Studio",
+  "url": "https://alibabacloud.com",
+  "local": false
+ },
+ {
+  "name": "Ambient",
+  "url": "https://ambient.xyz",
+  "local": false
+ },
+ {
+  "name": "AMD",
+  "url": "https://developer.amd.com.cn/radeon/tokenfactory",
+  "local": false
+ },
+ {
+  "name": "Anthropic",
+  "url": "https://anthropic.com",
+  "local": false
+ },
+ {
+  "name": "AnyAPI",
+  "url": "https://docs.anyapi.ai",
+  "local": false
+ },
+ {
+  "name": "Arcee",
+  "url": "https://docs.arcee.ai",
+  "local": false
+ },
+ {
+  "name": "ArliAI",
+  "url": "https://arliai.com",
+  "local": false
+ },
+ {
+  "name": "Auriko",
+  "url": "https://docs.auriko.ai",
+  "local": false
+ },
+ {
+  "name": "Baseten",
+  "url": "https://baseten.co",
+  "local": false
+ },
+ {
+  "name": "Bee by HEOSSI",
+  "url": "https://bee.heossi.com/docs/sdks",
+  "local": false
+ },
+ {
+  "name": "Berget.AI",
+  "url": "https://api.berget.ai",
+  "local": false
+ },
+ {
+  "name": "Blue Claw",
+  "url": "https://blueclaw.network",
+  "local": false
+ },
+ {
+  "name": "Bothub",
+  "url": "https://bothub.ru/models",
+  "local": false
+ },
+ {
+  "name": "Cerebras",
+  "url": "https://cerebras.ai",
+  "local": false
+ },
+ {
+  "name": "Charm Hyper",
+  "url": "https://hyper.charm.land",
+  "local": false
+ },
+ {
+  "name": "Chutes",
+  "url": "https://chutes.ai",
+  "local": false
+ },
+ {
+  "name": "CloudFerro Sherlock",
+  "url": "https://docs.sherlock.cloudferro.com/",
+  "local": false
+ },
+ {
+  "name": "Cohere",
+  "url": "https://cohere.com",
+  "local": false
+ },
+ {
+  "name": "CoralBricks",
+  "url": "https://www.coralbricks.ai/docs",
+  "local": false
+ },
+ {
+  "name": "CoreWeave",
+  "url": "https://docs.wandb.ai/inference",
+  "local": false
+ },
+ {
+  "name": "Cortecs",
+  "url": "https://api.cortecs.ai/v1/models",
+  "local": false
+ },
+ {
+  "name": "CrossModel",
+  "url": "https://www.crossmodel.ai/docs",
+  "local": false
+ },
+ {
+  "name": "Crusoe",
+  "url": "https://docs.crusoecloud.com/managed-inference/overview",
+  "local": false
+ },
+ {
+  "name": "D.Run (China)",
+  "url": "https://www.d.run",
+  "local": false
+ },
+ {
+  "name": "DaoXE",
+  "url": "https://daoxe.com/pricing",
+  "local": false
+ },
+ {
+  "name": "DeepInfra",
+  "url": "https://deepinfra.com",
+  "local": false
+ },
+ {
+  "name": "DeepSeek",
+  "url": "https://deepseek.com",
+  "local": false
+ },
+ {
+  "name": "DigitalOcean",
+  "url": "https://docs.digitalocean.com/products/gradient-ai-platform/details/models/",
+  "local": false
+ },
+ {
+  "name": "DInference",
+  "url": "https://dinference.com",
+  "local": false
+ },
+ {
+  "name": "EBCloud",
+  "url": "https://docs.ebtech.com/ai/model-api.html",
+  "local": false
+ },
+ {
+  "name": "Echo",
+  "url": "https://echo.tracerml.ai/docs/api",
+  "local": false
+ },
+ {
+  "name": "Eden AI",
+  "url": "https://docs.edenai.co",
+  "local": false
+ },
+ {
+  "name": "Electron Hub",
+  "url": "https://electronhub.ai",
+  "local": false
+ },
+ {
+  "name": "EmpirioLabs AI",
+  "url": "https://docs.empiriolabs.ai",
+  "local": false
+ },
+ {
+  "name": "engy",
+  "url": "https://engy.ai/pricing",
+  "local": false
+ },
+ {
+  "name": "evroc",
+  "url": "https://docs.evroc.com/products/think/overview.html",
+  "local": false
+ },
+ {
+  "name": "FastRouter",
+  "url": "https://fastrouter.ai/models",
+  "local": false
+ },
+ {
+  "name": "Featherless",
+  "url": "https://featherless.ai",
+  "local": false
+ },
+ {
+  "name": "Fireworks AI",
+  "url": "https://fireworks.ai",
+  "local": false
+ },
+ {
+  "name": "Friendli",
+  "url": "https://friendli.ai",
+  "local": false
+ },
+ {
+  "name": "FrogBot",
+  "url": "https://docs.frogbot.ai",
+  "local": false
+ },
+ {
+  "name": "GMI Cloud",
+  "url": "https://docs.gmicloud.ai/inference-engine/api-reference/llm-api-reference",
+  "local": false
+ },
+ {
+  "name": "Google Gemini",
+  "url": "https://ai.google.dev",
+  "local": false
+ },
+ {
+  "name": "GreenPT",
+  "url": "https://docs.greenpt.ai",
+  "local": false
+ },
+ {
+  "name": "Groq",
+  "url": "https://groq.com",
+  "local": false
+ },
+ {
+  "name": "Helicone",
+  "url": "https://helicone.ai/models",
+  "local": false
+ },
+ {
+  "name": "Hetzner",
+  "url": "https://experiments.hetzner.com/docs/inference",
+  "local": false
+ },
+ {
+  "name": "HPC-AI",
+  "url": "https://www.hpc-ai.com/doc/docs/quickstart/",
+  "local": false
+ },
+ {
+  "name": "Hugging Face",
+  "url": "https://huggingface.co",
+  "local": false
+ },
+ {
+  "name": "Hyperbolic",
+  "url": "https://hyperbolic.ai",
+  "local": false
+ },
+ {
+  "name": "Impossibl",
+  "url": "https://impossibl.com/docs/models",
+  "local": false
+ },
+ {
+  "name": "Inception",
+  "url": "https://docs.inceptionlabs.ai/get-started/models",
+  "local": false
+ },
+ {
+  "name": "Inceptron",
+  "url": "https://docs.inceptron.io",
+  "local": false
+ },
+ {
+  "name": "Inco",
+  "url": "https://platform.inco.ai/docs",
+  "local": false
+ },
+ {
+  "name": "Inference.net",
+  "url": "https://inference.net",
+  "local": false
+ },
+ {
+  "name": "Infermatic",
+  "url": "https://infermatic.ai",
+  "local": false
+ },
+ {
+  "name": "InferX",
+  "url": "https://model.inferx.net/endpoints",
+  "local": false
+ },
+ {
+  "name": "IO.NET",
+  "url": "https://io.net/docs/guides/intelligence/io-intelligence",
+  "local": false
+ },
+ {
+  "name": "IteraCompute",
+  "url": "https://iteracompute.com/docs.html",
+  "local": false
+ },
+ {
+  "name": "Jalapeno Cloud",
+  "url": "https://www.jalapeno-cloud.ai/docs/",
+  "local": false
+ },
+ {
+  "name": "Jiekou.AI",
+  "url": "https://docs.jiekou.ai/docs/support/quickstart?utm_source=github_models.dev",
+  "local": false
+ },
+ {
+  "name": "Kilo Gateway",
+  "url": "https://kilo.ai",
+  "local": false
+ },
+ {
+  "name": "klokintegration.se",
+  "url": "https://klokintegration.se/docs/ai-api",
+  "local": false
+ },
+ {
+  "name": "KoboldCpp",
+  "url": null,
+  "local": true
+ },
+ {
+  "name": "Kosmik Compute",
+  "url": "https://api.koscompute.com/docs/",
+  "local": false
+ },
+ {
+  "name": "Llama",
+  "url": "https://llama.developer.meta.com/docs/models",
+  "local": false
+ },
+ {
+  "name": "LLM Gateway",
+  "url": "https://llmgateway.io/docs",
+  "local": false
+ },
+ {
+  "name": "LLM Tech",
+  "url": "https://llmtech.eu/models/qwen3.8-27b",
+  "local": false
+ },
+ {
+  "name": "LM Studio",
+  "url": null,
+  "local": true
+ },
+ {
+  "name": "LongCat",
+  "url": "https://longcat.chat/platform/docs/",
+  "local": false
+ },
+ {
+  "name": "LowRouter",
+  "url": "https://lowrouter.ai/docs/models/available",
+  "local": false
+ },
+ {
+  "name": "LucidQuery",
+  "url": "https://lucidquery.com/docs",
+  "local": false
+ },
+ {
+  "name": "Mancer",
+  "url": "https://mancer.tech",
+  "local": false
+ },
+ {
+  "name": "Melious",
+  "url": "https://melious.ai/docs/reference/models",
+  "local": false
+ },
+ {
+  "name": "MiniMax",
+  "url": "https://minimax.io",
+  "local": false
+ },
+ {
+  "name": "Mistral",
+  "url": "https://mistral.ai",
+  "local": false
+ },
+ {
+  "name": "Mixlayer",
+  "url": "https://docs.mixlayer.com",
+  "local": false
+ },
+ {
+  "name": "Moark",
+  "url": "https://moark.com/docs/openapi/v1#tag/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90",
+  "local": false
+ },
+ {
+  "name": "Modal",
+  "url": "https://modal.com/docs/guide/endpoints",
+  "local": false
+ },
+ {
+  "name": "Model Oracle AI",
+  "url": "https://modeloracle.com/setup/",
+  "local": false
+ },
+ {
+  "name": "Modelis",
+  "url": "https://modelishub.com/pricing",
+  "local": false
+ },
+ {
+  "name": "ModelScope",
+  "url": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+  "local": false
+ },
+ {
+  "name": "Moonshot AI",
+  "url": "https://moonshot.ai",
+  "local": false
+ },
+ {
+  "name": "Moonshot AI (China)",
+  "url": "https://platform.moonshot.cn/docs/api/chat",
+  "local": false
+ },
+ {
+  "name": "Morph",
+  "url": "https://docs.morphllm.com/api-reference/introduction",
+  "local": false
+ },
+ {
+  "name": "NaN",
+  "url": "https://nan.builders/docs/models",
+  "local": false
+ },
+ {
+  "name": "NanoGPT",
+  "url": "https://nano-gpt.com",
+  "local": false
+ },
+ {
+  "name": "NEAR AI Cloud",
+  "url": "https://docs.near.ai/",
+  "local": false
+ },
+ {
+  "name": "Nebius",
+  "url": "https://nebius.com",
+  "local": false
+ },
+ {
+  "name": "Neuralwatt",
+  "url": "https://portal.neuralwatt.com/docs",
+  "local": false
+ },
+ {
+  "name": "Novita AI",
+  "url": "https://novita.ai",
+  "local": false
+ },
+ {
+  "name": "Nvidia NIM",
+  "url": "https://build.nvidia.com",
+  "local": false
+ },
+ {
+  "name": "Ofox",
+  "url": "https://ofox.ai/docs",
+  "local": false
+ },
+ {
+  "name": "Ollama",
+  "url": null,
+  "local": true
+ },
+ {
+  "name": "Ollama Cloud",
+  "url": "https://docs.ollama.com/cloud",
+  "local": false
+ },
+ {
+  "name": "OpenAI",
+  "url": "https://openai.com",
+  "local": false
+ },
+ {
+  "name": "OpenCode",
+  "url": "https://opencode.ai/v2/docs/console/models/",
+  "local": false
+ },
+ {
+  "name": "OpenCode Go",
+  "url": "https://opencode.ai/v2/docs/console/go/",
+  "local": false
+ },
+ {
+  "name": "OpenReason",
+  "url": "https://openreason.app/docs",
+  "local": false
+ },
+ {
+  "name": "OpenRouter",
+  "url": "https://openrouter.ai",
+  "local": false
+ },
+ {
+  "name": "Opper",
+  "url": "https://opper.ai/models",
+  "local": false
+ },
+ {
+  "name": "OrcaRouter",
+  "url": "https://docs.orcarouter.ai",
+  "local": false
+ },
+ {
+  "name": "OVHcloud AI Endpoints",
+  "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog//",
+  "local": false
+ },
+ {
+  "name": "Parasail",
+  "url": "https://parasail.io",
+  "local": false
+ },
+ {
+  "name": "Pareto Inference",
+  "url": "https://docs.paretoinference.com/",
+  "local": false
+ },
+ {
+  "name": "Pendra",
+  "url": "https://pendra.ai/docs/integrations/opencode",
+  "local": false
+ },
+ {
+  "name": "Perplexity",
+  "url": "https://perplexity.ai",
+  "local": false
+ },
+ {
+  "name": "Pioneer",
+  "url": "https://agent.pioneer.ai/llms.txt",
+  "local": false
+ },
+ {
+  "name": "Poe",
+  "url": "https://poe.com",
+  "local": false
+ },
+ {
+  "name": "Poolside",
+  "url": "https://platform.poolside.ai",
+  "local": false
+ },
+ {
+  "name": "QiHang",
+  "url": "https://www.qhaigc.net/docs",
+  "local": false
+ },
+ {
+  "name": "Qiniu",
+  "url": "https://developer.qiniu.com/aitokenapi",
+  "local": false
+ },
+ {
+  "name": "Regolo AI",
+  "url": "https://docs.regolo.ai/",
+  "local": false
+ },
+ {
+  "name": "Requesty",
+  "url": "https://requesty.ai",
+  "local": false
+ },
+ {
+  "name": "routing.run",
+  "url": "https://docs.routing.run/api-reference/models",
+  "local": false
+ },
+ {
+  "name": "RunInfra",
+  "url": "https://runinfra.ai/docs",
+  "local": false
+ },
+ {
+  "name": "Sakana AI",
+  "url": "https://console.sakana.ai/models",
+  "local": false
+ },
+ {
+  "name": "SambaNova",
+  "url": "https://sambanova.ai",
+  "local": false
+ },
+ {
+  "name": "Sarvam AI",
+  "url": "https://docs.sarvam.ai/api-reference-docs/getting-started/models",
+  "local": false
+ },
+ {
+  "name": "Scaleway",
+  "url": "https://scaleway.com",
+  "local": false
+ },
+ {
+  "name": "SCX.ai",
+  "url": "https://platform.scx.ai/docs",
+  "local": false
+ },
+ {
+  "name": "SenseNova (China)",
+  "url": "https://platform.sensenova.cn/docs",
+  "local": false
+ },
+ {
+  "name": "SiliconFlow",
+  "url": "https://siliconflow.com",
+  "local": false
+ },
+ {
+  "name": "SiliconFlow (China)",
+  "url": "https://cloud.siliconflow.com/models",
+  "local": false
+ },
+ {
+  "name": "STACKIT",
+  "url": "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/basics/available-shared-models",
+  "local": false
+ },
+ {
+  "name": "StepFun (China)",
+  "url": "https://platform.stepfun.com/docs/zh/overview/concept",
+  "local": false
+ },
+ {
+  "name": "StepFun (Global)",
+  "url": "https://platform.stepfun.ai/docs/en/overview/concept",
+  "local": false
+ },
+ {
+  "name": "submodel",
+  "url": "https://submodel.gitbook.io",
+  "local": false
+ },
+ {
+  "name": "Synthetic",
+  "url": "https://synthetic.new",
+  "local": false
+ },
+ {
+  "name": "Tempr Gateway",
+  "url": "https://temprhq.io/docs/gateway-reference.html",
+  "local": false
+ },
+ {
+  "name": "Tencent TokenHub",
+  "url": "https://cloud.tencent.com/document/product/1823/130050",
+  "local": false
+ },
+ {
+  "name": "TensorX",
+  "url": "https://docs.tensorx.ai/",
+  "local": false
+ },
+ {
+  "name": "The Grid AI",
+  "url": "https://thegrid.ai/docs",
+  "local": false
+ },
+ {
+  "name": "Tinfoil",
+  "url": "https://docs.tinfoil.sh",
+  "local": false
+ },
+ {
+  "name": "Together AI",
+  "url": "https://together.ai",
+  "local": false
+ },
+ {
+  "name": "TokenGo",
+  "url": "https://www.tokengo.com/docs",
+  "local": false
+ },
+ {
+  "name": "TokenRouter",
+  "url": "https://www.tokenrouter.com/docs/tokenrouter-feature-guide/",
+  "local": false
+ },
+ {
+  "name": "TrustedRouter",
+  "url": "https://trustedrouter.com/docs",
+  "local": false
+ },
+ {
+  "name": "Umans AI",
+  "url": "https://app.umans.ai/offers/code/docs/orgs",
+  "local": false
+ },
+ {
+  "name": "UnoRouter",
+  "url": "https://unorouter.com/models",
+  "local": false
+ },
+ {
+  "name": "Upstage",
+  "url": "https://upstage.ai",
+  "local": false
+ },
+ {
+  "name": "Vancine",
+  "url": "https://vancine.com/docs",
+  "local": false
+ },
+ {
+  "name": "Venice AI",
+  "url": "https://venice.ai",
+  "local": false
+ },
+ {
+  "name": "Vispark",
+  "url": "https://lab.vispark.in/#vision",
+  "local": false
+ },
+ {
+  "name": "Volcengine Ark",
+  "url": "https://www.volcengine.com/docs/82379/1330310",
+  "local": false
+ },
+ {
+  "name": "Vultr",
+  "url": "https://api.vultrinference.com/",
+  "local": false
+ },
+ {
+  "name": "Wafer",
+  "url": "https://docs.wafer.ai/wafer-pass",
+  "local": false
+ },
+ {
+  "name": "Wallaby",
+  "url": "https://wallabytoken.com/docs",
+  "local": false
+ },
+ {
+  "name": "xAI",
+  "url": "https://x.ai",
+  "local": false
+ },
+ {
+  "name": "Xiaomi",
+  "url": "https://platform.xiaomimimo.com/#/docs",
+  "local": false
+ },
+ {
+  "name": "Xpersona",
+  "url": "https://www.xpersona.co/docs",
+  "local": false
+ },
+ {
+  "name": "Z.ai",
+  "url": "https://z.ai",
+  "local": false
+ },
+ {
+  "name": "Zeldoc",
+  "url": "https://docs.zeldoc.ai",
+  "local": false
+ },
+ {
+  "name": "ZenMux",
+  "url": "https://docs.zenmux.ai",
+  "local": false
+ },
+ {
+  "name": "Zhipu AI",
+  "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+  "local": false
+ }
+]

@@ -1,0 +1,20 @@
+title = Cardwave：適用於 Windows 的 AI 角色聊天與角色卡編輯器
+description = 適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。
+langs_label = 語言
+download = 下載 Windows 版
+intro = 適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你已在使用的任何 AI 服務商。你的角色卡、聊天和金鑰都留在你的電腦上。
+privacy_h = 隱私
+privacy_old = Cardwave 把角色卡、聊天、金鑰和設定儲存在你的電腦上。無需註冊，沒有同步，應用程式內沒有分析統計。它只在你要求時連網：傳給你填寫了 API 金鑰的服務商的訊息、你啟動的下載（搜尋模型、語音）、你開啟的網頁工具，以及在 GitHub 上檢查新版本（可在設定中關閉）。中間沒有任何 Cardwave 伺服器。
+cards_h = 角色卡
+where_h = 去哪裡找角色
+costs_h = 費用估算
+scope_h = 專案範圍
+ccv4_h = CCV4 卡片格式
+cards_p = Cardwave 可以透過「建立」或拖放到資料庫來匯入 SillyTavern PNG 角色卡和 CCV4 角色卡。角色卡可匯出為 SillyTavern V3 或 CCV4，聊天可匯出為 SillyTavern 的聊天格式。
+where_p = Cardwave 能開啟來自任何地方的角色卡。查看<a href="{where}">提供角色卡的網站清單</a>，下載後匯入 Cardwave 即可。
+costs_p = 聊天費用會隨對話變長而增加，因為每一輪都會重新傳送歷史紀錄。<a href="{calculator}">聊天輪次預算計算機</a>可按任何模型的每 token 價格，估算一筆預算能聊多少輪。
+scope_old = Cardwave 免費，由一個人開發，按現狀發佈。歡迎透過 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 回報錯誤與提出功能需求。
+beta_old = <strong>測試版。</strong>Cardwave 正在積極開發中。請備份你的角色卡。
+ccv4_p = CCV4 是草案階段的角色卡格式，由 TOML 撰寫的小型可定址文字區塊組成，儲存在 PNG 區塊中。閱讀 <a href="{ccv4}">CCV4 總覽</a>，內含完整規範、提示詞組裝演算法、參考範例與線上遊樂場。
+footer = Cardwave © 2026. <a href="{disclaimer}">免責聲明與條款</a>
+features_old = <strong>與角色聊天。</strong> 回覆邊寫邊顯示。可以重新產生、編輯、保留每個版本，並從任何訊息開出分支。把多個角色拉進同一個聊天：他們輪流發言，或彼此一直聊下去。 | <strong>建立和編輯角色卡。</strong> 角色卡的頁面就是它的編輯器，每段文字都保留先前的草稿。可以從零寫一張卡，也可以回答 AI 的問題，讓它和你一起寫出角色。 | <strong>好找的資料庫。</strong> 依文字和依含義搜尋，搜尋模型在你的電腦上執行。AI 為每張卡寫標籤、一句話簡介和摘要。使用者角色和世界書就在你的角色旁邊。 | <strong>記憶。</strong> 每 20 則訊息，AI 會記下聊天中的事實和事件，角色在回覆前會想起自己知道的事。可以給聊天或角色提供文件作為參考。 | <strong>語音和圖片。</strong> 訊息在你的電腦上朗讀，每個角色用自己的聲音，或用一段錄音製作的聲音。在聊天中用服務商的圖像模型或 ComfyUI 產生圖片。 | <strong>工具。</strong> 讓模型搜尋網頁、處理某個資料夾中的檔案，或在沙箱中執行指令，每一項都只在你允許時進行。一個程式設計團隊可以替你在資料夾裡朝一個目標工作。 | <strong>加鎖與備份。</strong> 密碼可以鎖住應用程式。備份是一個加鎖的檔案，可以在這台或另一台電腦上還原。 | <strong>你的語言。</strong> Cardwave 支援 12 種語言，並有淺色和深色兩種主題。
