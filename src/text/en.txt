@@ -27,6 +27,7 @@ f_coding = <strong>Coding team.</strong> Give it a goal and a folder, and a team
 f_local = <strong>Local models.</strong> Run models on your own computer, with no key and no account.
 f_tabs = <strong>Tabs and themes.</strong> Keep several chats and cards open in tabs. Light, dark or one of five more themes.
 f_locked = <strong>Locked and backed up.</strong> A password locks the app; a backup is one file.
+f_devices = <strong>Phones and other computers.</strong> Open Cardwave in a browser on a phone or another computer in your home network. Early, not yet thoroughly tested.
 f_language = <strong>Your language.</strong> Cardwave speaks twelve languages.
 privacy_h = Privacy
 privacy_p = Cardwave keeps cards, chats, keys and settings on your computer, in an encrypted database. No sign-up, no sync, no analytics in the app. It goes online only for what you ask of it: a message to the provider whose API key you entered, a download you start (the search model, a voice), the web tools you switch on, and a look on GitHub for a new version, which Settings can switch off.

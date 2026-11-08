@@ -26,6 +26,7 @@ f_coding = <strong>Tim pemrograman.</strong> Beri tim itu sebuah tujuan dan sebu
 f_local = <strong>Model lokal.</strong> Jalankan model di komputer kamu sendiri, tanpa kunci dan tanpa akun.
 f_tabs = <strong>Tab dan tema.</strong> Biarkan beberapa obrolan dan kartu terbuka di tab. Terang, gelap, atau salah satu dari lima tema lain.
 f_locked = <strong>Terkunci dan dicadangkan.</strong> Kata sandi mengunci aplikasi; cadangan hanyalah satu file.
+f_devices = <strong>Ponsel dan komputer lain.</strong> Buka Cardwave di browser ponsel atau komputer lain di jaringan rumah kamu. Masih tahap awal, belum diuji secara menyeluruh.
 f_language = <strong>Bahasamu.</strong> Cardwave berbicara dalam dua belas bahasa.
 privacy_h = Privasi
 privacy_p = Cardwave menyimpan kartu, obrolan, kunci, dan pengaturan di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi. Aplikasi ini hanya terhubung ke internet untuk hal yang kamu minta: pesan ke penyedia yang kunci API-nya kamu masukkan, unduhan yang kamu mulai (model pencarian, sebuah suara), alat web yang kamu aktifkan, dan pemeriksaan versi baru di GitHub, yang dapat dimatikan di Pengaturan.

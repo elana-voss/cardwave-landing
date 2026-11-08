@@ -26,6 +26,7 @@ f_coding = <strong>Equipe de programação.</strong> Dê a ela um objetivo e uma
 f_local = <strong>Modelos locais.</strong> Rode modelos no seu próprio computador, sem chave e sem conta.
 f_tabs = <strong>Abas e temas.</strong> Mantenha vários chats e cartões abertos em abas. Claro, escuro ou um de mais cinco temas.
 f_locked = <strong>Protegido e com backup.</strong> Uma senha bloqueia o app; um backup é um único arquivo.
+f_devices = <strong>Celulares e outros computadores.</strong> Abra o Cardwave no navegador de um celular ou de outro computador da sua rede doméstica. Versão inicial, ainda não testada a fundo.
 f_language = <strong>Seu idioma.</strong> O Cardwave fala doze idiomas.
 privacy_h = Privacidade
 privacy_p = O Cardwave guarda cartões, chats, chaves e configurações no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app. Ele só se conecta à internet para o que você pede: uma mensagem ao provedor cuja chave de API você informou, um download que você inicia (o modelo de busca, uma voz), as ferramentas da web que você ativa, e uma consulta ao GitHub por uma nova versão, que você pode desativar nas Configurações.

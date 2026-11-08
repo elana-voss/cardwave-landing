@@ -26,6 +26,7 @@ f_coding = <strong>编程团队。</strong>给它一个目标和一个文件夹�
 f_local = <strong>本地模型。</strong>在你自己的电脑上运行模型，无需密钥和账号。
 f_tabs = <strong>标签页和主题。</strong>在标签页中同时打开多个聊天和角色卡。浅色、深色或另外五种主题之一。
 f_locked = <strong>上锁和备份。</strong>用密码锁住应用；备份就是一个文件。
+f_devices = <strong>手机和其他电脑。</strong>在家庭网络中的手机或其他电脑上，用浏览器打开 Cardwave。尚处早期阶段，还未经过充分测试。
 f_language = <strong>你的语言。</strong>Cardwave 支持十二种语言。
 privacy_h = 隐私
 privacy_p = Cardwave 把角色卡、聊天、密钥和设置保存在你电脑上的加密数据库中。无需注册，没有同步，应用内没有分析统计。它只在你要求时联网：发给你填写了 API 密钥的服务商的消息、你启动的下载（搜索模型、语音）、你开启的网页工具，以及在 GitHub 上检查新版本（可在设置中关闭）。

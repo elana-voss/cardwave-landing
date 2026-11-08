@@ -26,6 +26,7 @@ f_coding = <strong>程式團隊。</strong>給它一個目標和一個資料夾�
 f_local = <strong>本機模型。</strong>在你自己的電腦上執行模型，不需要金鑰和帳號。
 f_tabs = <strong>分頁和主題。</strong>在分頁中同時開啟多個聊天和角色卡。淺色、深色或另外五種主題之一。
 f_locked = <strong>上鎖和備份。</strong>用密碼鎖住應用程式；備份就是一個檔案。
+f_devices = <strong>手機和其他電腦。</strong>在家用網路中的手機或其他電腦上，用瀏覽器開啟 Cardwave。仍在早期階段，尚未經過充分測試。
 f_language = <strong>你的語言。</strong>Cardwave 支援十二種語言。
 privacy_h = 隱私
 privacy_p = Cardwave 把角色卡、聊天、金鑰和設定儲存在你電腦上的加密資料庫中。無需註冊，沒有同步，應用程式內沒有分析統計。它只在你要求時連網：傳給你填寫了 API 金鑰的服務商的訊息、你啟動的下載（搜尋模型、語音）、你開啟的網頁工具，以及在 GitHub 上檢查新版本（可在設定中關閉）。

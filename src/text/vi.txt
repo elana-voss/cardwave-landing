@@ -26,6 +26,7 @@ f_coding = <strong>Nhóm lập trình.</strong> Giao cho nhóm một mục tiêu
 f_local = <strong>Mô hình cục bộ.</strong> Chạy mô hình trên chính máy tính của bạn, không cần khóa, không cần tài khoản.
 f_tabs = <strong>Tab và giao diện.</strong> Mở nhiều cuộc trò chuyện và thẻ cùng lúc trong các tab. Sáng, tối hoặc một trong năm giao diện khác.
 f_locked = <strong>Khóa và sao lưu.</strong> Mật khẩu khóa ứng dụng; bản sao lưu là một tệp duy nhất.
+f_devices = <strong>Điện thoại và máy tính khác.</strong> Mở Cardwave trong trình duyệt trên điện thoại hoặc máy tính khác trong mạng gia đình của bạn. Mới ở giai đoạn đầu, chưa được kiểm thử kỹ.
 f_language = <strong>Ngôn ngữ của bạn.</strong> Cardwave nói mười hai ngôn ngữ.
 privacy_h = Quyền riêng tư
 privacy_p = Cardwave lưu thẻ, cuộc trò chuyện, khóa và cài đặt trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng. Ứng dụng chỉ kết nối mạng cho những gì bạn yêu cầu: tin nhắn gửi tới nhà cung cấp có khóa API bạn đã nhập, bản tải về do bạn bắt đầu (mô hình tìm kiếm, một giọng nói), các công cụ web bạn bật, và việc kiểm tra phiên bản mới trên GitHub, có thể tắt trong Cài đặt.
