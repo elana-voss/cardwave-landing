@@ -31,7 +31,7 @@
     .ranking { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
     .ranking th, .ranking td { padding: 8px 10px; border-bottom: 1px solid #e5e5e5; text-align: right; white-space: nowrap; }
     .ranking th:nth-child(2), .ranking td:nth-child(2) { text-align: left; white-space: normal; }
-    .ranking th { font-weight: 600; color: #555; font-size: 14px; }
+    .ranking th { font-weight: 600; color: #555; font-size: 14px; white-space: normal; }
     @media (max-width: 480px) { .ranking th, .ranking td { padding: 8px 4px; font-size: 14px; } }
     .source { color: #888; font-size: 14px; }
   </style>
@@ -61,13 +61,12 @@
   </header>
 
   <p class="page-title"><strong>Popular roleplay models</strong></p>
-  <p>The models people used most for roleplay and fiction on OpenRouter in the week of 26 October – 1 November 2026. Tokens are
-    OpenRouter's estimates; the change is against the week before. Prices are OpenRouter's, in US dollars per million
-    tokens. Updated every day; last updated 9 November 2026.</p>
+  <p>The most used roleplay and fiction models on OpenRouter from 26 October to 1 November 2026, compared with the week before. Token
+    counts are OR's estimates. Last updated 9 November 2026.</p>
 
   <div class="table-wrap">
     <table class="ranking">
-      <thead><tr><th>#</th><th>Model</th><th>Tokens</th><th>Change</th><th>Input</th><th>Output</th></tr></thead>
+      <thead><tr><th>#</th><th>Model</th><th>Tokens</th><th>Change</th><th>Input per 1M</th><th>Output per 1M</th></tr></thead>
       <tbody>
       <tr><td>1</td><td><a href="https://openrouter.ai/tencent/hy4-preview" target="_blank" rel="noopener noreferrer">Hy4 preview</a></td><td>577B</td><td>▲ 11%</td><td>$0.834</td><td>$2.501</td></tr>
       <tr><td>2</td><td><a href="https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017" target="_blank" rel="noopener noreferrer">DeepSeek V4.1 Flash 1017</a></td><td>498B</td><td>▲ 33%</td><td>$0.006</td><td>$0.50</td></tr>
