@@ -42,7 +42,7 @@ where_p = Cardwave는 어디서 받은 카드든 열 수 있습니다. 다운로
 costs_h = 비용 추정
 costs_p = 채팅 비용은 대화가 길어질수록 커집니다. 매 턴마다 히스토리를 다시 전송하기 때문입니다. <a href="{calculator}">채팅 턴 예산 계산기</a>는 모델별 토큰 단가로 예산이 몇 턴을 감당하는지 추정합니다.
 roleplay_h = 롤플레이 인기 모델
-roleplay_p = <a href="{roleplay}">롤플레이에 가장 많이 쓰이는 모델</a>을 OpenRouter 순위에서 매주 새로 가져와 토큰당 가격과 함께 보여 줍니다.
+roleplay_p = OpenRouter에서 <a href="{roleplay}">가장 인기 있는 롤플레이 모델</a>과 가격. 매일 업데이트.
 scope_h = 프로젝트 범위
 scope_p = Cardwave는 무료이며 한 사람이 만듭니다. 있는 그대로 배포됩니다.
 beta_h = 베타

@@ -1,6 +1,6 @@
 """Tests of tools/roleplay_models.py against stored answers: classifications.json is OpenRouter's task ranking of
-2026-11-07 cut to two entries, models.dev.json a few of models.dev's OpenRouter models (deepseek-v4-pro without its
-undated entry, gemini-3-flash-preview left out). Never the live APIs.
+2026-11-07 cut to two entries, models.json the models of OpenRouter's model list of 2026-11-09 the ranking names,
+with their ":batch" and ":free" variants (gemini-3-flash-preview left out). Never the live APIs.
 
     python -m unittest discover -s tools/tests
 """
@@ -25,7 +25,7 @@ def load(name):
 class Ranking(unittest.TestCase):
     def setUp(self):
         self.answer = load("classifications.json")
-        self.prices = load("models.dev.json")
+        self.prices = load("models.json")
 
     def test_roleplay_entry_read(self):
         as_of, days, models = rm.roleplay_entry(self.answer)
@@ -36,32 +36,30 @@ class Ranking(unittest.TestCase):
         with self.assertRaises(ValueError):
             rm.roleplay_entry(self.answer)
 
-    def test_dated_versions_merged_ranked_and_priced(self):
+    def test_every_version_its_own_row_ranked_and_priced(self):
         _, _, models = rm.roleplay_entry(self.answer)
         rows = rm.rows(models, self.prices)
-        self.assertEqual([r["slug"] for r in rows[:2]], ["deepseek/deepseek-v4.1-flash", "deepseek/deepseek-v4-flash"])
-        self.assertEqual(len(rows), 8)
-        first = rows[0]
-        self.assertEqual(first["name"], "DeepSeek V4.1 Flash")
-        self.assertAlmostEqual(first["usage"], 0.241)
-        self.assertAlmostEqual(first["tokens"], 0.218)
-        self.assertEqual((first["input"], first["output"]), (0.056, 0.12))
-        pro = next(r for r in rows if r["slug"] == "deepseek/deepseek-v4-pro")
-        self.assertEqual((pro["input"], pro["output"]), (0.66, 1.98))
-        gemini = rows[-1]
-        self.assertEqual((gemini["name"], gemini["input"], gemini["output"]), ("gemini-3-flash-preview", None, None))
+        self.assertEqual(len(rows), 10)
+        flash = [r for r in rows if r["slug"].startswith("deepseek/deepseek-v4.1-flash")]
+        self.assertEqual([(r["slug"], r["name"]) for r in flash],
+                         [("deepseek/deepseek-v4.1-flash-1017", "DeepSeek V4.1 Flash 1017"), ("deepseek/deepseek-v4.1-flash", "DeepSeek V4.1 Flash")])
+        self.assertEqual([rm.money(flash[0]["input"]), rm.money(flash[0]["output"])], ["$0.006", "$0.50"])
+        gemma = next(r for r in rows if r["slug"] == "google/gemma-4-31b-it")
+        self.assertEqual([rm.money(gemma["input"]), rm.money(gemma["output"])], ["$0.20", "$0.40"])
+        self.assertEqual([r["usage"] for r in rows], sorted((r["usage"] for r in rows), reverse=True))
+        gemini = next(r for r in rows if "gemini" in r["slug"])
+        self.assertEqual((gemini["input"], gemini["output"]), (None, None))
 
     def test_page(self):
         _, _, models = rm.roleplay_entry(self.answer)
         page = rm.render("2026-11-07", 7, rm.rows(models, self.prices))
         self.assertIn("Source: OpenRouter (openrouter.ai/rankings), as of 2026-11-07. Licensed under CC BY 4.0.", page)
-        self.assertIn("models.dev", page)
-        self.assertIn('href="https://openrouter.ai/deepseek/deepseek-v4.1-flash"', page)
-        self.assertIn("24.1%", page)
-        self.assertIn("$0.056", page)
-        self.assertIn("<td>$0.66</td><td>$1.98</td>", page)
-        self.assertEqual([rm.money(v) for v in (0.423864, 3, 0.029, 0.03, None)], ["$0.424", "$3.00", "$0.029", "$0.03", "—"])
-        self.assertIn("<td>—</td>", page)
+        self.assertNotIn("models.dev", page)
+        self.assertIn("Updated every day; last updated 7 November 2026.", page)
+        self.assertIn('href="https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017"', page)
+        self.assertIn("<td>$0.0434</td><td>$0.30</td>", page)
+        self.assertEqual([rm.money(rm.per_million(v)) for v in ("0.000003", "0.0000000434", "0")], ["$3.00", "$0.0434", "$0.00"])
+        self.assertEqual(rm.money(None), "—")
 
     def test_failed_fetch_leaves_page(self):
         with tempfile.TemporaryDirectory() as d:

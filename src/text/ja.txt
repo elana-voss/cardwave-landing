@@ -42,7 +42,7 @@ where_p = Cardwaveはどこから入手したカードでも開けます。ダ�
 costs_h = コストの見積もり
 costs_p = チャットのコストは会話が長くなるほど増えます。ターンごとに履歴を再送信するためです。<a href="{calculator}">チャットターン予算計算機</a>は、任意のモデルのトークン単価で予算が何ターン分になるかを見積もります。
 roleplay_h = ロールプレイで人気のモデル
-roleplay_p = <a href="{roleplay}">ロールプレイで最もよく使われているモデル</a>を、OpenRouter のランキングから毎週更新して、トークン単価とともに掲載しています。
+roleplay_p = OpenRouter で<a href="{roleplay}">人気のロールプレイ用モデル</a>と料金。毎日更新。
 scope_h = スコープ
 scope_p = Cardwaveは無料で、一人で開発しています。現状のまま提供されます。
 beta_h = ベータ版

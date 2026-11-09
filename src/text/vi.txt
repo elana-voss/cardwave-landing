@@ -42,7 +42,7 @@ where_p = Cardwave mở được thẻ từ bất cứ đâu. Xem <a href="{wher
 costs_h = Ước tính chi phí
 costs_p = Chi phí trò chuyện tăng lên khi cuộc trò chuyện dài ra, vì mỗi lượt lại gửi lại toàn bộ lịch sử. <a href="{calculator}">Công cụ tính ngân sách lượt trò chuyện</a> ước tính một khoản ngân sách mua được bao nhiêu lượt theo đơn giá mỗi token của bất kỳ mô hình nào.
 roleplay_h = Mô hình nhập vai phổ biến
-roleplay_p = Xem <a href="{roleplay}">các mô hình được dùng nhiều nhất để nhập vai</a>, theo bảng xếp hạng của OpenRouter và cập nhật mỗi tuần, kèm giá mỗi token của từng mô hình.
+roleplay_p = <a href="{roleplay}">Các mô hình nhập vai phổ biến nhất</a> trên OpenRouter, kèm giá. Cập nhật mỗi ngày.
 scope_h = Phạm vi
 scope_p = Cardwave miễn phí và do một người xây dựng. Được phát hành nguyên trạng.
 beta_h = Bản beta

@@ -43,7 +43,7 @@ where_p = Cardwave opens cards from anywhere. See the <a href="{where}">list of 
 costs_h = Estimating costs
 costs_p = Chat costs grow as a conversation lengthens, because each turn resends the history. The <a href="{calculator}">chat turn budget calculator</a> estimates how many turns a budget buys for any model's per-token price.
 roleplay_h = Popular roleplay models
-roleplay_p = See the <a href="{roleplay}">models people use most for roleplay</a>, from OpenRouter's ranking and renewed every week, each with its price per token.
+roleplay_p = <a href="{roleplay}">The most popular roleplay models</a> on OpenRouter, with prices. Updated every day.
 scope_h = Scope
 scope_p = Cardwave is free and built by one person. Released as-is.
 beta_h = Beta

@@ -1,0 +1,130 @@
+{
+ "data": [
+  {
+   "id": "deepseek/deepseek-v4.1-flash-1017",
+   "canonical_slug": "deepseek/deepseek-v4.1-flash-20261017",
+   "name": "DeepSeek: DeepSeek V4.1 Flash 1017",
+   "pricing": {
+    "prompt": "0.000000006",
+    "completion": "0.0000005"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4.1-flash-1017:batch",
+   "canonical_slug": "deepseek/deepseek-v4.1-flash-20261017",
+   "name": "DeepSeek: DeepSeek V4.1 Flash 1017 (batch)",
+   "pricing": {
+    "prompt": "0.000000011",
+    "completion": "0.0000002"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4.1-flash",
+   "canonical_slug": "deepseek/deepseek-v4.1-flash-20260910",
+   "name": "DeepSeek: DeepSeek V4.1 Flash",
+   "pricing": {
+    "prompt": "0.000000051",
+    "completion": "0.000000567"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4.1-flash:batch",
+   "canonical_slug": "deepseek/deepseek-v4.1-flash-20260910",
+   "name": "DeepSeek: DeepSeek V4.1 Flash (batch)",
+   "pricing": {
+    "prompt": "0.000000011",
+    "completion": "0.0000002"
+   }
+  },
+  {
+   "id": "z-ai/glm-5.3-flash",
+   "canonical_slug": "z-ai/glm-5.3-flash-20260826",
+   "name": "Z.ai: GLM 5.3 Flash",
+   "pricing": {
+    "prompt": "0.0000000335",
+    "completion": "0.000000083"
+   }
+  },
+  {
+   "id": "z-ai/glm-5.3-flash:batch",
+   "canonical_slug": "z-ai/glm-5.3-flash-20260826",
+   "name": "Z.ai: GLM 5.3 Flash (batch)",
+   "pricing": {
+    "prompt": "0.00000005",
+    "completion": "0.00000018"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4-pro-0813",
+   "canonical_slug": "deepseek/deepseek-v4-pro-20260813",
+   "name": "DeepSeek: DeepSeek V4 Pro 0813",
+   "pricing": {
+    "prompt": "0.000000111",
+    "completion": "0.00000444"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash-0731",
+   "canonical_slug": "deepseek/deepseek-v4-flash-20260731",
+   "name": "DeepSeek: DeepSeek V4 Flash 0731",
+   "pricing": {
+    "prompt": "0.0000000434",
+    "completion": "0.0000003"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash-0731:batch",
+   "canonical_slug": "deepseek/deepseek-v4-flash-20260731",
+   "name": "DeepSeek: DeepSeek V4 Flash 0731 (batch)",
+   "pricing": {
+    "prompt": "0.000000048",
+    "completion": "0.000000144"
+   }
+  },
+  {
+   "id": "qwen/qwen3.7-flash",
+   "canonical_slug": "qwen/qwen3.7-flash-20260727",
+   "name": "Qwen: Qwen3.7 Flash",
+   "pricing": {
+    "prompt": "0.00000003",
+    "completion": "0.00000013"
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash",
+   "canonical_slug": "deepseek/deepseek-v4-flash-20260423",
+   "name": "DeepSeek: DeepSeek V4 Flash 0423",
+   "pricing": {
+    "prompt": "0.000000091",
+    "completion": "0.000000182"
+   }
+  },
+  {
+   "id": "google/gemma-4-31b-it",
+   "canonical_slug": "google/gemma-4-31b-it-20260402",
+   "name": "Google: Gemma 4 31B",
+   "pricing": {
+    "prompt": "0.0000002",
+    "completion": "0.0000004"
+   }
+  },
+  {
+   "id": "google/gemma-4-31b-it:free",
+   "canonical_slug": "google/gemma-4-31b-it-20260402",
+   "name": "Google: Gemma 4 31B (free)",
+   "pricing": {
+    "prompt": "0",
+    "completion": "0"
+   }
+  },
+  {
+   "id": "mistralai/mistral-nemo",
+   "canonical_slug": "mistralai/mistral-nemo",
+   "name": "Mistral: Mistral Nemo",
+   "pricing": {
+    "prompt": "0.000000029",
+    "completion": "0.00000003"
+   }
+  }
+ ]
+}

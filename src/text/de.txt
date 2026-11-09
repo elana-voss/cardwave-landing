@@ -42,7 +42,7 @@ where_p = Cardwave öffnet Karten von überall. Sieh dir die <a href="{where}">L
 costs_h = Kosten abschätzen
 costs_p = Die Kosten eines Chats wachsen, je länger das Gespräch wird, weil jede Runde den Verlauf erneut sendet. Der <a href="{calculator}">Rechner für das Budget pro Chatrunde</a> schätzt, wie viele Runden ein Budget beim Preis pro Token eines beliebigen Modells hergibt.
 roleplay_h = Beliebte Modelle für Rollenspiele
-roleplay_p = Sieh dir die <a href="{roleplay}">Modelle an, die am meisten für Rollenspiele genutzt werden</a>, aus der Rangliste von OpenRouter und jede Woche erneuert, jedes mit seinem Preis pro Token.
+roleplay_p = <a href="{roleplay}">Die beliebtesten Rollenspiel-Modelle</a> auf OpenRouter, mit Preisen. Jeden Tag aktualisiert.
 scope_h = Umfang
 scope_p = Cardwave ist kostenlos und wird von einer Person gebaut. Veröffentlicht wie es ist.
 beta_h = Beta
