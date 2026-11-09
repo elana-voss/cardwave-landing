@@ -125,13 +125,13 @@ def spoken_day(day):
 
 
 def spoken_week(monday):
-    """A week as a reader says it: 2–8 November 2026, 27 October – 2 November 2026."""
+    """A week as a reader says it: 2 to 8 November 2026, 27 October to 2 November 2026."""
     sunday = monday + timedelta(days=6)
     if monday.month == sunday.month:
-        return "{}–{}".format(monday.day, spoken_day(sunday))
+        return "{} to {}".format(monday.day, spoken_day(sunday))
     if monday.year == sunday.year:
-        return "{} {} – {}".format(monday.day, MONTHS[monday.month - 1], spoken_day(sunday))
-    return "{} – {}".format(spoken_day(monday), spoken_day(sunday))
+        return "{} {} to {}".format(monday.day, MONTHS[monday.month - 1], spoken_day(sunday))
+    return "{} to {}".format(spoken_day(monday), spoken_day(sunday))
 
 
 def render(as_of, monday, table):
@@ -203,7 +203,7 @@ TEMPLATE = """<!doctype html>
     .ranking {{ width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }}
     .ranking th, .ranking td {{ padding: 8px 10px; border-bottom: 1px solid #e5e5e5; text-align: right; white-space: nowrap; }}
     .ranking th:nth-child(2), .ranking td:nth-child(2) {{ text-align: left; white-space: normal; }}
-    .ranking th {{ font-weight: 600; color: #555; font-size: 14px; }}
+    .ranking th {{ font-weight: 600; color: #555; font-size: 14px; white-space: normal; }}
     @media (max-width: 480px) {{ .ranking th, .ranking td {{ padding: 8px 4px; font-size: 14px; }} }}
     .source {{ color: #888; font-size: 14px; }}
   </style>
@@ -233,13 +233,12 @@ TEMPLATE = """<!doctype html>
   </header>
 
   <p class="page-title"><strong>Popular roleplay models</strong></p>
-  <p>The models people used most for roleplay and fiction on OpenRouter in the week of {week}. Tokens are
-    OpenRouter's estimates; the change is against the week before. Prices are OpenRouter's, in US dollars per million
-    tokens. Updated every day; last updated {updated}.</p>
+  <p>The most used roleplay and fiction models on OpenRouter from {week}, compared with the week before. Token
+    counts are OR's estimates. Last updated {updated}.</p>
 
   <div class="table-wrap">
     <table class="ranking">
-      <thead><tr><th>#</th><th>Model</th><th>Tokens</th><th>Change</th><th>Input</th><th>Output</th></tr></thead>
+      <thead><tr><th>#</th><th>Model</th><th>Tokens</th><th>Change</th><th>Input per 1M</th><th>Output per 1M</th></tr></thead>
       <tbody>
 {rows}
       </tbody>
