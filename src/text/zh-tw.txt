@@ -49,4 +49,4 @@ beta_h = 測試版
 beta_p = Cardwave 正在積極開發中，這是它的第一個公開版本。更新後可能無法保留舊版本儲存的內容，所以請匯出你在意的角色卡並保留備份。問題和建議請提交到 <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>。
 ccv4_h = CCV4 卡片格式
 ccv4_p = CCV4 是草案階段的角色卡格式，由 TOML 撰寫的小型可定址文字區塊組成，儲存在 PNG 區塊中。閱讀 <a href="{ccv4}">CCV4 總覽</a>，內含完整規範、提示詞組裝演算法、參考範例與線上遊樂場。
-footer = Cardwave © 2026. <a href="{disclaimer}">免責聲明與條款</a>
+footer = Cardwave © 2026. <a href="{disclaimer}">免責聲明與條款</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

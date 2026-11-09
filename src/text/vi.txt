@@ -49,4 +49,4 @@ beta_h = Bản beta
 beta_p = Cardwave đang được phát triển tích cực, và đây là bản phát hành công khai đầu tiên. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu. Lỗi và mong muốn xin gửi tới <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
 ccv4_h = Định dạng thẻ CCV4
 ccv4_p = CCV4 là một định dạng thẻ nhân vật ở dạng bản nháp, được xây dựng từ các khối văn bản nhỏ có thể định địa chỉ bằng TOML, lưu trong các chunk của PNG. Đọc <a href="{ccv4}">bản tổng quan CCV4</a>, gồm đặc tả đầy đủ, thuật toán lắp ráp prompt, một ví dụ tham chiếu và một sân chơi trực tiếp.
-footer = Cardwave © 2026. <a href="{disclaimer}">Tuyên bố miễn trừ &amp; Điều khoản</a>
+footer = Cardwave © 2026. <a href="{disclaimer}">Tuyên bố miễn trừ &amp; Điều khoản</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

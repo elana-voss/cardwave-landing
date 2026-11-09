@@ -56,6 +56,7 @@ a { color: #0083e9; }
 
 header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0 8px; }
 header h1 { margin: 0; }
+header .social { display: flex; gap: 16px; }
 header .gh { display: inline-flex; color: #111; }
 header .gh:hover { color: #0083e9; }
 

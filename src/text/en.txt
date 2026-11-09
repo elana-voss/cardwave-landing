@@ -50,4 +50,4 @@ beta_h = Beta
 beta_p = Cardwave is in active development, and this is its first public release. An update may not keep what an earlier version stored, so export the cards you care about and keep a backup. Bugs and wishes go to <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
 ccv4_h = CCV4 card format
 ccv4_p = CCV4 is a draft character card format built from small addressable text blocks in TOML, stored in PNG chunks. Read the <a href="{ccv4}">CCV4 overview</a>, with the full specification, the prompt-assembly algorithm, a reference example, and a live playground.
-footer = Cardwave © 2026. <a href="{disclaimer}">Disclaimer &amp; Terms</a>
+footer = Cardwave © 2026. <a href="{disclaimer}">Disclaimer &amp; Terms</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>
