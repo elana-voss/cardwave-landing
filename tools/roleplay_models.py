@@ -233,8 +233,8 @@ TEMPLATE = """<!doctype html>
   </header>
 
   <p class="page-title"><strong>Popular roleplay models</strong></p>
-  <p>The most used roleplay and fiction models on OpenRouter from {week}, compared with the week before. Token
-    counts are OR's estimates. Last updated {updated}.</p>
+  <p>The most used roleplay and fiction models on OpenRouter from {week}, compared with the week before.
+    Last updated {updated}.</p>
 
   <div class="table-wrap">
     <table class="ranking">
