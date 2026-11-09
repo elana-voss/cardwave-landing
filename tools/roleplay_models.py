@@ -159,6 +159,10 @@ def main():
             sys.exit("OPENROUTER_API_KEY is not set")
         start = (date.today() - timedelta(days=28)).isoformat()
         answer, prices = fetch(RANKING_URL.format(start=start), key), fetch(PRICES_URL)
+        totals = {}
+        for row in answer.get("data") or []:
+            totals[row["date"]] = totals.get(row["date"], 0) + int(Decimal(row["total_tokens"]))
+        print("meta", answer.get("meta"), "tokens by week", sorted(totals.items()))  # the log's record of what came
     write_page(PAGE, answer, prices)
 
 
