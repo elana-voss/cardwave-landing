@@ -134,11 +134,20 @@ def spoken_week(monday):
     return "{} to {}".format(spoken_day(monday), spoken_day(sunday))
 
 
+def changed(text):
+    """The change's cell: the arrow at the cell's left, so it stays put whatever the number's width."""
+    if not text:
+        return "—"
+    if text[0] in "▲▼":
+        return '<span class="arrow">{}</span>{}'.format(text[0], text[2:])
+    return text
+
+
 def render(as_of, monday, table):
     body = "\n".join(
         "      <tr><td>{}</td><td><a href=\"https://openrouter.ai/{}\" target=\"_blank\" rel=\"noopener noreferrer\">{}</a></td>"
         "<td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-            i, html.escape(r["slug"]), html.escape(r["name"]), count(r["tokens"]), r["change"] or "—",
+            i, html.escape(r["slug"]), html.escape(r["name"]), count(r["tokens"]), changed(r["change"]),
             money(r["input"]), money(r["output"]))
         for i, r in enumerate(table, 1))
     return TEMPLATE.format(as_of=html.escape(as_of), updated=spoken_day(as_of), week=spoken_week(monday), rows=body,
@@ -205,6 +214,7 @@ TEMPLATE = """<!doctype html>
     .ranking th:nth-child(2), .ranking td:nth-child(2) {{ text-align: left; white-space: normal; }}
     .ranking th {{ font-weight: 600; color: #555; font-size: 14px; white-space: normal; }}
     @media (max-width: 480px) {{ .ranking th, .ranking td {{ padding: 8px 4px; font-size: 14px; }} }}
+    .ranking .arrow {{ float: left; margin-right: 6px; }}
     .source {{ color: #888; font-size: 14px; }}
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
