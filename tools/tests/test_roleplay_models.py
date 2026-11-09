@@ -1,5 +1,5 @@
 """Tests of tools/roleplay_models.py against stored answers: rankings.json is a made-up answer in the shape the
-Data API documents (three ISO weeks, the last partial, the models the ranking of 2026-11-07 named plus twelve
+Data API documents (three ISO weeks, the last too recent to count, the models the ranking of 2026-11-07 named plus twelve
 "test/tail-NN", and the row "other"); models.json the models of OpenRouter's model list of 2026-11-09 the ranking
 names, with their ":batch" and ":free" variants (gemini-3-flash-preview left out). Never the live APIs.
 
@@ -35,7 +35,7 @@ class Ranking(unittest.TestCase):
 
     def test_last_whole_week_and_the_one_before(self):
         as_of, monday, tokens, before = rm.weeks(self.answer)
-        self.assertEqual((as_of, monday, len(tokens), len(before)), ("2026-11-09", date(2026, 11, 2), 22, 21))
+        self.assertEqual((as_of, monday, len(tokens), len(before)), ("2026-11-16", date(2026, 11, 2), 22, 21))
         self.assertNotIn("other", tokens)
 
     def test_no_whole_week_fails(self):
@@ -53,6 +53,10 @@ class Ranking(unittest.TestCase):
         self.assertEqual(changes["mistralai/mistral-nemo"], "new")
         self.assertEqual(changes["google/gemma-4-31b-it"], "0%")
 
+    def test_free_variant_priced_as_itself(self):
+        row = rm.rows({"google/gemma-4-31b-it-20260402:free": rm.Decimal(5)}, {}, self.prices)[0]
+        self.assertEqual((row["slug"], rm.money(row["input"])), ("google/gemma-4-31b-it:free", "$0.00"))
+
     def test_without_the_week_before_no_change(self):
         _, _, tokens, _ = rm.weeks(self.answer)
         self.assertEqual({r["change"] for r in rm.rows(tokens, None, self.prices)}, {None})
@@ -69,9 +73,9 @@ class Ranking(unittest.TestCase):
     def test_page(self):
         as_of, monday, tokens, before = rm.weeks(self.answer)
         page = rm.render(as_of, monday, rm.rows(tokens, before, self.prices))
-        self.assertIn("Source: OpenRouter (openrouter.ai/rankings), as of 2026-11-09. Licensed under CC BY 4.0.", page)
+        self.assertIn("Source: OpenRouter (openrouter.ai/rankings), as of 2026-11-16. Licensed under CC BY 4.0.", page)
         self.assertIn("in the week of 2–8 November 2026.", page)
-        self.assertIn("Updated every day; last updated 9 November 2026.", page)
+        self.assertIn("Updated every day; last updated 16 November 2026.", page)
         self.assertIn('href="https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017"', page)
         self.assertIn("<td>2.2B</td><td>▼ 50%</td>", page)
         self.assertNotIn("tail-11", page)

@@ -8,12 +8,14 @@ The ranking is the Data API's (GET /api/v1/datasets/rankings-daily?category=role
 page carries its source line): per week, the top 50 models by tokens, estimated from a sample; OpenRouter's terms
 forbid scraping its site. Names, pages and prices are OpenRouter's own model list (GET /api/v1/models, no key),
 dollars per token. Traps:
-- The category data is weekly only (period=day is a 400); a row's date is its ISO week's Monday, and the trailing
-  week is partial, so only weeks that ended by meta.end_date count; the row "other" is the long tail, never shown.
+- The category data is weekly only (period=day is a 400); a row's date is its ISO week's Monday. The sample lags:
+  on 2026-11-09 (end_date 11-08) the week of 11-02 held 2.8T tokens against 4.5T and 4.3T the two before, every model
+  lower. So a week counts only once the week after it has ended too; the row "other" is the long tail, never shown.
+- A variant the ranking names (dated id plus ":free") is priced as that variant: canonical_slug plus its suffix.
 - The ranking names dated versions (deepseek/deepseek-v4.1-flash-20261017), each its own model with its own price:
   the model list's canonical_slug is that id, its id the page (deepseek/deepseek-v4.1-flash-1017). Every version is a
   row; a variant (":batch", ":free") is never the one priced.
-- A failed fetch or an answer without a whole week raises before the page is written: the last page stays.
+- A failed fetch or an answer without a counted week raises before the page is written: the last page stays.
 - The day the page shows is the ranking's as_of, so the daily job commits when that, a week or a price changed.
 Standard library only. Tests: tools/tests/.
 """
@@ -46,16 +48,16 @@ def fetch(url, key=None):
 
 
 def weeks(answer):
-    """(as_of day, last whole week's Monday, its tokens by model, the week before's or None); ValueError without a whole week."""
+    """(as_of day, last counted week's Monday, its tokens by model, the week before's or None); ValueError without one."""
     meta = answer.get("meta") or {}
     end = date.fromisoformat(meta["end_date"])
     by_week = {}
     for row in answer.get("data") or []:
         monday = date.fromisoformat(row["date"])
-        if row["model_permaslug"] != "other" and monday + timedelta(days=6) <= end:
+        if row["model_permaslug"] != "other" and monday + timedelta(days=13) <= end:
             by_week.setdefault(monday, {})[row["model_permaslug"]] = Decimal(row["total_tokens"])
     if not by_week:
-        raise ValueError("the answer has no whole week of roleplay rows")
+        raise ValueError("the answer has no counted week of roleplay rows")
     last = max(by_week)
     return meta["as_of"][:10], last, by_week[last], by_week.get(last - WEEK)
 
@@ -64,7 +66,9 @@ def rows(tokens, before, catalogue):
     """The SHOWN models with most tokens, every version its own, with their change, OpenRouter's name, page and price."""
     listed = {}
     for m in catalogue.get("data") or []:
-        if ":" not in m["id"]:
+        if ":" in m["id"]:
+            listed.setdefault((m.get("canonical_slug") or m["id"].split(":")[0]) + ":" + m["id"].split(":", 1)[1], m)
+        else:
             listed.setdefault(m.get("canonical_slug") or m["id"], m)
             listed.setdefault(m["id"], m)
     table = []
