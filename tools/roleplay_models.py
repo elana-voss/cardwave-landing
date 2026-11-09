@@ -139,7 +139,7 @@ def changed(text):
     if not text:
         return "—"
     if text[0] in "▲▼":
-        return '<span class="arrow">{}</span>{}'.format(text[0], text[2:])
+        return '<span class="{}"><span class="arrow">{}</span>{}</span>'.format("up" if text[0] == "▲" else "down", text[0], text[2:])
     return text
 
 
@@ -215,6 +215,8 @@ TEMPLATE = """<!doctype html>
     .ranking th {{ font-weight: 600; color: #555; font-size: 14px; white-space: normal; }}
     @media (max-width: 480px) {{ .ranking th, .ranking td {{ padding: 8px 4px; font-size: 14px; }} }}
     .ranking .arrow {{ float: left; margin-right: 6px; }}
+    .ranking .up {{ color: #1a7f37; }}
+    .ranking .down {{ color: #cf222e; }}
     .source {{ color: #888; font-size: 14px; }}
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>

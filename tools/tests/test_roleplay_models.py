@@ -77,7 +77,7 @@ class Ranking(unittest.TestCase):
         self.assertIn("on OpenRouter from 2 to 8 November 2026, compared with the week before.", page)
         self.assertIn("Last updated 16 November 2026.", page)
         self.assertIn('href="https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017"', page)
-        self.assertIn('<td>2.2B</td><td><span class="arrow">▼</span>50%</td>', page)
+        self.assertIn('<td>2.2B</td><td><span class="down"><span class="arrow">▼</span>50%</span></td>', page)
         self.assertNotIn("tail-11", page)
         self.assertEqual([rm.count(rm.Decimal(v)) for v in (830_000_000, 12_400, 4_250_000_000, 15_000_000_000)], ["830M", "12K", "4.2B", "15B"])
         self.assertEqual(rm.spoken_week(date(2026, 10, 26)), "26 October to 1 November 2026")
