@@ -1,6 +1,6 @@
-# Renews roleplay-models.html daily (and by hand) from OpenRouter's task ranking (the secret OPENROUTER_API_KEY) and
+# Renews roleplay-models.html daily (and by hand) from OpenRouter's weekly roleplay ranking (the secret OPENROUTER_API_KEY) and
 # its model list's prices; commits the page only when it changed, then starts pages.yml, since a push by GITHUB_TOKEN starts
-# no workflow but a workflow_dispatch by it does. A failed fetch or a ranking without the roleplay entry fails the run
+# no workflow but a workflow_dispatch by it does. A failed fetch or a ranking without a whole week fails the run
 # and changes nothing. Runs only on main, the branch the site deploys from.
 name: Roleplay models
 

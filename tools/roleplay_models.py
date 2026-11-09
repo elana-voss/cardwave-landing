@@ -1,22 +1,27 @@
-"""Writes roleplay-models.html: OpenRouter's most used models for roleplay and fiction, each with its OpenRouter price.
+"""Writes roleplay-models.html: OpenRouter's most used models for roleplay and fiction last week, each with its
+estimated tokens, its change against the week before and its OpenRouter price.
 
     OPENROUTER_API_KEY=... python tools/roleplay_models.py
-    python tools/roleplay_models.py <classifications.json> <models.json>   (stored answers, no network)
+    python tools/roleplay_models.py <rankings.json> <models.json>   (stored answers, no network)
 
-The ranking is the Data API's task ranking (GET /api/v1/classifications/task?window=7d, its entry roleplay_fiction,
-its top 10 by share of requests; CC BY 4.0, the page carries its source line); OpenRouter's terms forbid scraping its
-site. Names, pages and prices are OpenRouter's own model list (GET /api/v1/models, no key), dollars per token. Traps:
+The ranking is the Data API's (GET /api/v1/datasets/rankings-daily?category=roleplay&period=week; CC BY 4.0, the
+page carries its source line): per week, the top 50 models by tokens, estimated from a sample; OpenRouter's terms
+forbid scraping its site. Names, pages and prices are OpenRouter's own model list (GET /api/v1/models, no key),
+dollars per token. Traps:
+- The category data is weekly only (period=day is a 400); a row's date is its ISO week's Monday, and the trailing
+  week is partial, so only weeks that ended by meta.end_date count; the row "other" is the long tail, never shown.
 - The ranking names dated versions (deepseek/deepseek-v4.1-flash-20261017), each its own model with its own price:
   the model list's canonical_slug is that id, its id the page (deepseek/deepseek-v4.1-flash-1017). Every version is a
   row; a variant (":batch", ":free") is never the one priced.
-- A failed fetch or an answer without the roleplay entry raises before the page is written: the last page stays.
-- The page holds no time of its own, so it changes only when the ranking or a price does (the daily job commits then); the day it shows is the ranking's own.
+- A failed fetch or an answer without a whole week raises before the page is written: the last page stays.
+- The day the page shows is the ranking's as_of, so the daily job commits when that, a week or a price changed.
 Standard library only. Tests: tools/tests/.
 """
 
 import html
 import json
 import os
+from datetime import date, timedelta
 from decimal import Decimal
 import sys
 import urllib.request
@@ -25,9 +30,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 from build import asset  # noqa: E402  the stylesheet's address with its hash, as every page links it
 PAGE = os.path.join(ROOT, "roleplay-models.html")
-RANKING_URL = "https://openrouter.ai/api/v1/classifications/task?window=7d"
+RANKING_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily?category=roleplay&period=week&start_date={start}"
 PRICES_URL = "https://openrouter.ai/api/v1/models"
-TAG = "roleplay_fiction"
+SHOWN = 20
+WEEK = timedelta(days=7)
+MONTHS = "January February March April May June July August September October November December".split()
 
 
 def fetch(url, key=None):
@@ -38,35 +45,58 @@ def fetch(url, key=None):
         return json.load(r)
 
 
-def roleplay_entry(answer):
-    """(as_of, window_days, models) of the roleplay entry; ValueError when the answer lacks it."""
-    data = answer.get("data") or {}
-    for entry in data.get("classifications") or []:
-        if entry.get("tag") == TAG and entry.get("models"):
-            return data["as_of"], data["window_days"], entry["models"]
-    raise ValueError("the answer has no " + TAG + " entry with models")
+def weeks(answer):
+    """(as_of day, last whole week's Monday, its tokens by model, the week before's or None); ValueError without a whole week."""
+    meta = answer.get("meta") or {}
+    end = date.fromisoformat(meta["end_date"])
+    by_week = {}
+    for row in answer.get("data") or []:
+        monday = date.fromisoformat(row["date"])
+        if row["model_permaslug"] != "other" and monday + timedelta(days=6) <= end:
+            by_week.setdefault(monday, {})[row["model_permaslug"]] = Decimal(row["total_tokens"])
+    if not by_week:
+        raise ValueError("the answer has no whole week of roleplay rows")
+    last = max(by_week)
+    return meta["as_of"][:10], last, by_week[last], by_week.get(last - WEEK)
 
 
-def rows(models, catalogue):
-    """One row per ranked model, every version its own, by share of requests, with OpenRouter's name, page and price."""
+def rows(tokens, before, catalogue):
+    """The SHOWN models with most tokens, every version its own, with their change, OpenRouter's name, page and price."""
     listed = {}
     for m in catalogue.get("data") or []:
         if ":" not in m["id"]:
             listed.setdefault(m.get("canonical_slug") or m["id"], m)
             listed.setdefault(m["id"], m)
     table = []
-    for m in models:
-        entry = listed.get(m["id"]) or {}
+    for slug, count in sorted(tokens.items(), key=lambda item: -item[1])[:SHOWN]:
+        entry = listed.get(slug) or {}
         pricing = entry.get("pricing") or {}
         table.append({
-            "slug": entry.get("id") or m["id"],
-            "name": (entry.get("name") or m["id"].split("/")[-1]).split(": ", 1)[-1],
-            "usage": m.get("tag_usage_share") or 0.0,
-            "tokens": m.get("tag_token_share") or 0.0,
+            "slug": entry.get("id") or slug,
+            "name": (entry.get("name") or slug.split("/")[-1]).split(": ", 1)[-1],
+            "tokens": count,
+            "change": change(count, before.get(slug)) if before is not None else None,
             "input": per_million(pricing.get("prompt")),
             "output": per_million(pricing.get("completion")),
         })
-    return sorted(table, key=lambda r: -r["usage"])
+    return table
+
+
+def change(now, then):
+    """The week's change as the page says it: ▲ 12%, ▼ 5%, 0%, or "new" where the week before did not list it."""
+    if not then:
+        return "new"
+    percent = round((now / then - 1) * 100)
+    return "▲ {}%".format(percent) if percent > 0 else "▼ {}%".format(-percent) if percent < 0 else "0%"
+
+
+def count(value):
+    """Tokens as a reader says them: 4.2B, 830M, 12K."""
+    for size, unit in ((10 ** 12, "T"), (10 ** 9, "B"), (10 ** 6, "M"), (10 ** 3, "K")):
+        if value >= size:
+            short = value / size
+            return ("{:.1f}".format(short) if short < 10 else "{:.0f}".format(short)) + unit
+    return "{:.0f}".format(value)
 
 
 def per_million(text):
@@ -84,31 +114,37 @@ def money(value):
     return "$" + ("{:.2f}".format(value) if value.as_tuple().exponent >= -2 else "{:f}".format(value))
 
 
-def share(value):
-    return "{:.1f}%".format(value * 100)
+def spoken_day(day):
+    """A day as a reader says it: 2026-11-07 is 7 November 2026."""
+    day = date.fromisoformat(day) if isinstance(day, str) else day
+    return "{} {} {}".format(day.day, MONTHS[day.month - 1], day.year)
 
 
-def spoken_day(as_of):
-    """The ranking's day as a reader says it: 2026-11-07 is 7 November 2026."""
-    year, month, day = (int(part) for part in as_of.split("-"))
-    months = "January February March April May June July August September October November December".split()
-    return "{} {} {}".format(day, months[month - 1], year)
+def spoken_week(monday):
+    """A week as a reader says it: 2–8 November 2026, 27 October – 2 November 2026."""
+    sunday = monday + timedelta(days=6)
+    if monday.month == sunday.month:
+        return "{}–{}".format(monday.day, spoken_day(sunday))
+    if monday.year == sunday.year:
+        return "{} {} – {}".format(monday.day, MONTHS[monday.month - 1], spoken_day(sunday))
+    return "{} – {}".format(spoken_day(monday), spoken_day(sunday))
 
 
-def render(as_of, days, table):
+def render(as_of, monday, table):
     body = "\n".join(
         "      <tr><td>{}</td><td><a href=\"https://openrouter.ai/{}\" target=\"_blank\" rel=\"noopener noreferrer\">{}</a></td>"
         "<td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-            i, html.escape(r["slug"]), html.escape(r["name"]), share(r["usage"]), share(r["tokens"]),
+            i, html.escape(r["slug"]), html.escape(r["name"]), count(r["tokens"]), r["change"] or "—",
             money(r["input"]), money(r["output"]))
         for i, r in enumerate(table, 1))
-    return TEMPLATE.format(as_of=html.escape(as_of), updated=spoken_day(as_of), days=days, rows=body, style=asset("style.css"))
+    return TEMPLATE.format(as_of=html.escape(as_of), updated=spoken_day(as_of), week=spoken_week(monday), rows=body,
+                           style=asset("style.css"))
 
 
 def write_page(path, answer, prices):
-    """Writes the page from both answers; raises, leaving the page as it was, when the ranking is missing."""
-    as_of, days, models = roleplay_entry(answer)
-    page = render(as_of, days, rows(models, prices))
+    """Writes the page from both answers; raises, leaving the page as it was, when no whole week is there."""
+    as_of, monday, tokens, before = weeks(answer)
+    page = render(as_of, monday, rows(tokens, before, prices))
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
 
@@ -121,7 +157,8 @@ def main():
         key = os.environ.get("OPENROUTER_API_KEY")
         if not key:
             sys.exit("OPENROUTER_API_KEY is not set")
-        answer, prices = fetch(RANKING_URL, key), fetch(PRICES_URL)
+        start = (date.today() - timedelta(days=28)).isoformat()
+        answer, prices = fetch(RANKING_URL.format(start=start), key), fetch(PRICES_URL)
     write_page(PAGE, answer, prices)
 
 
@@ -133,14 +170,14 @@ TEMPLATE = """<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Popular roleplay models</title>
   <meta name="description"
-    content="The AI models most used for roleplay and fiction on OpenRouter this week, with their price per million tokens." />
+    content="The AI models most used for roleplay and fiction on OpenRouter last week, with their tokens and price per million tokens." />
   <link rel="canonical" href="https://cardwave.cc/roleplay-models.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/roleplay-models.html" />
   <meta property="og:title" content="Popular roleplay models" />
   <meta property="og:description"
-    content="The AI models most used for roleplay and fiction on OpenRouter this week, with their price per million tokens." />
+    content="The AI models most used for roleplay and fiction on OpenRouter last week, with their tokens and price per million tokens." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
@@ -148,7 +185,7 @@ TEMPLATE = """<!doctype html>
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Popular roleplay models" />
   <meta name="twitter:description"
-    content="The AI models most used for roleplay and fiction on OpenRouter this week, with their price per million tokens." />
+    content="The AI models most used for roleplay and fiction on OpenRouter last week, with their tokens and price per million tokens." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -188,12 +225,13 @@ TEMPLATE = """<!doctype html>
   </header>
 
   <p class="page-title"><strong>Popular roleplay models</strong></p>
-  <p>The models people used most for roleplay and fiction on OpenRouter over the last {days} days. Prices are
-    OpenRouter's, in US dollars per million tokens. Updated every day; last updated {updated}.</p>
+  <p>The models people used most for roleplay and fiction on OpenRouter in the week of {week}. Tokens are
+    OpenRouter's estimates; the change is against the week before. Prices are OpenRouter's, in US dollars per million
+    tokens. Updated every day; last updated {updated}.</p>
 
   <div class="table-wrap">
     <table class="ranking">
-      <thead><tr><th>#</th><th>Model</th><th>Requests</th><th>Tokens</th><th>Input</th><th>Output</th></tr></thead>
+      <thead><tr><th>#</th><th>Model</th><th>Tokens</th><th>Change</th><th>Input</th><th>Output</th></tr></thead>
       <tbody>
 {rows}
       </tbody>
