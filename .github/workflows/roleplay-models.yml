@@ -1,7 +1,8 @@
-# Renews roleplay-models.html daily (and by hand) from OpenRouter's weekly roleplay ranking (the secret OPENROUTER_API_KEY) and
-# its model list's prices; commits the page only when it changed, then starts pages.yml, since a push by GITHUB_TOKEN starts
-# no workflow but a workflow_dispatch by it does. A failed fetch or a ranking without a whole week fails the run
-# and changes nothing. Runs only on main, the branch the site deploys from.
+# Renews roleplay-models.html daily (and by hand) from OpenRouter's weekly roleplay ranking (the secret OPENROUTER_API_KEY),
+# its model list's prices and LMArena's latest text leaderboard (Hugging Face, no key); commits the page only when it
+# changed, then starts pages.yml, since a push by GITHUB_TOKEN starts no workflow but a workflow_dispatch by it does.
+# A failed fetch, a ranking without a whole week or an empty LMArena category fails the run and changes nothing.
+# Runs only on main, the branch the site deploys from.
 name: Roleplay models
 
 on:
@@ -43,6 +44,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Roleplay models: OpenRouter's ranking renewed" -- roleplay-models.html
+          git commit -m "Roleplay models: OpenRouter's ranking and LMArena renewed" -- roleplay-models.html
           git push
           gh workflow run pages.yml --ref main

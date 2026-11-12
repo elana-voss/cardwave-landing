@@ -1,7 +1,9 @@
 """Tests of tools/roleplay_models.py against stored answers: rankings.json is a made-up answer in the shape the
 Data API documents (three ISO weeks, the last too recent to count, the models the ranking of 2026-11-07 named plus twelve
 "test/tail-NN", and the row "other"); models.json the models of OpenRouter's model list of 2026-11-09 the ranking
-names, with their ":batch" and ":free" variants (gemini-3-flash-preview left out). Never the live APIs.
+names, with their ":batch" and ":free" variants (gemini-3-flash-preview left out); arena.json twenty-five LMArena
+rows of creative writing in the shape the datasets server answers, the first fifteen proprietary, the licensing
+of the others the site's open ones. Never the live APIs.
 
     python -m unittest discover -s tools/tests
 """
@@ -11,6 +13,7 @@ import os
 import sys
 import tempfile
 import unittest
+import urllib.error
 from datetime import date
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +31,7 @@ class Ranking(unittest.TestCase):
     def setUp(self):
         self.answer = load("rankings.json")
         self.prices = load("models.json")
+        self.arena = load("arena.json")
 
     def table(self):
         _, _, tokens, before = rm.weeks(self.answer)
@@ -72,7 +76,8 @@ class Ranking(unittest.TestCase):
 
     def test_page(self):
         as_of, monday, tokens, before = rm.weeks(self.answer)
-        page = rm.render(as_of, monday, rm.rows(tokens, before, self.prices))
+        arena, arena_as_of = rm.arena_tables(self.arena)
+        page = rm.render(as_of, monday, rm.rows(tokens, before, self.prices), arena, arena_as_of)
         self.assertIn("Source: OpenRouter (openrouter.ai/rankings), as of 2026-11-16. Licensed under CC BY 4.0.", page)
         self.assertIn("on OpenRouter from 2 to 8 November 2026, compared with the week before.", page)
         self.assertIn("Last updated 16 November 2026.", page)
@@ -91,9 +96,84 @@ class Ranking(unittest.TestCase):
                 f.write("old")
             self.answer["data"] = []
             with self.assertRaises(ValueError):
-                rm.write_page(page, self.answer, self.prices)
+                rm.write_page(page, self.answer, self.prices, self.arena)
             with open(page, encoding="utf-8") as f:
                 self.assertEqual(f.read(), "old")
+
+
+class Arena(unittest.TestCase):
+    def setUp(self):
+        self.arena = load("arena.json")
+
+    def test_buckets_are_the_license_switches(self):
+        tables, as_of = rm.arena_tables(self.arena)
+        self.assertEqual(as_of, "2026-11-09")
+        self.assertEqual(len(tables["all"]), 25)  # the fixture's 25 rows; the 100 cap is tested below
+        self.assertEqual(len(tables["proprietary"]), 15)
+        self.assertEqual(len(tables["open"]), 10)
+        self.assertTrue(all(r["license"] == "Proprietary" for r in tables["proprietary"]))
+        self.assertTrue(all(r["license"] != "Proprietary" for r in tables["open"]))
+
+    def test_rank_and_overall_rank(self):
+        tables, _ = rm.arena_tables(self.arena)
+        body = rm.arena_body(tables["open"], True)
+        self.assertTrue(body.startswith('      <tr><td>1</td><td>16</td><td class="model-col">'))
+        self.assertIn("DeepSeek V4.1 (Thinking)", body)  # the first open model is the category's 16th
+        self.assertTrue(rm.arena_body(tables["all"], False).startswith('      <tr><td>1</td><td></td><td class="model-col">'))
+
+    def test_shows_a_hundred_entries(self):
+        rows = [{"rank": i, "license": "Proprietary" if i % 2 else "Apache 2.0",
+                 "leaderboard_publish_date": "2026-11-09"} for i in range(1, 151)]
+        tables, _ = rm.arena_tables(rows)
+        self.assertEqual([len(tables[k]) for k in ("all", "proprietary", "open")], [100, 75, 75])
+
+    def test_score_as_the_site_shows_it(self):
+        self.assertEqual(rm.arena_score(self.arena[0]), '1525 <span class="ci">±10</span>')
+
+    def test_page(self):
+        tables, arena_as_of = rm.arena_tables(self.arena)
+        _, monday, tokens, before = rm.weeks(load("rankings.json"))
+        page = rm.render("2026-11-16", monday, rm.rows(tokens, before, load("models.json")), tables, arena_as_of)
+        self.assertIn('<span class="model">Gemini 4 Argon (High)</span><span class="org">Google · Proprietary</span></td><td>1525 <span class="ci">±10</span></td>', page)
+        self.assertIn("Source: LMArena (arena.ai/leaderboard), via Hugging Face (lmarena-ai/leaderboard-dataset),", page)
+        self.assertIn("as of 2026-11-09. Licensed under CC BY 4.0.", page)
+        self.assertIn("Last updated 9 November 2026.", page)
+        self.assertEqual(page.count("<th>Overall Rank</th>"), 2)  # only the license switches show it
+        self.assertIn('<thead><tr><th>Rank</th><th></th><th class="model-col">Model</th><th>Score</th></tr></thead>', page)
+        self.assertEqual(page.count('<colgroup><col class="w-rank" /><col class="w-overall-rank" />'
+                                    '<col class="w-model" /><col class="w-score" /></colgroup>'), 3)
+        self.assertIn('data-license="open"', page)
+        self.assertNotIn("data-category", page)  # creative writing only
+        self.assertNotIn("Overall</label>", page)
+        self.assertIn('role="tablist"', page)
+        self.assertIn('aria-controls="panel-arena"', page)
+        self.assertIn('id="arena-license-all" value="all" checked', page)
+        self.assertIn("The highest rated models for creative writing on LMArena. Last updated 9 November 2026.", page)
+        self.assertNotIn("where people choose between two", page)  # the old long intro
+        self.assertIn(">Open Router</button>", page)
+
+    def test_where_the_filter_fails_the_rows_pages_are_scanned(self):
+        calls = []
+
+        def broken(url, key=None):
+            calls.append(url)
+            if "filter?" in url:
+                raise urllib.error.HTTPError(url, 500, "down", None, None)
+            return {"rows": [{"row": r} for r in self.arena]}
+
+        original = rm.fetch
+        rm.fetch = broken
+        try:
+            rows = rm.arena_category("creative_writing")
+        finally:
+            rm.fetch = original
+        self.assertEqual([r["rank"] for r in rows], list(range(1, 26)))
+        self.assertIn("filter?", calls[0])
+        self.assertIn("rows?", calls[1])
+
+    def test_no_rows_fails(self):
+        with self.assertRaises(ValueError):
+            rm.arena_tables([])
 
 
 if __name__ == "__main__":
