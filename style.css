@@ -203,3 +203,67 @@ footer { color: #888; font-size: 14px; }
 @media (max-width: 480px) {
   .calc-grid, .metrics { grid-template-columns: 1fr; }
 }
+
+/* roleplay-models.html: the leaderboards behind tabs; LMArena's tables keep fixed columns, so they stand still when
+   the license switch changes (All leaves "Overall Rank" empty). */
+.tab-bar { display: flex; gap: 4px; border-bottom: 1px solid #eee; margin: 20px 0 16px; }
+.tab-bar [role="tab"] {
+  margin-bottom: -1px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+}
+.tab-bar [role="tab"]:hover { color: #111; }
+.tab-bar [role="tab"][aria-selected="true"] { background: #fff; border-color: #eee; color: #111; }
+.tab-bar [role="tab"]:focus-visible { outline: 2px solid #0083e9; outline-offset: 2px; }
+
+.switches { position: relative; min-width: 0; margin: 0 0 16px; padding: 0; border: 0; }
+.switches legend { padding: 0; margin-bottom: 4px; font-size: 13px; font-weight: 500; color: #444; }
+.switches input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+.switches label {
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0 4px 4px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+.switches label:hover { color: #0083e9; }
+.switches input:checked + label { background: #0083e9; border-color: #0083e9; color: #fff; }
+.switches input:focus-visible + label { outline: 2px solid #0083e9; outline-offset: 2px; }
+
+.table-wrap { overflow-x: auto; }
+.ranking { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ranking th, .ranking td { padding: 8px 10px; border-bottom: 1px solid #eee; text-align: right; white-space: nowrap; }
+.ranking th { font-size: 14px; font-weight: 600; color: #555; white-space: normal; }
+.ranking .model-col { text-align: left; white-space: normal; }
+.ranking .arrow { float: left; margin-right: 6px; }
+.ranking .up { color: #1a7f37; }
+.ranking .down { color: #cf222e; }
+.arena-table .ranking { min-width: 440px; table-layout: fixed; }
+.arena-table .w-rank { width: 64px; }
+.arena-table .w-overall-rank { width: 116px; }
+.arena-table .w-change { width: 80px; }
+/* Places are one or two digits, so the arrow stays beside its number instead of at the cell's left. */
+.arena-table .arrow { float: none; }
+.ranking .open-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #555;
+}
+.source { font-size: 14px; color: #888; }
+@media (max-width: 480px) {
+  .ranking th, .ranking td { padding: 8px 4px; font-size: 14px; }
+}

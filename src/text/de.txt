@@ -1,5 +1,5 @@
 title = Cardwave: KI-Charakterchat und Karteneditor für Windows
-description = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows. Bring deinen eigenen KI-Anbieter mit. Karten, Chats und Schlüssel bleiben auf deinem Computer.
+description = Chat-App für KI-Charaktere und Karteneditor für Windows. Bring deinen eigenen KI-Anbieter mit. Karten, Chats und Schlüssel bleiben auf deinem Computer.
 langs_label = Sprachen
 download = Für Windows herunterladen
 intro = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows. Nutze jeden KI-Anbieter, den du schon verwendest. Deine Karten, Chats und Schlüssel bleiben auf deinem Computer.

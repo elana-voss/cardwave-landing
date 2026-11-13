@@ -1,5 +1,5 @@
-title = Cardwave: trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows
-description = Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của riêng bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn.
+title = Cardwave: trò chuyện với nhân vật AI và chỉnh sửa thẻ cho Windows
+description = Ứng dụng trò chuyện với nhân vật AI và chỉnh sửa thẻ cho Windows. Dùng nhà cung cấp AI của bạn. Thẻ, cuộc trò chuyện và khóa luôn ở trên máy tính của bạn.
 langs_label = Ngôn ngữ
 download = Tải về cho Windows
 intro = Ứng dụng trò chuyện với nhân vật AI và trình chỉnh sửa thẻ cho Windows. Mang theo bất kỳ nhà cung cấp AI nào bạn đang dùng. Thẻ, cuộc trò chuyện và khóa của bạn luôn ở trên máy tính của bạn.

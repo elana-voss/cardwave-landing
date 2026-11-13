@@ -12,6 +12,11 @@ wrote (GitHub Pages serves the files as they are). Standard library only.
   ("/style.css"), so the pages work only served from the site's root (GitHub Pages, or `python -m http.server`).
 - The picture box shows a slide only where screenshots/<name>.webp exists, in SLIDES' order; the first loads
   at once, the rest lazily. A new slide needs its picture, its name in SLIDES and a caption `slide_<name>`.
+- A text whose heading and paragraph are both empty (`key =`) leaves its section out of that language's page.
+- Every home page carries the Organization and the WebSite as structured data (JSON-LD); the hand-written articles
+  (ARTICLES) get their Article stamped in here, roleplay-models.html its own from tools/roleplay_models.py.
+- sitemap.xml gives each page the day it last changed (lastmod): today while the file differs from its last commit,
+  else that commit's day. `python build.py sitemap` writes only the sitemap (the daily job, after renewing a page).
 - Writes providers.html (English only) from src/providers.json, which cardwave-next's tools/provider_page.py
   writes from the app's own provider list: the online services in columns, the local servers apart.
 - The other English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here; their
@@ -25,11 +30,14 @@ import hashlib
 import html
 import json
 import re
+import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SITE = "https://cardwave.cc"
+REPO = "https://github.com/elana-voss/cardwave"
 
 # code (folder and text file), hreflang and html lang, og:locale, the language's own name; the row's order.
 LANGS = [
@@ -50,7 +58,7 @@ LANGS = [
 # The English-only pages in the sitemap: page, how often it changes, priority.
 OTHER_PAGES = [
     ("providers.html", "monthly", "0.7"),
-    ("roleplay-models.html", "weekly", "0.7"),
+    ("roleplay-models.html", "daily", "0.7"),
     ("ccv4.html", "monthly", "0.7"),
     ("where-to-find-characters.html", "monthly", "0.7"),
     ("chat-turn-budget-calculator.html", "monthly", "0.7"),
@@ -66,8 +74,15 @@ LINKS = {
     "disclaimer": "/disclaimer.html",
     "providers": "/providers.html",
     "roleplay": "/roleplay-models.html",
-    "issues": "https://github.com/elana-voss/cardwave/issues",
+    "issues": REPO + "/issues",
 }
+
+# The publisher of every page, as structured data names it.
+ORGANIZATION = {"@type": "Organization", "@id": SITE + "/#organization", "name": "Cardwave", "url": SITE + "/",
+                "logo": SITE + "/logo_icon.png", "sameAs": [REPO, "https://discord.gg/C62KZVg6J"]}
+
+# The hand-written articles and the day each was first published.
+ARTICLES = {"ccv4.html": "2026-07-11", "where-to-find-characters.html": "2026-07-01"}
 
 ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{}" /></svg>'
 LEFT, RIGHT = "M15 5l-7 7 7 7", "M9 5l7 7-7 7"
@@ -112,8 +127,34 @@ STAMPED = ["ccv4.html", "chat-turn-budget-calculator.html", "disclaimer.html", "
            "roleplay-models.html"]
 
 
+def json_ld(data):
+    """Structured data for search engines, as one block for a page's head."""
+    text = json.dumps({"@context": "https://schema.org", **data}, ensure_ascii=False).replace("</", "<\\/")
+    return f'  <script type="application/ld+json">{text}</script>'
+
+
+def article(name, headline, description, published, modified=None):
+    """The structured data of an article of the site: what it is, when it appeared (and changed), who publishes it."""
+    data = {"@type": "Article", "headline": headline, "description": description, "url": f"{SITE}/{name}",
+            "mainEntityOfPage": f"{SITE}/{name}", "image": SITE + "/landing_desktop.jpg", "datePublished": published}
+    if modified:
+        data["dateModified"] = modified
+    return json_ld({**data, "author": ORGANIZATION, "publisher": ORGANIZATION})
+
+
+def article_schema(name):
+    """A hand-written article's structured data, from its own title and description."""
+    text = (ROOT / name).read_text(encoding="utf-8")
+    title = re.search(r"<title>(.*?)</title>", text, re.S).group(1)
+    description = re.search(r'<meta name="description"\s+content="(.*?)"', text, re.S).group(1)
+    return article(name, html.unescape(title), html.unescape(" ".join(description.split())), ARTICLES[name])
+
+
+LD_BLOCK = re.compile(r'  <script type="application/ld\+json">.*?</script>\n', re.S)
+
+
 def stamp_pages():
-    """The pages not written here link the current style.css."""
+    """The pages not written here link the current style.css; the hand-written articles carry their structured data."""
     link = f'<link rel="stylesheet" href="{asset("style.css")}" />'
     for name in STAMPED:
         path = ROOT / name
@@ -121,6 +162,8 @@ def stamp_pages():
         new, count = STYLE_LINK.subn(link, text)
         if count != 1:
             sys.exit(f"{name}: expected one stylesheet link, found {count}")
+        if name in ARTICLES:
+            new = LD_BLOCK.sub("", new).replace("</head>", article_schema(name) + "\n</head>", 1)
         if new != text:
             path.write_bytes(new.encode("utf-8"))
 
@@ -131,7 +174,7 @@ def read_texts(code):
     for number, line in enumerate((ROOT / "src" / "text" / f"{code}.txt").read_text(encoding="utf-8").splitlines(), 1):
         if not line.strip() or line.startswith("#"):
             continue
-        key, sep, value = line.partition(" = ")
+        key, sep, value = line.partition(" =")
         if not sep:
             sys.exit(f"src/text/{code}.txt:{number}: not `key = value`")
         texts[key.strip()] = value.strip()
@@ -209,6 +252,8 @@ def render(template, code, hl, locale, texts):
         "@lang": hl, "@url": SITE + page_url(code), "@locale": locale, "@home": page_url(code),
         "@alternates": alternates(), "@langs": lang_row(code), "@shots": shots(texts),
         "@style": asset("style.css"),
+        "@schema": json_ld({"@graph": [ORGANIZATION, {"@type": "WebSite", "@id": SITE + "/#website", "name": "Cardwave",
+                                                      "url": SITE + "/", "publisher": {"@id": ORGANIZATION["@id"]}}]}),
     }
 
     def fill(match):
@@ -222,7 +267,7 @@ def render(template, code, hl, locale, texts):
     out = re.sub(r"\{\{(@?\w+)\}\}", fill, template)
     if "{{" in out:
         sys.exit("src/index.template.html: a placeholder was left unfilled")
-    return out
+    return out.replace("  <h2></h2>\n  <p></p>\n\n", "")
 
 
 PROVIDERS_HEAD = """<!doctype html>
@@ -272,7 +317,8 @@ def providers_page():
         return f'    <li><a href="{url}" target="_blank" rel="noopener noreferrer">{name}</a></li>'
 
     title = "AI providers Cardwave supports"
-    description = f"The {len(online)} AI services Cardwave knows by their API key, and the local servers it works with."
+    description = (f"The {len(online)} AI services Cardwave knows by their API key, from OpenAI, Anthropic and Google "
+                   "to OpenRouter, and the local servers it works with.")
     return "\n".join([
         PROVIDERS_HEAD.format(title=title, description=description, url=SITE + "/providers.html",
                               style=asset("style.css")),
@@ -299,20 +345,29 @@ def providers_page():
     ])
 
 
+def lastmod(name):
+    """The day a page last changed: today while it differs from its last commit, else that commit's day."""
+    def git(*args):
+        return subprocess.run(["git", *args, "--", name], cwd=ROOT, capture_output=True, text=True,
+                              check=True).stdout.strip()
+    return date.today().isoformat() if git("status", "--porcelain") else git("log", "-1", "--format=%cs")
+
+
 def sitemap():
-    urls = []
-    for code, _, _, _ in LANGS:
-        priority = "1.0" if code == "en" else "0.8"
-        urls.append(f"  <url>\n    <loc>{SITE}{page_url(code)}</loc>\n    <changefreq>monthly</changefreq>\n"
-                    f"    <priority>{priority}</priority>\n  </url>")
-    for page, freq, priority in OTHER_PAGES:
-        urls.append(f"  <url>\n    <loc>{SITE}/{page}</loc>\n    <changefreq>{freq}</changefreq>\n"
-                    f"    <priority>{priority}</priority>\n  </url>")
+    pages = [(page_url(code), "index.html" if code == "en" else f"{code}/index.html", "monthly",
+              "1.0" if code == "en" else "0.8") for code, _, _, _ in LANGS]
+    pages += [("/" + page, page, freq, priority) for page, freq, priority in OTHER_PAGES]
+    urls = [f"  <url>\n    <loc>{SITE}{url}</loc>\n    <lastmod>{lastmod(name)}</lastmod>\n"
+            f"    <changefreq>{freq}</changefreq>\n    <priority>{priority}</priority>\n  </url>"
+            for url, name, freq, priority in pages]
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n")
 
 
 def main():
+    if sys.argv[1:] == ["sitemap"]:
+        (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8", newline="\n")
+        return
     template = (ROOT / "src" / "index.template.html").read_text(encoding="utf-8")
     all_texts = {code: read_texts(code) for code, _, _, _ in LANGS}
     check_keys(all_texts)

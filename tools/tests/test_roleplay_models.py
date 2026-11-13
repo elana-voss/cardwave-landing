@@ -116,10 +116,17 @@ class Arena(unittest.TestCase):
 
     def test_rank_and_overall_rank(self):
         tables, _ = rm.arena_tables(self.arena)
-        body = rm.arena_body(tables["open"], True)
+        body = rm.arena_body(tables["open"], True, None)
         self.assertTrue(body.startswith('      <tr><td>1</td><td>16</td><td class="model-col">'))
         self.assertIn("DeepSeek V4.1 (Thinking)", body)  # the first open model is the category's 16th
-        self.assertTrue(rm.arena_body(tables["all"], False).startswith('      <tr><td>1</td><td></td><td class="model-col">'))
+        self.assertTrue(rm.arena_body(tables["all"], False, None).startswith('      <tr><td>1</td><td></td><td class="model-col">'))
+
+    def test_open_models_tagged_in_the_all_view_only(self):
+        tables, _ = rm.arena_tables(self.arena)
+        tag = '<span class="open-tag">Open Source</span>'
+        self.assertEqual(rm.arena_body(tables["all"], False, None).count(tag), 10)
+        self.assertIn('Qwen 4 Max ' + tag + '</td>',rm.arena_body(tables["all"], False, None))
+        self.assertNotIn(tag, rm.arena_body(tables["open"], True, None))
 
     def test_shows_a_hundred_entries(self):
         rows = [{"rank": i, "license": "Proprietary" if i % 2 else "Apache 2.0",
@@ -127,30 +134,57 @@ class Arena(unittest.TestCase):
         tables, _ = rm.arena_tables(rows)
         self.assertEqual([len(tables[k]) for k in ("all", "proprietary", "open")], [100, 75, 75])
 
-    def test_score_as_the_site_shows_it(self):
-        self.assertEqual(rm.arena_score(self.arena[0]), '1525 <span class="ci">±10</span>')
+    def before(self):
+        """The leaderboard of a week earlier: the first and third swapped, the first open model not yet listed."""
+        rows = [dict(r, leaderboard_publish_date="2026-11-02") for r in self.arena if r["rank"] != 16]
+        rows[0]["rank"], rows[2]["rank"] = 3, 1
+        return rows
+
+    def test_change_against_the_week_before_in_each_switch(self):
+        tables, _ = rm.arena_tables(self.arena)
+        then = rm.arena_places(self.before())
+        cells = lambda view: [c.split("</td>")[0] for c in rm.arena_body(tables[view], view != "all", then[view])
+                              .split('<td class="change">')[1:]]
+        self.assertEqual(cells("all")[:3], ['<span class="up"><span class="arrow">▲</span>2</span>', "0",
+                                            '<span class="down"><span class="arrow">▼</span>2</span>'])
+        self.assertEqual(cells("open")[:2], ["new", '<span class="down"><span class="arrow">▼</span>1</span>'])
+        self.assertEqual(set(cells("proprietary")[3:]), {"0"})
+        self.assertEqual(set(c.split("</td>")[0] for c in rm.arena_body(tables["all"], False, None)
+                             .split('<td class="change">')[1:]), {"—"})
+
+    def test_compared_with_the_last_leaderboard_a_week_or_more_before(self):
+        days = ["2026-10-28", "2026-11-03", "2026-11-02", "2026-11-06", "2026-11-09"]
+        self.assertEqual(rm.week_before(days, "2026-11-09"), "2026-11-02")
+        self.assertIsNone(rm.week_before(["2026-11-06"], "2026-11-09"))
 
     def test_page(self):
         tables, arena_as_of = rm.arena_tables(self.arena)
         _, monday, tokens, before = rm.weeks(load("rankings.json"))
-        page = rm.render("2026-11-16", monday, rm.rows(tokens, before, load("models.json")), tables, arena_as_of)
-        self.assertIn('<span class="model">Gemini 4 Argon (High)</span><span class="org">Google · Proprietary</span></td><td>1525 <span class="ci">±10</span></td>', page)
+        page = rm.render("2026-11-16", monday, rm.rows(tokens, before, load("models.json")), tables, arena_as_of,
+                         rm.arena_places(self.before()), "2026-11-02")
+        self.assertIn('<td class="model-col">Gemini 4 Argon (High)</td>'
+                      '<td class="change"><span class="up"><span class="arrow">▲</span>2</span></td>', page)
+        self.assertNotIn("Google · Proprietary", page)  # no maker and license under the name
+        self.assertNotIn("Score", page)
         self.assertIn("Source: LMArena (arena.ai/leaderboard), via Hugging Face (lmarena-ai/leaderboard-dataset),", page)
         self.assertIn("as of 2026-11-09. Licensed under CC BY 4.0.", page)
         self.assertIn("Last updated 9 November 2026.", page)
         self.assertEqual(page.count("<th>Overall Rank</th>"), 2)  # only the license switches show it
-        self.assertIn('<thead><tr><th>Rank</th><th></th><th class="model-col">Model</th><th>Score</th></tr></thead>', page)
+        self.assertIn('<thead><tr><th>Rank</th><th></th><th class="model-col">Model</th><th>Change</th></tr></thead>', page)
         self.assertEqual(page.count('<colgroup><col class="w-rank" /><col class="w-overall-rank" />'
-                                    '<col class="w-model" /><col class="w-score" /></colgroup>'), 3)
+                                    '<col class="w-model" /><col class="w-change" /></colgroup>'), 3)
         self.assertIn('data-license="open"', page)
         self.assertNotIn("data-category", page)  # creative writing only
         self.assertNotIn("Overall</label>", page)
         self.assertIn('role="tablist"', page)
         self.assertIn('aria-controls="panel-arena"', page)
         self.assertIn('id="arena-license-all" value="all" checked', page)
-        self.assertIn("The highest rated models for creative writing on LMArena. Last updated 9 November 2026.", page)
+        self.assertIn("The highest rated models for creative writing on LMArena, compared with its leaderboard of"
+                      " 2 November 2026. Last updated 9 November 2026.", page)
         self.assertNotIn("where people choose between two", page)  # the old long intro
-        self.assertIn(">Open Router</button>", page)
+        self.assertIn(">OpenRouter</button>", page)
+        self.assertIn('"@type": "Article", "headline": "Popular roleplay models and LMArena creative writing rankings"', page)
+        self.assertIn('"datePublished": "2026-11-08", "dateModified": "2026-11-16"', page)
 
     def test_where_the_filter_fails_the_rows_pages_are_scanned(self):
         calls = []

@@ -30,14 +30,15 @@ f_locked = <strong>Locked and backed up.</strong> A password locks the app; a ba
 f_devices = <strong>Phones and other computers.</strong> Open Cardwave in a browser on a phone or another computer in your home network. Early, not yet thoroughly tested.
 f_language = <strong>Your language.</strong> Cardwave speaks twelve languages.
 privacy_h = Privacy
-privacy_p = Cardwave keeps cards, chats, keys and settings on your computer, in an encrypted database. No sign-up, no sync, no analytics in the app. It goes online only for what you ask of it: a message to the provider whose API key you entered, a download you start (the search model, a voice), the web tools you switch on, and a look on GitHub for a new version, which Settings can switch off.
+privacy_p = Cardwave keeps cards, chats, keys and settings on your computer, in an encrypted database. No sign-up, no sync, no analytics in the app.</p> <p>It goes online only for what you ask of it: a message to the provider whose API key you entered, a download you start (the search model, a voice), the web tools you switch on, and a look on GitHub for a new version, which Settings can switch off.
 byo_h = Bring your own AI
-byo_p1 = Bring the AI you already use. Paste an API key and Cardwave knows whose it is: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT and <a href="{providers}">more than 150 others</a>. Any OpenAI-compatible server works too, by its address.
+byo_p1 = Bring the AI you already use. Paste an API key and Cardwave knows whose it is: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT and <a href="{providers}">more than 150 others</a>.</p> <p>Any OpenAI-compatible server works too.
 byo_p2 = Or run models on your own computer: point Cardwave at a folder of GGUF files and it runs them itself, on your graphics card where it can.
-providers_h = Supported providers
-providers_p = See the <a href="{providers}">list of AI providers Cardwave supports</a>, each with a link to its site.
+# English leaves this section out; a section whose heading and text are empty is left out of the page.
+providers_h =
+providers_p =
 cards_h = Cards
-cards_p = Cardwave imports SillyTavern PNG cards and CCV4 cards, from Create or dropped onto your library. It exports a card as SillyTavern V3 or CCV4, and a chat in SillyTavern's chat format.
+cards_p = Cardwave imports SillyTavern PNG cards and CCV4 cards. It exports a card as SillyTavern V3 or CCV4, and a chat in SillyTavern's chat format.
 where_h = Where to find characters
 where_p = Cardwave opens cards from anywhere. See the <a href="{where}">list of sites that host character cards</a> you can download and import into Cardwave.
 costs_h = Estimating costs

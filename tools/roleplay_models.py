@@ -1,10 +1,11 @@
 """Writes roleplay-models.html: two leaderboards on one page behind tabs. First, OpenRouter's most used models for
 roleplay and fiction last week, each with its estimated tokens, its change against the week before and its OpenRouter
-price. Second, LMArena's highest rated models for creative writing (arena.ai), every model with its score and,
-under its name, its provider and license, behind the license switch (All, Proprietary, Open Source).
+price. Second, LMArena's highest rated models for creative writing (arena.ai), every model with its change in places
+against the leaderboard of a week before and, under its name, its provider and license, behind the license switch
+(All, Proprietary, Open Source).
 
     OPENROUTER_API_KEY=... python tools/roleplay_models.py
-    python tools/roleplay_models.py <rankings.json> <models.json> <arena.json>   (stored answers, no network)
+    python tools/roleplay_models.py <rankings.json> <models.json> <arena.json> [<arena_before.json>]   (no network)
 
 The ranking is the Data API's (GET /api/v1/datasets/rankings-daily?category=roleplay&period=week; CC BY 4.0, the
 page carries its source line): per week, the top 50 models by tokens, estimated from a sample; OpenRouter's terms
@@ -30,8 +31,12 @@ control, its latest public leaderboard. Traps:
   starting at 1, the model's place in that switch; then "Overall Rank", the same rank All shows — ascending but
   with gaps, as the switch filters models out. "Proprietary" is the license "Proprietary"; every other license is
   "Open Source".
-- The score is the Bradley-Terry rating as the site shows it ("1525 ±10", the ± half the confidence interval); an
-  answer whose row lacks it or whose answer holds no rows raises before the page is written.
+- The change is in places against the last leaderboard published a week or more before (the "full" split holds
+  every leaderboard, one every few days): the "rank" values are 1, 2, 3 without ties, and each switch compares the
+  model's place in that switch then and now (▲ 2, ▼ 1, 0, "new" where that leaderboard lacks the name). The whole
+  category is fetched for that day (about 420 rows), so a model that climbed from far below still shows its climb.
+  The full split is too big to scan, so where its filter keeps failing the run fails and the page stays.
+- The filter also answers 422 while the auth check is down; fetch() tries that again too.
 The page's own switches are semantic HTML (an ARIA tablist, a radio group) in the page's look, run by the small
 vanilla script at the page's foot; every table is plain HTML first, the script only hides what is not chosen.
 Standard library only. Tests: tools/tests/.
@@ -50,12 +55,14 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-from build import asset  # noqa: E402  the stylesheet's address with its hash, as every page links it
+from build import article, asset  # noqa: E402  the page's structured data; the stylesheet's address with its hash
 PAGE = os.path.join(ROOT, "roleplay-models.html")
 RANKING_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily?category=roleplay&period=week&start_date={start}"
 PRICES_URL = "https://openrouter.ai/api/v1/models"
 ARENA_URL = ("https://datasets-server.huggingface.co/filter?dataset=lmarena-ai/leaderboard-dataset"
              "&config=text_style_control&split=latest&where={where}&length=100")
+ARENA_FULL = ("https://datasets-server.huggingface.co/filter?dataset=lmarena-ai/leaderboard-dataset"
+              "&config=text_style_control&split=full&where={where}&offset={offset}&length=100")
 ARENA_SCAN = ("https://datasets-server.huggingface.co/rows?dataset=lmarena-ai/leaderboard-dataset"
               "&config=text_style_control&split=latest&offset={offset}&length=100")
 SHOWN = 20
@@ -65,7 +72,7 @@ MONTHS = "January February March April May June July August September October No
 
 
 def fetch(url, key=None):
-    """The answer as JSON, ten tries: the datasets server 500s while its auth check is down."""
+    """The answer as JSON, ten tries: the datasets server 500s or 422s while its auth check is down."""
     headers = {"User-Agent": "cardwave.cc roleplay-models"}
     if key:
         headers["Authorization"] = "Bearer " + key
@@ -74,7 +81,7 @@ def fetch(url, key=None):
             with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:
-            if e.code < 500 or attempt == 9:
+            if (e.code < 500 and e.code != 422) or attempt == 9:
                 raise
         except OSError:  # URLError, timeouts and connection resets: the network's blips
             if attempt == 9:
@@ -219,45 +226,81 @@ def arena_filled(rows):
     return len(rows) >= ARENA_SHOWN and prop >= ARENA_SHOWN and len(rows) - prop >= ARENA_SHOWN
 
 
-def arena_tables(arena_rows):
-    """({"all": the top rows, "proprietary": …, "open": …}, the leaderboard's day) for the license switch; the
-    "Open Source" switch is every license but "Proprietary"; ValueError where the answer holds no rows."""
+def week_before(days, latest):
+    """The day of the last leaderboard published a week or more before the latest one; None where there is none."""
+    earlier = [d for d in days if d <= (date.fromisoformat(latest) - WEEK).isoformat()]
+    return max(earlier) if earlier else None
+
+
+def arena_full(where):
+    """Every row of the full split that the filter `where` names, in pages of 100."""
+    rows = []
+    for offset in range(0, 20000, 100):
+        answer = fetch(ARENA_FULL.format(where=urllib.parse.quote(where), offset=offset))
+        rows += [r["row"] for r in answer.get("rows") or []]
+        if len(answer.get("rows") or []) < 100:
+            break
+    return rows
+
+
+def arena_history(where_name, latest):
+    """The category's whole leaderboard of a week or more before `latest`; [] where none was published in the five
+    weeks before it."""
+    start = (date.fromisoformat(latest) - 5 * WEEK).isoformat()
+    tops = arena_full('"category"=\'{}\' AND "rank"=1 AND "leaderboard_publish_date">=\'{}\''.format(where_name, start))
+    day = week_before([r["leaderboard_publish_date"] for r in tops], latest)
+    if day is None:
+        return []
+    return arena_full('"category"=\'{}\' AND "leaderboard_publish_date"=\'{}\''.format(where_name, day))
+
+
+def arena_views(arena_rows):
+    """Every row of each license switch, best rank first: All, "Proprietary" and "Open Source" (every other license)."""
     rows = sorted(arena_rows, key=lambda r: r["rank"])
-    if not rows:
+    return {"all": rows, "proprietary": [r for r in rows if r["license"] == "Proprietary"],
+            "open": [r for r in rows if r["license"] != "Proprietary"]}
+
+
+def arena_tables(arena_rows):
+    """({"all": the top rows, "proprietary": …, "open": …}, the leaderboard's day) for the license switch;
+    ValueError where the answer holds no rows."""
+    if not arena_rows:
         raise ValueError("the answer has no rows of the LMArena leaderboard")
-    prop = [r for r in rows if r["license"] == "Proprietary"]
-    open_ = [r for r in rows if r["license"] != "Proprietary"]
-    tables = {"all": rows[:ARENA_SHOWN], "proprietary": prop[:ARENA_SHOWN], "open": open_[:ARENA_SHOWN]}
-    return tables, max(r["leaderboard_publish_date"] for r in rows)
+    tables = {view: rows[:ARENA_SHOWN] for view, rows in arena_views(arena_rows).items()}
+    return tables, max(r["leaderboard_publish_date"] for r in arena_rows)
 
 
-def provider(text):
-    """The organization as the site names it: google reads Google."""
-    return text[:1].upper() + text[1:]
+def arena_places(arena_rows):
+    """Each switch's place of every model, by name: {"all": {"Gemini 4 Argon (High)": 1, …}, …}."""
+    return {view: {r["model_name"]: place for place, r in enumerate(rows, 1)}
+            for view, rows in arena_views(arena_rows).items()}
 
 
-def arena_score(row):
-    """The score's cell as the site shows it: 1525 ±10, the rating and half the confidence interval in grey."""
-    score = "{}".format(int(round(row["rating"])))
-    half = "{}".format(int(round((row["rating_upper"] - row["rating_lower"]) / 2)))
-    return '{} <span class="ci">±{}</span>'.format(score, half)
+def moved(now, then):
+    """A model's change in places as the page says it: ▲ 2, ▼ 1, 0, or "new" where the week before lacks it."""
+    if then is None:
+        return "new"
+    return "▲ {}".format(then - now) if then > now else "▼ {}".format(now - then) if then < now else "0"
 
 
-def arena_body(table, filtered):
-    """One LMArena table's rows: the model with its provider and license under the name and its score, behind its
-    ranks. All leads with "Rank", the model's rank across all the models of the category. Proprietary and Open Source
+def arena_body(table, filtered, then):
+    """One LMArena table's rows: the model and its change against
+    `then` (that switch's places a week before; None where there is no such leaderboard: "—"), behind its ranks.
+    All leads with "Rank", the model's rank across all the models of the category. Proprietary and Open Source
     lead with "Rank", the model's place in that switch (starting at 1), and show the rank across all the models as
     "Overall Rank" after it — ascending, with gaps where the switch has filtered models out. All leaves the second
-    cell empty, so the columns stand still when the switch changes."""
+    cell empty, so the columns stand still when the switch changes. In All, where both kinds stand together, an open
+    model's name carries the tag "Open Source"."""
     out = []
     for place, r in enumerate(table, 1):
         lead = "<td>{}</td>".format(place if filtered else int(r["rank"]))
         lead += "<td>{}</td>".format(int(r["rank"]) if filtered else "")
+        name = html.escape(r["model_name"])
+        if not filtered and r["license"] != "Proprietary":
+            name += ' <span class="open-tag">Open Source</span>'
         out.append(
-            '      <tr>{}<td class="model-col"><span class="model">{}</span><span class="org">{} · {}</span></td>'
-            '<td>{}</td></tr>'.format(
-                lead, html.escape(r["model_name"]), html.escape(provider(r["organization"])),
-                html.escape(r["license"]), arena_score(r)))
+            '      <tr>{}<td class="model-col">{}</td><td class="change">{}</td></tr>'.format(
+                lead, name, changed(moved(place, then.get(r["model_name"])) if then is not None else None)))
     return "\n".join(out)
 
 
@@ -271,30 +314,39 @@ def usage_body(table):
         for i, r in enumerate(table, 1))
 
 
-def render(as_of, monday, table, arena, arena_as_of):
+def render(as_of, monday, table, arena, arena_as_of, then=None, then_day=None):
+    """The page; `then` is arena_places() of the leaderboard of `then_day`, None where there is none."""
+    then = then or {}
+    compared = ", compared with its leaderboard of " + spoken_day(then_day) if then_day else ""
     return TEMPLATE.format(
         as_of=html.escape(as_of), updated=spoken_day(as_of), week=spoken_week(monday), usage_rows=usage_body(table),
-        arena_as_of=html.escape(arena_as_of), arena_updated=spoken_day(arena_as_of),
-        arena_all=arena_body(arena["all"], False),
-        arena_proprietary=arena_body(arena["proprietary"], True),
-        arena_open=arena_body(arena["open"], True),
-        style=asset("style.css"), script=SCRIPT)
+        arena_as_of=html.escape(arena_as_of), arena_updated=spoken_day(arena_as_of), arena_compared=compared,
+        arena_all=arena_body(arena["all"], False, then.get("all")),
+        arena_proprietary=arena_body(arena["proprietary"], True, then.get("proprietary")),
+        arena_open=arena_body(arena["open"], True, then.get("open")),
+        title=TITLE, description=DESCRIPTION, style=asset("style.css"), script=SCRIPT,
+        schema=article("roleplay-models.html", TITLE, DESCRIPTION, PUBLISHED, max(as_of, arena_as_of)))
 
 
-def write_page(path, answer, prices, arena_rows):
-    """Writes the page from all three answers; raises, leaving the page as it was, when a week or the LMArena's rows are missing."""
+def write_page(path, answer, prices, arena_rows, arena_before=()):
+    """Writes the page from the answers; raises, leaving the page as it was, when a week or the LMArena's rows are
+    missing. `arena_before` is the leaderboard of a week before; empty, the change column shows "—"."""
     as_of, monday, tokens, before = weeks(answer)
     arena, arena_as_of = arena_tables(arena_rows)
-    page = render(as_of, monday, rows(tokens, before, prices), arena, arena_as_of)
+    then_day = max(r["leaderboard_publish_date"] for r in arena_before) if arena_before else None
+    page = render(as_of, monday, rows(tokens, before, prices), arena, arena_as_of,
+                  arena_places(arena_before) if arena_before else None, then_day)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write(page)
 
 
 def main():
-    if len(sys.argv) == 4:
-        with open(sys.argv[1], encoding="utf-8") as a, open(sys.argv[2], encoding="utf-8") as p, \
-                open(sys.argv[3], encoding="utf-8") as m:
-            answer, prices, arena_rows = json.load(a), json.load(p), json.load(m)
+    if len(sys.argv) in (4, 5):
+        answers = []
+        for name in sys.argv[1:]:
+            with open(name, encoding="utf-8") as f:
+                answers.append(json.load(f))
+        answer, prices, arena_rows, arena_before = (answers + [[]])[:4]
     else:
         key = os.environ.get("OPENROUTER_API_KEY")
         if not key:
@@ -306,8 +358,11 @@ def main():
             totals[row["date"]] = totals.get(row["date"], 0) + int(Decimal(row["total_tokens"]))
         print("meta", answer.get("meta"), "tokens by week", sorted(totals.items()))  # the log's record of what came
         arena_rows = arena_category("creative_writing")
-        print("arena", len(arena_rows), max(r["leaderboard_publish_date"] for r in arena_rows))
-    write_page(PAGE, answer, prices, arena_rows)
+        latest = max(r["leaderboard_publish_date"] for r in arena_rows)
+        arena_before = arena_history("creative_writing", latest)
+        print("arena", len(arena_rows), latest, "before", len(arena_before),
+              arena_before and arena_before[0]["leaderboard_publish_date"])
+    write_page(PAGE, answer, prices, arena_rows, arena_before)
 
 
 SCRIPT = """  // The page's switches: the tablist of the two leaderboards above and the LMArena's license switch below.
@@ -353,70 +408,41 @@ SCRIPT = """  // The page's switches: the tablist of the two leaderboards above 
   })();
 """
 
+TITLE = "Popular roleplay models and LMArena creative writing rankings"
+DESCRIPTION = ("The AI models most used for roleplay and fiction on OpenRouter, and LMArena's top models for "
+               "creative writing, with how each moved since the week before.")
+PUBLISHED = "2026-11-08"  # the page's first day on the site
+
 TEMPLATE = """<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Popular roleplay models and LMArena creative writing rankings</title>
+  <title>{title}</title>
   <meta name="description"
-    content="The AI models most used for roleplay and fiction on OpenRouter last week, and LMArena's highest rated models for creative writing, with their scores." />
+    content="{description}" />
   <link rel="canonical" href="https://cardwave.cc/roleplay-models.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/roleplay-models.html" />
-  <meta property="og:title" content="Popular roleplay models and LMArena creative writing rankings" />
+  <meta property="og:title" content="{title}" />
   <meta property="og:description"
-    content="The AI models most used for roleplay and fiction on OpenRouter last week, and LMArena's highest rated models for creative writing, with their scores." />
+    content="{description}" />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Popular roleplay models and LMArena creative writing rankings" />
+  <meta name="twitter:title" content="{title}" />
   <meta name="twitter:description"
-    content="The AI models most used for roleplay and fiction on OpenRouter last week, and LMArena's highest rated models for creative writing, with their scores." />
+    content="{description}" />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="{style}" />
-  <style>
-    .table-wrap {{ overflow-x: auto; }}
-    .ranking {{ width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }}
-    .ranking th, .ranking td {{ padding: 8px 10px; border-bottom: 1px solid #e5e5e5; text-align: right; white-space: nowrap; }}
-    .ranking .model-col {{ text-align: left; white-space: normal; }}
-    .ranking th {{ font-weight: 600; color: #555; font-size: 14px; white-space: normal; }}
-    @media (max-width: 480px) {{ .ranking th, .ranking td {{ padding: 8px 4px; font-size: 14px; }} }}
-    .ranking .arrow {{ float: left; margin-right: 6px; }}
-    .ranking .up {{ color: #1a7f37; }}
-    .ranking .down {{ color: #cf222e; }}
-    .ranking .model, .ranking .org {{ display: block; }}
-    .ranking .org {{ color: #888; font-size: 13px; }}
-    .ranking .ci {{ color: #888; }}
-    .arena-table .ranking {{ table-layout: fixed; }}
-    .arena-table .w-rank {{ width: 64px; }}
-    .arena-table .w-overall-rank {{ width: 116px; }}
-    .arena-table .w-score {{ width: 112px; }}
-    .source {{ color: #888; font-size: 14px; }}
-    .tab-bar {{ display: flex; gap: 4px; border-bottom: 1px solid #e5e5e5; margin: 18px 0 14px; }}
-    .tab-bar [role="tab"] {{ appearance: none; background: none; border: 1px solid transparent; border-bottom: none;
-      border-radius: 6px 6px 0 0; margin-bottom: -1px; padding: 8px 16px; font: inherit; font-weight: 600;
-      color: #666; cursor: pointer; }}
-    .tab-bar [role="tab"]:hover {{ color: #111; }}
-    .tab-bar [role="tab"][aria-selected="true"] {{ background: #fff; border-color: #e5e5e5; color: #111; }}
-    .tab-bar [role="tab"]:focus-visible {{ outline: 2px solid #1f6feb; outline-offset: 2px; }}
-    .switches {{ display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0 0 16px; }}
-    .switches fieldset {{ border: 0; margin: 0; padding: 0; min-width: 0; }}
-    .switches legend {{ padding: 0; margin: 0 0 4px; font-size: 13px; font-weight: 600; color: #888; }}
-    .switches input {{ position: absolute; opacity: 0; }}
-    .switches label {{ display: inline-block; padding: 3px 12px; margin: 0 4px 4px 0; border: 1px solid #d0d7de;
-      border-radius: 999px; color: #555; font-size: 14px; cursor: pointer; }}
-    .switches label:hover {{ border-color: #8c959f; color: #111; }}
-    .switches input:checked + label {{ background: #1f6feb; border-color: #1f6feb; color: #fff; }}
-    .switches input:focus-visible + label {{ outline: 2px solid #1f6feb; outline-offset: 2px; }}
-  </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
+{schema}
 </head>
 
 <body>
@@ -445,7 +471,7 @@ TEMPLATE = """<!doctype html>
 
   <div class="tabs">
     <div class="tab-bar" role="tablist" aria-label="Leaderboards">
-      <button type="button" role="tab" id="tab-usage" aria-controls="panel-usage" aria-selected="true">Open Router</button>
+      <button type="button" role="tab" id="tab-usage" aria-controls="panel-usage" aria-selected="true">OpenRouter</button>
       <button type="button" role="tab" id="tab-arena" aria-controls="panel-arena" aria-selected="false" tabindex="-1">LMArena</button>
     </div>
 
@@ -466,24 +492,22 @@ TEMPLATE = """<!doctype html>
     </section>
 
     <section id="panel-arena" role="tabpanel" aria-labelledby="tab-arena" tabindex="0">
-      <p>The highest rated models for creative writing on LMArena. Last updated {arena_updated}.</p>
+      <p>The highest rated models for creative writing on LMArena{arena_compared}. Last updated {arena_updated}.</p>
 
-      <div class="switches">
-        <fieldset>
-          <legend>License</legend>
-          <input type="radio" name="arena-license" id="arena-license-all" value="all" checked />
-          <label for="arena-license-all">All</label>
-          <input type="radio" name="arena-license" id="arena-license-proprietary" value="proprietary" />
-          <label for="arena-license-proprietary">Proprietary</label>
-          <input type="radio" name="arena-license" id="arena-license-open" value="open" />
-          <label for="arena-license-open">Open Source</label>
-        </fieldset>
-      </div>
+      <fieldset class="switches">
+        <legend>License</legend>
+        <input type="radio" name="arena-license" id="arena-license-all" value="all" checked />
+        <label for="arena-license-all">All</label>
+        <input type="radio" name="arena-license" id="arena-license-proprietary" value="proprietary" />
+        <label for="arena-license-proprietary">Proprietary</label>
+        <input type="radio" name="arena-license" id="arena-license-open" value="open" />
+        <label for="arena-license-open">Open Source</label>
+      </fieldset>
 
       <div class="table-wrap arena-table" data-license="all">
         <table class="ranking">
-          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-score" /></colgroup>
-          <thead><tr><th>Rank</th><th></th><th class="model-col">Model</th><th>Score</th></tr></thead>
+          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-change" /></colgroup>
+          <thead><tr><th>Rank</th><th></th><th class="model-col">Model</th><th>Change</th></tr></thead>
           <tbody>
 {arena_all}
           </tbody>
@@ -492,8 +516,8 @@ TEMPLATE = """<!doctype html>
 
       <div class="table-wrap arena-table" data-license="proprietary">
         <table class="ranking">
-          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-score" /></colgroup>
-          <thead><tr><th>Rank</th><th>Overall Rank</th><th class="model-col">Model</th><th>Score</th></tr></thead>
+          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-change" /></colgroup>
+          <thead><tr><th>Rank</th><th>Overall Rank</th><th class="model-col">Model</th><th>Change</th></tr></thead>
           <tbody>
 {arena_proprietary}
           </tbody>
@@ -502,8 +526,8 @@ TEMPLATE = """<!doctype html>
 
       <div class="table-wrap arena-table" data-license="open">
         <table class="ranking">
-          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-score" /></colgroup>
-          <thead><tr><th>Rank</th><th>Overall Rank</th><th class="model-col">Model</th><th>Score</th></tr></thead>
+          <colgroup><col class="w-rank" /><col class="w-overall-rank" /><col class="w-model" /><col class="w-change" /></colgroup>
+          <thead><tr><th>Rank</th><th>Overall Rank</th><th class="model-col">Model</th><th>Change</th></tr></thead>
           <tbody>
 {arena_open}
           </tbody>
