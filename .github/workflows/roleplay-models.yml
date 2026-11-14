@@ -1,7 +1,8 @@
 # Renews roleplay-models.html daily (and by hand) from OpenRouter's weekly roleplay ranking (the secret OPENROUTER_API_KEY),
 # its model list's prices and LMArena's latest text leaderboard (Hugging Face, no key); commits the page only when it
 # changed, with the sitemap's day for it, then starts pages.yml, since a push by GITHUB_TOKEN starts no workflow but
-# a workflow_dispatch by it does.
+# a workflow_dispatch by it does. The leaderboards fetched are kept in data/arena-history.json, committed on their own
+# where only they changed.
 # A failed fetch, a ranking without a whole week or an empty LMArena category fails the run and changes nothing.
 # Runs only on main, the branch the site deploys from.
 name: Roleplay models
@@ -41,13 +42,19 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          git add -N data/arena-history.json
+          if git diff --quiet -- roleplay-models.html data/arena-history.json; then
+            echo "The page and the history are unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- roleplay-models.html; then
-            echo "The page is unchanged."
+            git commit -m "Roleplay models: LMArena history kept" -- data/arena-history.json
+            git push
             exit 0
           fi
           python3 build.py sitemap
-          git config user.name "github-actions[bot]"
-          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Roleplay models: OpenRouter's ranking and LMArena renewed" -- roleplay-models.html sitemap.xml
+          git commit -m "Roleplay models: OpenRouter's ranking and LMArena renewed" -- roleplay-models.html sitemap.xml data/arena-history.json
           git push
           gh workflow run pages.yml --ref main

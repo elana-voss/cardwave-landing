@@ -32,10 +32,11 @@ control, its latest public leaderboard. Traps:
   with gaps, as the switch filters models out. "Proprietary" is the license "Proprietary"; every other license is
   "Open Source".
 - The change is in places against the last leaderboard published a week or more before (the "full" split holds
-  every leaderboard, one every few days): the "rank" values are 1, 2, 3 without ties, and each switch compares the
-  model's place in that switch then and now (▲ 2, ▼ 1, 0, "new" where that leaderboard lacks the name). The whole
+  every leaderboard, one every few days; kept in data/arena-history.json, name, rank and license of each day, so
+  Hugging Face is asked for history only where the file has no day a week or more before): the "rank" values are
+  1, 2, 3 without ties, and each switch compares the model's place in that switch then and now (▲ 2, ▼ 1, 0, "new" where that leaderboard lacks the name). The whole
   category is fetched for that day (about 420 rows), so a model that climbed from far below still shows its climb.
-  The full split is too big to scan, so where its filter keeps failing the run fails and the page stays.
+  The full split is too big to scan, so where its filter keeps failing the change column is left empty.
 - The filter also answers 422 while the auth check is down; fetch() tries that again too.
 The page's own switches are semantic HTML (an ARIA tablist, a radio group) in the page's look, run by the small
 vanilla script at the page's foot; every table is plain HTML first, the script only hides what is not chosen.
@@ -57,6 +58,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 from build import article, asset  # noqa: E402  the page's structured data; the stylesheet's address with its hash
 PAGE = os.path.join(ROOT, "roleplay-models.html")
+ARENA_CACHE = os.path.join(ROOT, "data", "arena-history.json")
+CACHED = ("model_name", "rank", "license")  # the fields of a cached leaderboard row
 RANKING_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily?category=roleplay&period=week&start_date={start}"
 PRICES_URL = "https://openrouter.ai/api/v1/models"
 ARENA_URL = ("https://datasets-server.huggingface.co/filter?dataset=lmarena-ai/leaderboard-dataset"
@@ -245,13 +248,52 @@ def arena_full(where):
 
 def arena_history(where_name, latest):
     """The category's whole leaderboard of a week or more before `latest`; [] where none was published in the five
-    weeks before it."""
+    weeks before it, or where it cannot be fetched."""
     start = (date.fromisoformat(latest) - 5 * WEEK).isoformat()
-    tops = arena_full('"category"=\'{}\' AND "rank"=1 AND "leaderboard_publish_date">=\'{}\''.format(where_name, start))
-    day = week_before([r["leaderboard_publish_date"] for r in tops], latest)
-    if day is None:
+    try:
+        tops = arena_full('"category"=\'{}\' AND "rank"=1 AND "leaderboard_publish_date">=\'{}\''.format(where_name, start))
+        day = week_before([r["leaderboard_publish_date"] for r in tops], latest)
+        if day is None:
+            return []
+        return arena_full('"category"=\'{}\' AND "leaderboard_publish_date"=\'{}\''.format(where_name, day))
+    except (urllib.error.HTTPError, OSError) as error:
+        print("The earlier LMArena leaderboard could not be fetched ({}); the change column is left empty.".format(error))
         return []
-    return arena_full('"category"=\'{}\' AND "leaderboard_publish_date"=\'{}\''.format(where_name, day))
+
+
+def arena_cached(cache, arena_rows):
+    """(the leaderboard of a week before, the cache to keep): today's board joins `cache` ({day: slim rows}); the week
+    before comes from it, else from arena_history() (stored too); days older than the one used are dropped."""
+    latest = max(r["leaderboard_publish_date"] for r in arena_rows)
+    slim = lambda rows: [{k: r[k] for k in CACHED} for r in rows]
+    cache = dict(cache, **{latest: slim(arena_rows)})
+    day = week_before(list(cache), latest)
+    if day:
+        before = [dict(r, leaderboard_publish_date=day) for r in cache[day]]
+    else:
+        before = arena_history("creative_writing", latest)
+        if before:
+            day = before[0]["leaderboard_publish_date"]
+            cache[day] = slim(before)
+    keep_from = day or (date.fromisoformat(latest) - 5 * WEEK).isoformat()
+    return before, {d: r for d, r in cache.items() if d >= keep_from}
+
+
+def arena_cache_load(path):
+    """The cache file's days; {} where it is missing or unreadable."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            cache = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return cache if isinstance(cache, dict) else {}
+
+
+def arena_cache_save(path, cache):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(cache, f, sort_keys=True)  # one line: a data file, not counted as code lines
+        f.write("\n")
 
 
 def arena_views(arena_rows):
@@ -358,10 +400,10 @@ def main():
             totals[row["date"]] = totals.get(row["date"], 0) + int(Decimal(row["total_tokens"]))
         print("meta", answer.get("meta"), "tokens by week", sorted(totals.items()))  # the log's record of what came
         arena_rows = arena_category("creative_writing")
-        latest = max(r["leaderboard_publish_date"] for r in arena_rows)
-        arena_before = arena_history("creative_writing", latest)
-        print("arena", len(arena_rows), latest, "before", len(arena_before),
-              arena_before and arena_before[0]["leaderboard_publish_date"])
+        arena_before, cache = arena_cached(arena_cache_load(ARENA_CACHE), arena_rows)
+        arena_cache_save(ARENA_CACHE, cache)
+        print("arena", len(arena_rows), max(r["leaderboard_publish_date"] for r in arena_rows), "before",
+              len(arena_before), arena_before and arena_before[0]["leaderboard_publish_date"], "cached", sorted(cache))
     write_page(PAGE, answer, prices, arena_rows, arena_before)
 
 

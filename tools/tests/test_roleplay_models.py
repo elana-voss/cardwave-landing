@@ -205,6 +205,36 @@ class Arena(unittest.TestCase):
         self.assertIn("filter?", calls[0])
         self.assertIn("rows?", calls[1])
 
+    def test_where_the_history_cannot_be_fetched_it_is_empty(self):
+        def broken(url, key=None):
+            raise urllib.error.HTTPError(url, 500, "down", None, None)
+
+        original = rm.fetch
+        rm.fetch = broken
+        try:
+            self.assertEqual(rm.arena_history("creative_writing", "2026-11-09"), [])
+        finally:
+            rm.fetch = original
+
+    def test_the_week_before_comes_from_the_cache_not_from_hugging_face(self):
+        old = [{"model_name": r["model_name"], "rank": r["rank"], "license": r["license"]} for r in self.arena[:5]]
+        cache = {"2026-11-02": old, "2026-10-20": old}
+
+        def forbidden(url, key=None):
+            self.fail("Hugging Face was asked")
+
+        original = rm.fetch
+        rm.fetch = forbidden
+        try:
+            before, cache = rm.arena_cached(cache, self.arena)
+        finally:
+            rm.fetch = original
+        self.assertEqual(len(before), 5)
+        self.assertEqual({r["leaderboard_publish_date"] for r in before}, {"2026-11-02"})
+        self.assertEqual(before[0]["model_name"], self.arena[0]["model_name"])
+        self.assertEqual(sorted(cache), ["2026-11-02", "2026-11-09"])
+        self.assertEqual(set(cache["2026-11-09"][0]), {"model_name", "rank", "license"})
+
     def test_no_rows_fails(self):
         with self.assertRaises(ValueError):
             rm.arena_tables([])
