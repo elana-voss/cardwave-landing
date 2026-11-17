@@ -84,8 +84,7 @@
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>下载 Windows 版</a>
-    <a id="download-appimage" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>下载 Linux (AppImage) 版</a>
-    <a id="download-deb" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>下载 Linux (.deb) 版</a>
+    <a id="download-linux" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>下载 Linux 版</a>
   </p>
   <script>
     // The installers' names carry their version, so each link is set to the latest release's file here
@@ -93,7 +92,7 @@
     fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
       .then((r) => (r.ok ? r.json() : null))
       .then((release) => {
-        const links = { download: "-setup.exe", "download-appimage": ".AppImage", "download-deb": ".deb" };
+        const links = { download: "-setup.exe", "download-linux": ".AppImage" };
         for (const [id, end] of Object.entries(links)) {
           const file = release && release.assets.find((a) => a.name.endsWith(end));
           if (file) document.getElementById(id).href = file.browser_download_url;
