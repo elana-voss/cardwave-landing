@@ -66,7 +66,7 @@ OTHER_PAGES = [
     ("disclaimer.html", "yearly", "0.3"),
 ]
 
-SLIDES = ["chat", "library", "card", "companion", "lorebook", "chat-dark"]
+SLIDES = ["chat", "library", "card", "companion", "lorebook", "chat-dark", "chat-outrun", "chat-retrowave", "chat-neonwave-light"]
 
 LINKS = {
     "where": "/where-to-find-characters.html",
