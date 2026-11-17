@@ -14,39 +14,35 @@ slide_companion = デスクトップのコンパニオン
 slide_lorebook = ロアブック
 slide_chat_dark = ダークテーマのチャット
 features_h = 機能
-f_chat = <strong>チャット。</strong>一人のキャラクターとも、複数のキャラクターとも話せます。順番に話したり、キャラクター同士で会話を続けたりします。どのメッセージからでも戻って、別の展開を試せます。
-f_cards = <strong>カード。</strong>キャラクターを一から作るか、AIとの会話から作り、専用のページで編集できます。
-f_library = <strong>ライブラリ。</strong>名前、タグ、内容からキャラクターを見つけられます。AIがカードにタグと要約を付けます。
-f_memory = <strong>記憶。</strong>キャラクターは起きたことを覚えていて、あなたが渡した文書を参考にできます。
-f_companion = <strong>コンパニオン。</strong>デスクトップ上の3Dフィギュアがあなたと話し、返事を読み上げ、そばにいてくれます。日々のアシスタントとしても使えます。
-f_voices = <strong>音声。</strong>返事をキャラクターごとの声で、あなたのコンピュータ上で読み上げます。入力の代わりに音声入力もできます。
-f_pictures = <strong>画像。</strong>チャットの中で画像を作れます。
-f_tools = <strong>ツール。</strong>モデルにウェブ検索、一つのフォルダでの作業、コマンドの実行を任せられます。どれもあなたが許可した範囲だけです。
-f_coding = <strong>コーディングチーム。</strong>目標とフォルダを渡すと、AIエージェントのチームがあなたの代わりに作業します。
-f_local = <strong>ローカルモデル。</strong>キーもアカウントもなしで、自分のコンピュータでモデルを動かせます。
-f_tabs = <strong>タブとテーマ。</strong>複数のチャットやカードをタブで開いておけます。ライト、ダーク、ほかに5つのテーマから選べます。
-f_locked = <strong>ロックとバックアップ。</strong>パスワードでアプリをロックでき、バックアップは1つのファイルです。
-f_devices = <strong>スマホやほかのコンピュータ。</strong>家庭内ネットワークにあるスマホやほかのコンピュータのブラウザでCardwaveを開けます。初期段階で、まだ十分にテストされていません。
-f_language = <strong>あなたの言語で。</strong>Cardwaveは12の言語に対応しています。
+f_cards = <strong>カード。</strong>キャラクターを自分で書く、生成する、またはAIと一緒に作れます。
+f_need = <strong>ニーズ別。</strong>欲しいものを選ぶと、それに応えるキャラクターがわかります。
+f_memory = <strong>記憶。</strong>キャラクターはチャットで起きたことを覚えています。
+f_companion = <strong>コンパニオン。</strong>デスクトップ上の3Dフィギュアがあなたと話します。
+f_versions = <strong>バージョン。</strong>カードのどのテキストも以前のバージョンを残します。
+f_translate = <strong>翻訳。</strong>カードを別の言語に変換し、並べて見比べられます。
+f_voices = <strong>音声。</strong>返事をキャラクターごとの声で読み上げます。
+f_own_tools = <strong>自作ツール。</strong>AIがサンドボックス内で自分用の小さなツールを書きます。
+features_more = <a href="{features}">すべての機能を見る</a>
 privacy_h = プライバシー
-privacy_p = Cardwaveはカード、チャット、キー、設定をあなたのコンピュータの暗号化されたデータベースに保存します。アカウント登録なし、同期なし、アプリ内のアナリティクスなし。インターネットに接続するのは、あなたが頼んだときだけです：APIキーを入力したプロバイダへのメッセージ、あなたが始めたダウンロード（検索モデル、音声）、オンにしたウェブツール、そしてGitHubでの新バージョンの確認（設定でオフにできます）。
+privacy_p = カード、チャット、キー、設定は、あなたのコンピュータの暗号化されたデータベースに保存されます。アカウント登録なし、同期なし、アプリ内のアナリティクスなし。
 byo_h = 自分のAIを使う
-byo_p1 = いつも使っているAIをそのまま使えます。APIキーを貼り付けると、Cardwaveがどのサービスのものかを判別します：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT、そのほか<a href="{providers}">150以上</a>。OpenAI互換のサーバーも、アドレスを指定すれば使えます。
-byo_p2 = 自分のコンピュータでモデルを動かすこともできます：GGUFファイルのフォルダを指定すれば、Cardwaveが自分で実行します。可能ならグラフィックカードを使います。
+byo_p1 = APIキーを貼り付けると、Cardwaveがどこのキーかを判別します：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT、そして<a href="{providers}">ほか150以上</a>。OpenAI互換のサーバーも使えます。
+byo_p2 = 自分のコンピュータでモデルを動かすこともできます。GGUFファイルのフォルダを指定すれば、Cardwaveが可能な限りグラフィックカードで実行します。
 providers_h = 対応プロバイダ
 providers_p = <a href="{providers}">Cardwaveが対応するAIプロバイダの一覧</a>をご覧ください。それぞれのサイトへのリンク付きです。
 cards_h = カード
-cards_p = CardwaveはSillyTavernのPNGカードとCCV4カードを、「作成」から、またはライブラリにドロップしてインポートします。カードはSillyTavern V3またはCCV4として、チャットはSillyTavernのチャット形式でエクスポートします。
-where_h = キャラクターの見つけ方
-where_p = Cardwaveはどこから入手したカードでも開けます。ダウンロードしてCardwaveにインポートできる<a href="{where}">キャラクターカードを配布しているサイトの一覧</a>をご覧ください。
-costs_h = コストの見積もり
-costs_p = チャットのコストは会話が長くなるほど増えます。ターンごとに履歴を再送信するためです。<a href="{calculator}">チャットターン予算計算機</a>は、任意のモデルのトークン単価で予算が何ターン分になるかを見積もります。
-roleplay_h = ロールプレイで人気のモデル
-roleplay_p = OpenRouter で<a href="{roleplay}">人気のロールプレイ用モデル</a>と料金。毎日更新。
-scope_h = スコープ
-scope_p = Cardwaveは無料で、一人で開発しています。現状のまま提供されます。
-beta_h = ベータ版
-beta_p = Cardwaveは活発に開発中で、これが最初の公開リリースです。アップデートで以前のバージョンが保存したものが引き継がれないことがあるため、大切なカードはエクスポートし、バックアップを取っておいてください。バグや要望は<a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>へ。
-ccv4_h = CCV4カードフォーマット
-ccv4_p = CCV4は、TOMLで書かれた小さなアドレス指定可能なテキストブロックをPNGチャンクに格納する、ドラフト段階のキャラクターカードフォーマットです。完全な仕様、プロンプト組み立てアルゴリズム、リファレンス例、ライブプレイグラウンドを含む<a href="{ccv4}">CCV4の概要</a>をご覧ください。
+cards_p = CardwaveはSillyTavernのPNGカードとCCV4カードを読み込めます。カードはSillyTavern V3またはCCV4として、チャットはSillyTavernの形式でエクスポートできます。
+guides_h = ガイドとツール
+g_where = <a href="{where}">キャラクターの見つけ方</a>
+g_where_d = ダウンロードできるカードを公開しているサイト。
+g_roleplay = <a href="{roleplay}">ロールプレイで人気のモデル</a>
+g_roleplay_d = 上位のモデルを価格付きで、毎日更新。
+g_costs = <a href="{calculator}">チャットターン予算計算機</a>
+g_costs_d = 予算で何ターン分になるか。
+g_ccv4 = <a href="{ccv4}">CCV4カードフォーマット</a>
+g_ccv4_d = カードフォーマットの草案と、ライブプレイグラウンド。
+status_h = 無料、ベータ版
+status_p1 = Cardwaveは無料で、一人で開発しており、現状のまま公開しています。
+status_p2 = これは最初の公開リリースで、頻繁に変わります。アップデートで以前のバージョンが保存したものが引き継がれないことがあるため、大切なカードはエクスポートし、バックアップを取っておいてください。
+status_p3 = バグや要望は<a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>へ。
 footer = Cardwave © 2026. <a href="{disclaimer}">免責事項と利用規約</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

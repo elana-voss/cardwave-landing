@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>下載 Windows 版</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Cardwave 截圖">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>功能</h2>
   <ul>
-    <li><strong>聊天。</strong>與一個或多個角色交談，他們輪流發言，或彼此繼續聊下去。可以回到任何一則訊息，換一條路走。</li>
-    <li><strong>角色卡。</strong>從零開始建立角色，或在與 AI 的對話中建立，並在角色自己的頁面上編輯。</li>
-    <li><strong>角色庫。</strong>依名字、標籤或內容找到角色。AI 會為你的角色卡加上標籤並撰寫摘要。</li>
-    <li><strong>記憶。</strong>角色記得發生過的事，並能參考你給它們的文件。</li>
-    <li><strong>夥伴。</strong>桌面上的 3D 形象，和你聊天、朗讀自己的回覆、陪伴你，也能當日常助理。</li>
-    <li><strong>語音。</strong>在你的電腦上用每個角色自己的聲音朗讀回覆。可以用語音輸入代替打字。</li>
-    <li><strong>圖片。</strong>在聊天中產生圖片。</li>
-    <li><strong>工具。</strong>讓模型搜尋網路、在一個資料夾裡工作或執行指令，每一項都只在你允許時進行。</li>
-    <li><strong>程式團隊。</strong>給它一個目標和一個資料夾，一組 AI 代理就會替你完成工作。</li>
-    <li><strong>本機模型。</strong>在你自己的電腦上執行模型，不需要金鑰和帳號。</li>
-    <li><strong>分頁和主題。</strong>在分頁中同時開啟多個聊天和角色卡。淺色、深色或另外五種主題之一。</li>
-    <li><strong>上鎖和備份。</strong>用密碼鎖住應用程式；備份就是一個檔案。</li>
-    <li><strong>手機和其他電腦。</strong>在家用網路中的手機或其他電腦上，用瀏覽器開啟 Cardwave。仍在早期階段，尚未經過充分測試。</li>
-    <li><strong>你的語言。</strong>Cardwave 支援十二種語言。</li>
+    <li><strong>角色卡。</strong>自己寫角色、生成一個，或與 AI 一起創作。</li>
+    <li><strong>依需求。</strong>選出你需要的，看看哪些角色能提供。</li>
+    <li><strong>記憶。</strong>角色記得你們聊天中發生過的事。</li>
+    <li><strong>夥伴。</strong>桌面上會和你聊天的 3D 形象。</li>
+    <li><strong>版本。</strong>角色卡的每段文字都保留先前的版本。</li>
+    <li><strong>翻譯。</strong>把角色卡譯成另一種語言，左右對照。</li>
+    <li><strong>語音。</strong>用每個角色自己的聲音朗讀回覆。</li>
+    <li><strong>自製工具。</strong>AI 在沙盒中為自己撰寫小工具。</li>
   </ul>
+  <p><a href="/all-features.html">查看全部功能</a></p>
 
   <h2>隱私</h2>
-  <p>Cardwave 把角色卡、聊天、金鑰和設定儲存在你電腦上的加密資料庫中。無需註冊，沒有同步，應用程式內沒有分析統計。它只在你要求時連網：傳給你填寫了 API 金鑰的服務商的訊息、你啟動的下載（搜尋模型、語音）、你開啟的網頁工具，以及在 GitHub 上檢查新版本（可在設定中關閉）。</p>
+  <p>角色卡、聊天、金鑰和設定都儲存在你電腦上的加密資料庫中。無需註冊，沒有同步，應用程式內沒有分析統計。</p>
 
   <h2>使用你自己的 AI</h2>
-  <p>用你已經在用的 AI。貼上一個 API 金鑰，Cardwave 就知道它屬於誰：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT，以及<a href="/providers.html">其他 150 多家</a>。任何相容 OpenAI 的伺服器也可以，依位址連線。</p>
-  <p>也可以在你自己的電腦上執行模型：把 Cardwave 指向一個存放 GGUF 檔案的資料夾，它會自己執行這些模型，能用顯示卡時就用顯示卡。</p>
+  <p>貼上一個 API 金鑰，Cardwave 就能認出它屬於誰：OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、OpenRouter、NanoGPT，以及<a href="/providers.html">另外 150 多家</a>。任何相容 OpenAI 的伺服器也能用。</p>
+  <p>也可以在你自己的電腦上執行模型。把 Cardwave 指向一個存放 GGUF 檔案的資料夾，它會盡量用你的顯示卡執行。</p>
 
   <h2>支援的服務商</h2>
   <p>查看 <a href="/providers.html">Cardwave 支援的 AI 服務商清單</a>，每家都附有其網站連結。</p>
 
   <h2>角色卡</h2>
-  <p>Cardwave 可以透過「建立」或拖放到資料庫來匯入 SillyTavern PNG 角色卡和 CCV4 角色卡。角色卡可匯出為 SillyTavern V3 或 CCV4，聊天可匯出為 SillyTavern 的聊天格式。</p>
+  <p>Cardwave 可匯入 SillyTavern PNG 角色卡和 CCV4 角色卡。角色卡可匯出為 SillyTavern V3 或 CCV4，聊天可匯出為 SillyTavern 格式。</p>
 
-  <h2>去哪裡找角色</h2>
-  <p>Cardwave 能開啟來自任何地方的角色卡。查看<a href="/where-to-find-characters.html">提供角色卡的網站清單</a>，下載後匯入 Cardwave 即可。</p>
+  <h2>指南與工具</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">去哪裡找角色</a></dt>
+    <dd>提供角色卡下載的網站。</dd>
+    <dt><a href="/roleplay-models.html">熱門角色扮演模型</a></dt>
+    <dd>排名靠前的模型及價格，每日更新。</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">聊天輪次預算計算機</a></dt>
+    <dd>一筆預算能聊多少輪。</dd>
+    <dt><a href="/ccv4.html">CCV4 卡片格式</a></dt>
+    <dd>一個卡片格式草案，附線上演練場。</dd>
+  </dl>
 
-  <h2>費用估算</h2>
-  <p>聊天費用會隨對話變長而增加，因為每一輪都會重新傳送歷史紀錄。<a href="/chat-turn-budget-calculator.html">聊天輪次預算計算機</a>可按任何模型的每 token 價格，估算一筆預算能聊多少輪。</p>
-
-  <h2>熱門角色扮演模型</h2>
-  <p>OpenRouter 上<a href="/roleplay-models.html">最受歡迎的角色扮演模型</a>及其價格。每天更新。</p>
-
-  <h2>專案範圍</h2>
-  <p>Cardwave 免費，由一個人開發，按現狀發佈。</p>
-
-  <h2>測試版</h2>
-  <p>Cardwave 正在積極開發中，這是它的第一個公開版本。更新後可能無法保留舊版本儲存的內容，所以請匯出你在意的角色卡並保留備份。問題和建議請提交到 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>。</p>
-
-  <h2>CCV4 卡片格式</h2>
-  <p>CCV4 是草案階段的角色卡格式，由 TOML 撰寫的小型可定址文字區塊組成，儲存在 PNG 區塊中。閱讀 <a href="/ccv4.html">CCV4 總覽</a>，內含完整規範、提示詞組裝演算法、參考範例與線上遊樂場。</p>
+  <h2>免費，測試版</h2>
+  <p>Cardwave 免費，由一個人開發，按現狀發布。</p>
+  <p>這是它的第一個公開版本，變化很快。更新後可能無法保留舊版本儲存的內容，所以請匯出你在意的角色卡並保留備份。</p>
+  <p>問題和建議請提交到 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>。</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">免責聲明與條款</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

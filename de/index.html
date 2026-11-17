@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Für Windows herunterladen</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Bilder von Cardwave">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>Funktionen</h2>
   <ul>
-    <li><strong>Chat.</strong> Sprich mit einem Charakter oder mit mehreren, die abwechselnd reden oder sich untereinander weiter unterhalten. Geh zu jeder Nachricht zurück und probier einen anderen Weg.</li>
-    <li><strong>Karten.</strong> Erstelle einen Charakter von Grund auf oder im Gespräch mit der KI und bearbeite ihn auf seiner eigenen Seite.</li>
-    <li><strong>Bibliothek.</strong> Finde einen Charakter nach Name, Tag oder Inhalt. Die KI versieht deine Karten mit Tags und fasst sie zusammen.</li>
-    <li><strong>Erinnerung.</strong> Charaktere behalten, was geschehen ist, und können auf Dokumente zurückgreifen, die du ihnen gibst.</li>
-    <li><strong>Begleitung.</strong> Eine 3D-Figur auf deinem Desktop, die mit dir spricht, ihre Antworten vorliest und dir Gesellschaft leistet, auch als Assistentin für den Alltag.</li>
-    <li><strong>Stimmen.</strong> Antworten werden in der eigenen Stimme jedes Charakters vorgelesen, auf deinem Computer. Diktiere, statt zu tippen.</li>
-    <li><strong>Bilder.</strong> Erstelle ein Bild direkt im Chat.</li>
-    <li><strong>Werkzeuge.</strong> Lass das Modell im Web suchen, in einem Ordner arbeiten oder Befehle ausführen, jeweils nur, wenn du es erlaubst.</li>
-    <li><strong>Programmierteam.</strong> Gib ihm ein Ziel und einen Ordner, und ein Team von KI-Agenten arbeitet für dich daran.</li>
-    <li><strong>Lokale Modelle.</strong> Führe Modelle auf deinem eigenen Computer aus, ohne Schlüssel und ohne Konto.</li>
-    <li><strong>Tabs und Designs.</strong> Halte mehrere Chats und Karten in Tabs offen. Hell, dunkel oder eines von fünf weiteren Designs.</li>
-    <li><strong>Gesperrt und gesichert.</strong> Ein Passwort sperrt die App; eine Sicherung ist eine einzige Datei.</li>
-    <li><strong>Handys und andere Computer.</strong> Öffne Cardwave im Browser auf einem Handy oder einem anderen Computer in deinem Heimnetz. Frühe Fassung, noch nicht gründlich getestet.</li>
-    <li><strong>Deine Sprache.</strong> Cardwave spricht zwölf Sprachen.</li>
+    <li><strong>Karten.</strong> Schreib einen Charakter, lass einen erzeugen oder erstelle ihn mit der KI.</li>
+    <li><strong>Nach Bedürfnis.</strong> Wähle, was du brauchst, und sieh, welche Charaktere es bieten.</li>
+    <li><strong>Erinnerung.</strong> Charaktere behalten, was in deinen Chats geschehen ist.</li>
+    <li><strong>Begleitung.</strong> Eine 3D-Figur auf deinem Desktop, die mit dir spricht.</li>
+    <li><strong>Versionen.</strong> Jeder Text einer Karte behält seine früheren Fassungen.</li>
+    <li><strong>Übersetzen.</strong> Übertrage eine Karte in eine andere Sprache, Seite an Seite.</li>
+    <li><strong>Stimmen.</strong> Antworten vorgelesen, in der eigenen Stimme jedes Charakters.</li>
+    <li><strong>Eigene Werkzeuge.</strong> Die KI schreibt sich kleine Werkzeuge, in einer Sandbox.</li>
   </ul>
+  <p><a href="/all-features.html">Alle Funktionen ansehen</a></p>
 
   <h2>Datenschutz</h2>
-  <p>Cardwave speichert Karten, Chats, Schlüssel und Einstellungen auf deinem Computer, in einer verschlüsselten Datenbank. Keine Anmeldung, keine Synchronisierung, keine Analyse in der App. Online geht es nur für das, worum du es bittest: eine Nachricht an den Anbieter, dessen API-Schlüssel du eingegeben hast, einen Download, den du startest (das Suchmodell, eine Stimme), die Web-Werkzeuge, die du einschaltest, und einen Blick auf GitHub nach einer neuen Version, den du in den Einstellungen abschalten kannst.</p>
+  <p>Karten, Chats, Schlüssel und Einstellungen bleiben auf deinem Computer, in einer verschlüsselten Datenbank. Keine Anmeldung, keine Synchronisierung, keine Analyse in der App.</p>
 
   <h2>Bring deine eigene KI mit</h2>
-  <p>Nutze die KI, die du schon verwendest. Füge einen API-Schlüssel ein, und Cardwave erkennt, von wem er ist: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT und <a href="/providers.html">mehr als 150 weitere</a>. Jeder OpenAI-kompatible Server funktioniert auch, über seine Adresse.</p>
-  <p>Oder führe Modelle auf deinem eigenen Computer aus: Zeig Cardwave einen Ordner mit GGUF-Dateien, und es führt sie selbst aus, auf deiner Grafikkarte, wo es geht.</p>
+  <p>Füge einen API-Schlüssel ein, und Cardwave erkennt, von wem er ist: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT und <a href="/providers.html">mehr als 150 weitere</a>. Jeder OpenAI-kompatible Server funktioniert auch.</p>
+  <p>Oder führe Modelle auf deinem eigenen Computer aus. Zeig Cardwave einen Ordner mit GGUF-Dateien, und es führt sie auf deiner Grafikkarte aus, wo es geht.</p>
 
   <h2>Unterstützte Anbieter</h2>
   <p>Sieh dir die <a href="/providers.html">Liste der KI-Anbieter an, die Cardwave unterstützt</a>, jeder mit einem Link zu seiner Website.</p>
 
   <h2>Karten</h2>
-  <p>Cardwave importiert SillyTavern-PNG-Karten und CCV4-Karten, über Erstellen oder per Ablegen in deiner Bibliothek. Es exportiert eine Karte als SillyTavern V3 oder CCV4 und einen Chat im Chatformat von SillyTavern.</p>
+  <p>Cardwave importiert SillyTavern-PNG-Karten und CCV4-Karten. Es exportiert eine Karte als SillyTavern V3 oder CCV4 und einen Chat im Format von SillyTavern.</p>
 
-  <h2>Wo du Charaktere findest</h2>
-  <p>Cardwave öffnet Karten von überall. Sieh dir die <a href="/where-to-find-characters.html">Liste der Seiten mit Charakterkarten</a> an, die du herunterladen und in Cardwave importieren kannst.</p>
+  <h2>Ratgeber und Werkzeuge</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">Wo du Charaktere findest</a></dt>
+    <dd>Seiten mit Karten zum Herunterladen.</dd>
+    <dt><a href="/roleplay-models.html">Beliebte Modelle für Rollenspiele</a></dt>
+    <dd>Die beliebtesten Modelle, mit Preisen, täglich erneuert.</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">Rechner für das Budget pro Chatrunde</a></dt>
+    <dd>Wie viele Runden ein Budget hergibt.</dd>
+    <dt><a href="/ccv4.html">Kartenformat CCV4</a></dt>
+    <dd>Ein Entwurf für ein Kartenformat, mit Live-Playground.</dd>
+  </dl>
 
-  <h2>Kosten abschätzen</h2>
-  <p>Die Kosten eines Chats wachsen, je länger das Gespräch wird, weil jede Runde den Verlauf erneut sendet. Der <a href="/chat-turn-budget-calculator.html">Rechner für das Budget pro Chatrunde</a> schätzt, wie viele Runden ein Budget beim Preis pro Token eines beliebigen Modells hergibt.</p>
-
-  <h2>Beliebte Modelle für Rollenspiele</h2>
-  <p><a href="/roleplay-models.html">Die beliebtesten Rollenspiel-Modelle</a> auf OpenRouter, mit Preisen. Jeden Tag aktualisiert.</p>
-
-  <h2>Umfang</h2>
-  <p>Cardwave ist kostenlos und wird von einer Person gebaut. Veröffentlicht wie es ist.</p>
-
-  <h2>Beta</h2>
-  <p>Cardwave wird aktiv entwickelt, und dies ist die erste öffentliche Version. Ein Update behält vielleicht nicht, was eine frühere Version gespeichert hat; exportiere also die Karten, die dir wichtig sind, und halte eine Sicherung bereit. Fehler und Wünsche gehören in die <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
-
-  <h2>Kartenformat CCV4</h2>
-  <p>CCV4 ist ein Entwurf für ein Format von Charakterkarten aus kleinen adressierbaren Textblöcken in TOML, gespeichert in PNG-Chunks. Lies die <a href="/ccv4.html">Übersicht zu CCV4</a> mit der vollständigen Spezifikation, dem Algorithmus zum Zusammensetzen des Prompts, einem Referenzbeispiel und einem Live-Playground.</p>
+  <h2>Kostenlos und in der Beta</h2>
+  <p>Cardwave ist kostenlos, wird von einer Person gebaut und so veröffentlicht, wie es ist.</p>
+  <p>Dies ist die erste öffentliche Version, und sie ändert sich schnell. Ein Update behält vielleicht nicht, was eine frühere Version gespeichert hat; exportiere also die Karten, die dir wichtig sind, und halte eine Sicherung bereit.</p>
+  <p>Fehler und Wünsche gehören in die <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Haftungsausschluss &amp; Nutzungsbedingungen</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

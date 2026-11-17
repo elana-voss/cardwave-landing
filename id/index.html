@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Unduh untuk Windows</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Gambar Cardwave">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>Fitur</h2>
   <ul>
-    <li><strong>Obrolan.</strong> Bicaralah dengan satu karakter atau beberapa, yang bergiliran berbicara atau terus mengobrol di antara mereka sendiri. Kembali ke pesan mana pun dan coba jalan lain.</li>
-    <li><strong>Kartu.</strong> Buat karakter dari nol atau dalam percakapan dengan AI, lalu sunting di halamannya sendiri.</li>
-    <li><strong>Pustaka.</strong> Temukan karakter berdasarkan nama, tag, atau isinya. AI memberi tag dan meringkas kartu kamu.</li>
-    <li><strong>Ingatan.</strong> Karakter mengingat apa yang terjadi dan dapat bersandar pada dokumen yang kamu berikan.</li>
-    <li><strong>Pendamping.</strong> Sosok 3D di desktop kamu yang berbicara dengan kamu, membacakan balasannya, dan menemani kamu, juga sebagai asisten sehari-hari.</li>
-    <li><strong>Suara.</strong> Balasan dibacakan dengan suara masing-masing karakter, di komputer kamu. Dikte alih-alih mengetik.</li>
-    <li><strong>Gambar.</strong> Buat gambar langsung di dalam obrolan.</li>
-    <li><strong>Alat.</strong> Biarkan model mencari di web, bekerja di satu folder, atau menjalankan perintah, masing-masing hanya jika kamu izinkan.</li>
-    <li><strong>Tim pemrograman.</strong> Beri tim itu sebuah tujuan dan sebuah folder, dan sekelompok agen AI mengerjakannya untuk kamu.</li>
-    <li><strong>Model lokal.</strong> Jalankan model di komputer kamu sendiri, tanpa kunci dan tanpa akun.</li>
-    <li><strong>Tab dan tema.</strong> Biarkan beberapa obrolan dan kartu terbuka di tab. Terang, gelap, atau salah satu dari lima tema lain.</li>
-    <li><strong>Terkunci dan dicadangkan.</strong> Kata sandi mengunci aplikasi; cadangan hanyalah satu file.</li>
-    <li><strong>Ponsel dan komputer lain.</strong> Buka Cardwave di browser ponsel atau komputer lain di jaringan rumah kamu. Masih tahap awal, belum diuji secara menyeluruh.</li>
-    <li><strong>Bahasamu.</strong> Cardwave berbicara dalam dua belas bahasa.</li>
+    <li><strong>Kartu.</strong> Tulis karakter, buat otomatis, atau rancang bersama AI.</li>
+    <li><strong>Menurut kebutuhan.</strong> Pilih yang kamu butuhkan, lihat karakter yang menawarkannya.</li>
+    <li><strong>Ingatan.</strong> Karakter mengingat apa yang terjadi di obrolan kamu.</li>
+    <li><strong>Pendamping.</strong> Figur 3D di desktop kamu yang berbicara dengan kamu.</li>
+    <li><strong>Versi.</strong> Setiap teks kartu menyimpan versi-versi sebelumnya.</li>
+    <li><strong>Terjemahkan.</strong> Ubah kartu ke bahasa lain, berdampingan.</li>
+    <li><strong>Suara.</strong> Balasan dibacakan dengan suara masing-masing karakter.</li>
+    <li><strong>Alat sendiri.</strong> AI menulis alat kecil untuk dirinya sendiri, di dalam sandbox.</li>
   </ul>
+  <p><a href="/all-features.html">Lihat semua fitur</a></p>
 
   <h2>Privasi</h2>
-  <p>Cardwave menyimpan kartu, obrolan, kunci, dan pengaturan di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi. Aplikasi ini hanya terhubung ke internet untuk hal yang kamu minta: pesan ke penyedia yang kunci API-nya kamu masukkan, unduhan yang kamu mulai (model pencarian, sebuah suara), alat web yang kamu aktifkan, dan pemeriksaan versi baru di GitHub, yang dapat dimatikan di Pengaturan.</p>
+  <p>Kartu, obrolan, kunci, dan pengaturan tetap di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi.</p>
 
   <h2>Bawa AI kamu sendiri</h2>
-  <p>Gunakan AI yang sudah kamu pakai. Tempelkan kunci API dan Cardwave tahu milik siapa: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT, dan <a href="/providers.html">lebih dari 150 lainnya</a>. Server apa pun yang kompatibel dengan OpenAI juga bisa, lewat alamatnya.</p>
-  <p>Atau jalankan model di komputer kamu sendiri: arahkan Cardwave ke folder berisi file GGUF dan ia menjalankannya sendiri, di kartu grafis kamu bila bisa.</p>
+  <p>Tempelkan kunci API dan Cardwave tahu milik siapa: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT, dan <a href="/providers.html">lebih dari 150 lainnya</a>. Server apa pun yang kompatibel dengan OpenAI juga bisa.</p>
+  <p>Atau jalankan model di komputer kamu sendiri. Arahkan Cardwave ke folder berisi file GGUF, dan ia menjalankannya di kartu grafis kamu bila bisa.</p>
 
   <h2>Penyedia yang didukung</h2>
   <p>Lihat <a href="/providers.html">daftar penyedia AI yang didukung Cardwave</a>, masing-masing dengan tautan ke situsnya.</p>
 
   <h2>Kartu</h2>
-  <p>Cardwave mengimpor kartu PNG SillyTavern dan kartu CCV4, dari Buat atau dengan menjatuhkannya ke pustaka kamu. Kartu dapat diekspor sebagai SillyTavern V3 atau CCV4, dan obrolan dalam format obrolan SillyTavern.</p>
+  <p>Cardwave mengimpor kartu PNG SillyTavern dan kartu CCV4. Kartu dapat diekspor sebagai SillyTavern V3 atau CCV4, dan obrolan dalam format SillyTavern.</p>
 
-  <h2>Tempat menemukan karakter</h2>
-  <p>Cardwave membuka kartu dari mana saja. Lihat <a href="/where-to-find-characters.html">daftar situs yang menyediakan kartu karakter</a> yang dapat kamu unduh dan impor ke Cardwave.</p>
+  <h2>Panduan dan alat</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">Tempat menemukan karakter</a></dt>
+    <dd>Situs yang menyediakan kartu untuk diunduh.</dd>
+    <dt><a href="/roleplay-models.html">Model roleplay populer</a></dt>
+    <dd>Model teratas, dengan harga, diperbarui setiap hari.</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">Kalkulator anggaran giliran obrolan</a></dt>
+    <dd>Berapa giliran yang bisa dibeli sebuah anggaran.</dd>
+    <dt><a href="/ccv4.html">Format kartu CCV4</a></dt>
+    <dd>Draf format kartu, dengan playground langsung.</dd>
+  </dl>
 
-  <h2>Memperkirakan biaya</h2>
-  <p>Biaya obrolan bertambah seiring percakapan memanjang, karena setiap giliran mengirim ulang riwayatnya. <a href="/chat-turn-budget-calculator.html">Kalkulator anggaran giliran obrolan</a> memperkirakan berapa giliran yang bisa dibeli sebuah anggaran dengan harga per token model mana pun.</p>
-
-  <h2>Model roleplay populer</h2>
-  <p><a href="/roleplay-models.html">Model roleplay terpopuler</a> di OpenRouter, lengkap dengan harga. Diperbarui setiap hari.</p>
-
-  <h2>Cakupan</h2>
-  <p>Cardwave gratis dan dibuat oleh satu orang. Dirilis apa adanya.</p>
-
-  <h2>Beta</h2>
-  <p>Cardwave sedang aktif dikembangkan, dan ini rilis publik pertamanya. Pembaruan mungkin tidak mempertahankan apa yang disimpan versi sebelumnya, jadi ekspor kartu yang penting bagi kamu dan simpan cadangan. Bug dan keinginan silakan kirim ke <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
-
-  <h2>Format kartu CCV4</h2>
-  <p>CCV4 adalah rancangan format kartu karakter yang tersusun dari blok teks kecil yang dapat dialamatkan dalam TOML, disimpan dalam chunk PNG. Baca <a href="/ccv4.html">ikhtisar CCV4</a>, dengan spesifikasi lengkap, algoritma penyusunan prompt, contoh referensi, dan playground langsung.</p>
+  <h2>Gratis, dan masih beta</h2>
+  <p>Cardwave gratis, dibuat oleh satu orang, dan dirilis apa adanya.</p>
+  <p>Ini rilis publik pertamanya, dan ia berubah dengan cepat. Pembaruan mungkin tidak mempertahankan apa yang disimpan versi sebelumnya, jadi ekspor kartu yang penting bagi kamu dan simpan cadangan.</p>
+  <p>Laporkan bug dan keinginan di <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Penafian &amp; Ketentuan</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

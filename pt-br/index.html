@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Baixar para Windows</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Imagens do Cardwave">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>Recursos</h2>
   <ul>
-    <li><strong>Chat.</strong> Converse com um personagem ou com vários, que se revezam ou continuam conversando entre si. Volte a qualquer mensagem e tente outro caminho.</li>
-    <li><strong>Cartões.</strong> Crie um personagem do zero ou numa conversa com a IA, e edite-o na própria página dele.</li>
-    <li><strong>Biblioteca.</strong> Encontre um personagem pelo nome, por uma tag ou pelo assunto. A IA cria tags e resumos para os seus cartões.</li>
-    <li><strong>Memória.</strong> Os personagens lembram o que aconteceu e podem se apoiar em documentos que você der a eles.</li>
-    <li><strong>Companheiro.</strong> Uma figura 3D na sua área de trabalho que conversa com você, lê as respostas em voz alta e faz companhia, também como assistente no dia a dia.</li>
-    <li><strong>Vozes.</strong> Respostas lidas em voz alta com a voz de cada personagem, no seu computador. Dite em vez de digitar.</li>
-    <li><strong>Imagens.</strong> Crie uma imagem dentro de um chat.</li>
-    <li><strong>Ferramentas.</strong> Deixe o modelo pesquisar na web, trabalhar em uma pasta ou executar comandos, cada coisa só se você permitir.</li>
-    <li><strong>Equipe de programação.</strong> Dê a ela um objetivo e uma pasta, e uma equipe de agentes de IA trabalha nisso para você.</li>
-    <li><strong>Modelos locais.</strong> Rode modelos no seu próprio computador, sem chave e sem conta.</li>
-    <li><strong>Abas e temas.</strong> Mantenha vários chats e cartões abertos em abas. Claro, escuro ou um de mais cinco temas.</li>
-    <li><strong>Protegido e com backup.</strong> Uma senha bloqueia o app; um backup é um único arquivo.</li>
-    <li><strong>Celulares e outros computadores.</strong> Abra o Cardwave no navegador de um celular ou de outro computador da sua rede doméstica. Versão inicial, ainda não testada a fundo.</li>
-    <li><strong>Seu idioma.</strong> O Cardwave fala doze idiomas.</li>
+    <li><strong>Cartões.</strong> Escreva um personagem, gere um ou crie um com a IA.</li>
+    <li><strong>Por necessidade.</strong> Escolha do que você precisa e veja quais personagens oferecem isso.</li>
+    <li><strong>Memória.</strong> Os personagens lembram o que aconteceu nos seus chats.</li>
+    <li><strong>Companheiro.</strong> Uma figura 3D na sua área de trabalho que conversa com você.</li>
+    <li><strong>Versões.</strong> Cada texto de um cartão guarda suas versões anteriores.</li>
+    <li><strong>Traduzir.</strong> Passe um cartão para outro idioma, lado a lado.</li>
+    <li><strong>Vozes.</strong> Respostas lidas em voz alta com a voz de cada personagem.</li>
+    <li><strong>Ferramentas próprias.</strong> A IA cria pequenas ferramentas para si, num sandbox.</li>
   </ul>
+  <p><a href="/all-features.html">Ver todos os recursos</a></p>
 
   <h2>Privacidade</h2>
-  <p>O Cardwave guarda cartões, chats, chaves e configurações no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app. Ele só se conecta à internet para o que você pede: uma mensagem ao provedor cuja chave de API você informou, um download que você inicia (o modelo de busca, uma voz), as ferramentas da web que você ativa, e uma consulta ao GitHub por uma nova versão, que você pode desativar nas Configurações.</p>
+  <p>Cartões, chats, chaves e configurações ficam no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app.</p>
 
   <h2>Use a sua própria IA</h2>
-  <p>Use a IA que você já usa. Cole uma chave de API e o Cardwave sabe de quem ela é: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT e <a href="/providers.html">mais de 150 outros</a>. Qualquer servidor compatível com a OpenAI também funciona, pelo endereço dele.</p>
-  <p>Ou rode modelos no seu próprio computador: aponte o Cardwave para uma pasta de arquivos GGUF e ele mesmo os executa, na sua placa de vídeo quando possível.</p>
+  <p>Cole uma chave de API e o Cardwave sabe de quem ela é: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT e <a href="/providers.html">mais de 150 outros</a>. Qualquer servidor compatível com a OpenAI também funciona.</p>
+  <p>Ou rode modelos no seu próprio computador. Aponte o Cardwave para uma pasta de arquivos GGUF, e ele os executa na sua placa de vídeo quando possível.</p>
 
   <h2>Provedores compatíveis</h2>
   <p>Veja a <a href="/providers.html">lista de provedores de IA compatíveis com o Cardwave</a>, cada um com um link para o site dele.</p>
 
   <h2>Cartões</h2>
-  <p>O Cardwave importa cartões PNG do SillyTavern e cartões CCV4, pelo botão Criar ou soltando-os na sua biblioteca. Ele exporta um cartão como SillyTavern V3 ou CCV4, e um chat no formato de chat do SillyTavern.</p>
+  <p>O Cardwave importa cartões PNG do SillyTavern e cartões CCV4. Ele exporta um cartão como SillyTavern V3 ou CCV4, e um chat no formato do SillyTavern.</p>
 
-  <h2>Onde encontrar personagens</h2>
-  <p>O Cardwave abre cartões de qualquer lugar. Veja a <a href="/where-to-find-characters.html">lista de sites que hospedam cartões de personagem</a> que você pode baixar e importar no Cardwave.</p>
+  <h2>Guias e ferramentas</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">Onde encontrar personagens</a></dt>
+    <dd>Sites que hospedam cartões para baixar.</dd>
+    <dt><a href="/roleplay-models.html">Modelos populares para roleplay</a></dt>
+    <dd>Os modelos mais usados, com preços, atualizados diariamente.</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">Calculadora de orçamento de turnos</a></dt>
+    <dd>Quantos turnos um orçamento compra.</dd>
+    <dt><a href="/ccv4.html">Formato de cartão CCV4</a></dt>
+    <dd>Um rascunho de formato de cartão, com playground ao vivo.</dd>
+  </dl>
 
-  <h2>Estimando custos</h2>
-  <p>O custo do chat cresce conforme a conversa se alonga, porque cada nova mensagem reenvia o histórico. A <a href="/chat-turn-budget-calculator.html">calculadora de orçamento de turnos</a> estima quantos turnos um orçamento compra para o preço por token de qualquer modelo.</p>
-
-  <h2>Modelos populares para roleplay</h2>
-  <p><a href="/roleplay-models.html">Os modelos de roleplay mais populares</a> no OpenRouter, com preços. Atualizado todo dia.</p>
-
-  <h2>Escopo</h2>
-  <p>O Cardwave é gratuito e feito por uma pessoa só. Distribuído como está.</p>
-
-  <h2>Beta</h2>
-  <p>O Cardwave está em desenvolvimento ativo, e esta é a primeira versão pública. Uma atualização pode não manter o que uma versão anterior guardou, então exporte os cartões que importam para você e mantenha um backup. Bugs e pedidos vão para o <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
-
-  <h2>Formato de cartão CCV4</h2>
-  <p>CCV4 é um rascunho de formato de cartão de personagem feito de pequenos blocos de texto endereçáveis em TOML, armazenados em chunks de PNG. Leia a <a href="/ccv4.html">visão geral do CCV4</a>, com a especificação completa, o algoritmo de montagem de prompt, um exemplo de referência e um playground ao vivo.</p>
+  <h2>Gratuito e em beta</h2>
+  <p>O Cardwave é gratuito, feito por uma pessoa só e distribuído como está.</p>
+  <p>Esta é a primeira versão pública, e ela muda rápido. Uma atualização pode não manter o que uma versão anterior salvou, então exporte os cartões que importam para você e mantenha um backup.</p>
+  <p>Bugs e pedidos vão para o <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Aviso legal e termos</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

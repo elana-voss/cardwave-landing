@@ -57,31 +57,37 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>{{download}}</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
 {{@shots}}
 
   <h2>{{features_h}}</h2>
   <ul>
-    <li>{{f_chat}}</li>
     <li>{{f_cards}}</li>
-    <li>{{f_library}}</li>
+    <li>{{f_need}}</li>
     <li>{{f_memory}}</li>
     <li>{{f_companion}}</li>
+    <li>{{f_versions}}</li>
+    <li>{{f_translate}}</li>
     <li>{{f_voices}}</li>
-    <li>{{f_pictures}}</li>
-    <li>{{f_tools}}</li>
-    <li>{{f_coding}}</li>
-    <li>{{f_local}}</li>
-    <li>{{f_tabs}}</li>
-    <li>{{f_locked}}</li>
-    <li>{{f_devices}}</li>
-    <li>{{f_language}}</li>
+    <li>{{f_own_tools}}</li>
   </ul>
+  <p>{{features_more}}</p>
 
   <h2>{{privacy_h}}</h2>
   <p>{{privacy_p}}</p>
@@ -96,23 +102,22 @@
   <h2>{{cards_h}}</h2>
   <p>{{cards_p}}</p>
 
-  <h2>{{where_h}}</h2>
-  <p>{{where_p}}</p>
+  <h2>{{guides_h}}</h2>
+  <dl>
+    <dt>{{g_where}}</dt>
+    <dd>{{g_where_d}}</dd>
+    <dt>{{g_roleplay}}</dt>
+    <dd>{{g_roleplay_d}}</dd>
+    <dt>{{g_costs}}</dt>
+    <dd>{{g_costs_d}}</dd>
+    <dt>{{g_ccv4}}</dt>
+    <dd>{{g_ccv4_d}}</dd>
+  </dl>
 
-  <h2>{{costs_h}}</h2>
-  <p>{{costs_p}}</p>
-
-  <h2>{{roleplay_h}}</h2>
-  <p>{{roleplay_p}}</p>
-
-  <h2>{{scope_h}}</h2>
-  <p>{{scope_p}}</p>
-
-  <h2>{{beta_h}}</h2>
-  <p>{{beta_p}}</p>
-
-  <h2>{{ccv4_h}}</h2>
-  <p>{{ccv4_p}}</p>
+  <h2>{{status_h}}</h2>
+  <p>{{status_p1}}</p>
+  <p>{{status_p2}}</p>
+  <p>{{status_p3}}</p>
 
   <hr />
   <footer>{{footer}}</footer>

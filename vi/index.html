@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Tải về cho Windows</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Hình ảnh Cardwave">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>Tính năng</h2>
   <ul>
-    <li><strong>Trò chuyện.</strong> Nói chuyện với một hay nhiều nhân vật, họ lần lượt lên tiếng hoặc tiếp tục trò chuyện với nhau. Quay lại bất kỳ tin nhắn nào và thử một hướng khác.</li>
-    <li><strong>Thẻ.</strong> Tạo nhân vật từ đầu hoặc qua một cuộc trò chuyện với AI, rồi chỉnh sửa trên trang riêng của nhân vật.</li>
-    <li><strong>Thư viện.</strong> Tìm nhân vật theo tên, nhãn hoặc nội dung. AI gắn nhãn và tóm tắt các thẻ của bạn.</li>
-    <li><strong>Trí nhớ.</strong> Nhân vật nhớ những gì đã xảy ra và có thể dựa vào tài liệu bạn đưa cho họ.</li>
-    <li><strong>Người đồng hành.</strong> Một hình 3D trên màn hình của bạn, trò chuyện với bạn, đọc to câu trả lời và ở bên bạn, cũng như một trợ lý hằng ngày.</li>
-    <li><strong>Giọng nói.</strong> Câu trả lời được đọc to bằng giọng riêng của từng nhân vật, ngay trên máy tính của bạn. Đọc thay vì gõ.</li>
-    <li><strong>Hình ảnh.</strong> Tạo một bức ảnh ngay trong cuộc trò chuyện.</li>
-    <li><strong>Công cụ.</strong> Cho mô hình tìm kiếm trên web, làm việc trong một thư mục hoặc chạy lệnh, mỗi việc chỉ khi bạn cho phép.</li>
-    <li><strong>Nhóm lập trình.</strong> Giao cho nhóm một mục tiêu và một thư mục, và một nhóm tác tử AI làm việc đó thay bạn.</li>
-    <li><strong>Mô hình cục bộ.</strong> Chạy mô hình trên chính máy tính của bạn, không cần khóa, không cần tài khoản.</li>
-    <li><strong>Tab và giao diện.</strong> Mở nhiều cuộc trò chuyện và thẻ cùng lúc trong các tab. Sáng, tối hoặc một trong năm giao diện khác.</li>
-    <li><strong>Khóa và sao lưu.</strong> Mật khẩu khóa ứng dụng; bản sao lưu là một tệp duy nhất.</li>
-    <li><strong>Điện thoại và máy tính khác.</strong> Mở Cardwave trong trình duyệt trên điện thoại hoặc máy tính khác trong mạng gia đình của bạn. Mới ở giai đoạn đầu, chưa được kiểm thử kỹ.</li>
-    <li><strong>Ngôn ngữ của bạn.</strong> Cardwave nói mười hai ngôn ngữ.</li>
+    <li><strong>Thẻ.</strong> Tự viết nhân vật, tạo tự động, hoặc cùng AI làm ra.</li>
+    <li><strong>Theo nhu cầu.</strong> Chọn điều bạn cần, và xem nhân vật nào đáp ứng.</li>
+    <li><strong>Trí nhớ.</strong> Nhân vật nhớ những gì đã xảy ra trong các cuộc trò chuyện của bạn.</li>
+    <li><strong>Người đồng hành.</strong> Một hình 3D trên màn hình, trò chuyện với bạn.</li>
+    <li><strong>Phiên bản.</strong> Mỗi đoạn văn của thẻ đều giữ các phiên bản trước.</li>
+    <li><strong>Dịch.</strong> Chuyển thẻ sang ngôn ngữ khác, đặt cạnh nhau.</li>
+    <li><strong>Giọng nói.</strong> Câu trả lời được đọc to bằng giọng riêng của từng nhân vật.</li>
+    <li><strong>Công cụ riêng.</strong> AI tự viết những công cụ nhỏ cho mình, trong sandbox.</li>
   </ul>
+  <p><a href="/all-features.html">Xem tất cả tính năng</a></p>
 
   <h2>Quyền riêng tư</h2>
-  <p>Cardwave lưu thẻ, cuộc trò chuyện, khóa và cài đặt trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng. Ứng dụng chỉ kết nối mạng cho những gì bạn yêu cầu: tin nhắn gửi tới nhà cung cấp có khóa API bạn đã nhập, bản tải về do bạn bắt đầu (mô hình tìm kiếm, một giọng nói), các công cụ web bạn bật, và việc kiểm tra phiên bản mới trên GitHub, có thể tắt trong Cài đặt.</p>
+  <p>Thẻ, cuộc trò chuyện, khóa và cài đặt nằm trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng.</p>
 
   <h2>Dùng AI của riêng bạn</h2>
-  <p>Dùng AI bạn vẫn đang dùng. Dán một khóa API và Cardwave biết đó là của ai: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT và <a href="/providers.html">hơn 150 nhà cung cấp khác</a>. Bất kỳ máy chủ nào tương thích OpenAI cũng dùng được, theo địa chỉ của nó.</p>
-  <p>Hoặc chạy mô hình trên chính máy tính của bạn: chỉ cho Cardwave một thư mục chứa tệp GGUF và ứng dụng tự chạy chúng, trên card đồ họa của bạn khi có thể.</p>
+  <p>Dán một khóa API và Cardwave biết nó của ai: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT và <a href="/providers.html">hơn 150 nhà cung cấp khác</a>. Mọi máy chủ tương thích OpenAI cũng dùng được.</p>
+  <p>Hoặc chạy mô hình trên chính máy tính của bạn. Chỉ cho Cardwave một thư mục chứa tệp GGUF, và ứng dụng chạy chúng trên card đồ họa của bạn khi có thể.</p>
 
   <h2>Nhà cung cấp được hỗ trợ</h2>
   <p>Xem <a href="/providers.html">danh sách nhà cung cấp AI mà Cardwave hỗ trợ</a>, mỗi nhà cung cấp kèm một liên kết tới trang của họ.</p>
 
   <h2>Thẻ</h2>
-  <p>Cardwave nhập thẻ PNG của SillyTavern và thẻ CCV4, từ nút Tạo hoặc bằng cách thả vào thư viện của bạn. Ứng dụng xuất thẻ dưới dạng SillyTavern V3 hoặc CCV4, và cuộc trò chuyện theo định dạng trò chuyện của SillyTavern.</p>
+  <p>Cardwave nhập thẻ PNG của SillyTavern và thẻ CCV4. Ứng dụng xuất thẻ dưới dạng SillyTavern V3 hoặc CCV4, và cuộc trò chuyện theo định dạng của SillyTavern.</p>
 
-  <h2>Nơi tìm nhân vật</h2>
-  <p>Cardwave mở được thẻ từ bất cứ đâu. Xem <a href="/where-to-find-characters.html">danh sách các trang web lưu trữ thẻ nhân vật</a> mà bạn có thể tải về và nhập vào Cardwave.</p>
+  <h2>Hướng dẫn và công cụ</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">Nơi tìm nhân vật</a></dt>
+    <dd>Các trang chia sẻ thẻ để tải về.</dd>
+    <dt><a href="/roleplay-models.html">Mô hình nhập vai phổ biến</a></dt>
+    <dd>Các mô hình hàng đầu, kèm giá, cập nhật hằng ngày.</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">Công cụ tính ngân sách lượt trò chuyện</a></dt>
+    <dd>Một khoản ngân sách mua được bao nhiêu lượt.</dd>
+    <dt><a href="/ccv4.html">Định dạng thẻ CCV4</a></dt>
+    <dd>Bản nháp một định dạng thẻ, kèm playground trực tiếp.</dd>
+  </dl>
 
-  <h2>Ước tính chi phí</h2>
-  <p>Chi phí trò chuyện tăng lên khi cuộc trò chuyện dài ra, vì mỗi lượt lại gửi lại toàn bộ lịch sử. <a href="/chat-turn-budget-calculator.html">Công cụ tính ngân sách lượt trò chuyện</a> ước tính một khoản ngân sách mua được bao nhiêu lượt theo đơn giá mỗi token của bất kỳ mô hình nào.</p>
-
-  <h2>Mô hình nhập vai phổ biến</h2>
-  <p><a href="/roleplay-models.html">Các mô hình nhập vai phổ biến nhất</a> trên OpenRouter, kèm giá. Cập nhật mỗi ngày.</p>
-
-  <h2>Phạm vi</h2>
-  <p>Cardwave miễn phí và do một người xây dựng. Được phát hành nguyên trạng.</p>
-
-  <h2>Bản beta</h2>
-  <p>Cardwave đang được phát triển tích cực, và đây là bản phát hành công khai đầu tiên. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu. Lỗi và mong muốn xin gửi tới <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
-
-  <h2>Định dạng thẻ CCV4</h2>
-  <p>CCV4 là một định dạng thẻ nhân vật ở dạng bản nháp, được xây dựng từ các khối văn bản nhỏ có thể định địa chỉ bằng TOML, lưu trong các chunk của PNG. Đọc <a href="/ccv4.html">bản tổng quan CCV4</a>, gồm đặc tả đầy đủ, thuật toán lắp ráp prompt, một ví dụ tham chiếu và một sân chơi trực tiếp.</p>
+  <h2>Miễn phí, và đang beta</h2>
+  <p>Cardwave miễn phí, do một người xây dựng và phát hành nguyên trạng.</p>
+  <p>Đây là bản phát hành công khai đầu tiên, và nó thay đổi nhanh. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu.</p>
+  <p>Lỗi và mong muốn xin gửi tới <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">Tuyên bố miễn trừ &amp; Điều khoản</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

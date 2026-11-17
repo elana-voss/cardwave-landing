@@ -14,39 +14,35 @@ slide_companion = Người bạn đồng hành trên màn hình của bạn
 slide_lorebook = Một lorebook
 slide_chat_dark = Trò chuyện với giao diện tối
 features_h = Tính năng
-f_chat = <strong>Trò chuyện.</strong> Nói chuyện với một hay nhiều nhân vật, họ lần lượt lên tiếng hoặc tiếp tục trò chuyện với nhau. Quay lại bất kỳ tin nhắn nào và thử một hướng khác.
-f_cards = <strong>Thẻ.</strong> Tạo nhân vật từ đầu hoặc qua một cuộc trò chuyện với AI, rồi chỉnh sửa trên trang riêng của nhân vật.
-f_library = <strong>Thư viện.</strong> Tìm nhân vật theo tên, nhãn hoặc nội dung. AI gắn nhãn và tóm tắt các thẻ của bạn.
-f_memory = <strong>Trí nhớ.</strong> Nhân vật nhớ những gì đã xảy ra và có thể dựa vào tài liệu bạn đưa cho họ.
-f_companion = <strong>Người đồng hành.</strong> Một hình 3D trên màn hình của bạn, trò chuyện với bạn, đọc to câu trả lời và ở bên bạn, cũng như một trợ lý hằng ngày.
-f_voices = <strong>Giọng nói.</strong> Câu trả lời được đọc to bằng giọng riêng của từng nhân vật, ngay trên máy tính của bạn. Đọc thay vì gõ.
-f_pictures = <strong>Hình ảnh.</strong> Tạo một bức ảnh ngay trong cuộc trò chuyện.
-f_tools = <strong>Công cụ.</strong> Cho mô hình tìm kiếm trên web, làm việc trong một thư mục hoặc chạy lệnh, mỗi việc chỉ khi bạn cho phép.
-f_coding = <strong>Nhóm lập trình.</strong> Giao cho nhóm một mục tiêu và một thư mục, và một nhóm tác tử AI làm việc đó thay bạn.
-f_local = <strong>Mô hình cục bộ.</strong> Chạy mô hình trên chính máy tính của bạn, không cần khóa, không cần tài khoản.
-f_tabs = <strong>Tab và giao diện.</strong> Mở nhiều cuộc trò chuyện và thẻ cùng lúc trong các tab. Sáng, tối hoặc một trong năm giao diện khác.
-f_locked = <strong>Khóa và sao lưu.</strong> Mật khẩu khóa ứng dụng; bản sao lưu là một tệp duy nhất.
-f_devices = <strong>Điện thoại và máy tính khác.</strong> Mở Cardwave trong trình duyệt trên điện thoại hoặc máy tính khác trong mạng gia đình của bạn. Mới ở giai đoạn đầu, chưa được kiểm thử kỹ.
-f_language = <strong>Ngôn ngữ của bạn.</strong> Cardwave nói mười hai ngôn ngữ.
+f_cards = <strong>Thẻ.</strong> Tự viết nhân vật, tạo tự động, hoặc cùng AI làm ra.
+f_need = <strong>Theo nhu cầu.</strong> Chọn điều bạn cần, và xem nhân vật nào đáp ứng.
+f_memory = <strong>Trí nhớ.</strong> Nhân vật nhớ những gì đã xảy ra trong các cuộc trò chuyện của bạn.
+f_companion = <strong>Người đồng hành.</strong> Một hình 3D trên màn hình, trò chuyện với bạn.
+f_versions = <strong>Phiên bản.</strong> Mỗi đoạn văn của thẻ đều giữ các phiên bản trước.
+f_translate = <strong>Dịch.</strong> Chuyển thẻ sang ngôn ngữ khác, đặt cạnh nhau.
+f_voices = <strong>Giọng nói.</strong> Câu trả lời được đọc to bằng giọng riêng của từng nhân vật.
+f_own_tools = <strong>Công cụ riêng.</strong> AI tự viết những công cụ nhỏ cho mình, trong sandbox.
+features_more = <a href="{features}">Xem tất cả tính năng</a>
 privacy_h = Quyền riêng tư
-privacy_p = Cardwave lưu thẻ, cuộc trò chuyện, khóa và cài đặt trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng. Ứng dụng chỉ kết nối mạng cho những gì bạn yêu cầu: tin nhắn gửi tới nhà cung cấp có khóa API bạn đã nhập, bản tải về do bạn bắt đầu (mô hình tìm kiếm, một giọng nói), các công cụ web bạn bật, và việc kiểm tra phiên bản mới trên GitHub, có thể tắt trong Cài đặt.
+privacy_p = Thẻ, cuộc trò chuyện, khóa và cài đặt nằm trên máy tính của bạn, trong một cơ sở dữ liệu được mã hóa. Không đăng ký, không đồng bộ, không phân tích trong ứng dụng.
 byo_h = Dùng AI của riêng bạn
-byo_p1 = Dùng AI bạn vẫn đang dùng. Dán một khóa API và Cardwave biết đó là của ai: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT và <a href="{providers}">hơn 150 nhà cung cấp khác</a>. Bất kỳ máy chủ nào tương thích OpenAI cũng dùng được, theo địa chỉ của nó.
-byo_p2 = Hoặc chạy mô hình trên chính máy tính của bạn: chỉ cho Cardwave một thư mục chứa tệp GGUF và ứng dụng tự chạy chúng, trên card đồ họa của bạn khi có thể.
+byo_p1 = Dán một khóa API và Cardwave biết nó của ai: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT và <a href="{providers}">hơn 150 nhà cung cấp khác</a>. Mọi máy chủ tương thích OpenAI cũng dùng được.
+byo_p2 = Hoặc chạy mô hình trên chính máy tính của bạn. Chỉ cho Cardwave một thư mục chứa tệp GGUF, và ứng dụng chạy chúng trên card đồ họa của bạn khi có thể.
 providers_h = Nhà cung cấp được hỗ trợ
 providers_p = Xem <a href="{providers}">danh sách nhà cung cấp AI mà Cardwave hỗ trợ</a>, mỗi nhà cung cấp kèm một liên kết tới trang của họ.
 cards_h = Thẻ
-cards_p = Cardwave nhập thẻ PNG của SillyTavern và thẻ CCV4, từ nút Tạo hoặc bằng cách thả vào thư viện của bạn. Ứng dụng xuất thẻ dưới dạng SillyTavern V3 hoặc CCV4, và cuộc trò chuyện theo định dạng trò chuyện của SillyTavern.
-where_h = Nơi tìm nhân vật
-where_p = Cardwave mở được thẻ từ bất cứ đâu. Xem <a href="{where}">danh sách các trang web lưu trữ thẻ nhân vật</a> mà bạn có thể tải về và nhập vào Cardwave.
-costs_h = Ước tính chi phí
-costs_p = Chi phí trò chuyện tăng lên khi cuộc trò chuyện dài ra, vì mỗi lượt lại gửi lại toàn bộ lịch sử. <a href="{calculator}">Công cụ tính ngân sách lượt trò chuyện</a> ước tính một khoản ngân sách mua được bao nhiêu lượt theo đơn giá mỗi token của bất kỳ mô hình nào.
-roleplay_h = Mô hình nhập vai phổ biến
-roleplay_p = <a href="{roleplay}">Các mô hình nhập vai phổ biến nhất</a> trên OpenRouter, kèm giá. Cập nhật mỗi ngày.
-scope_h = Phạm vi
-scope_p = Cardwave miễn phí và do một người xây dựng. Được phát hành nguyên trạng.
-beta_h = Bản beta
-beta_p = Cardwave đang được phát triển tích cực, và đây là bản phát hành công khai đầu tiên. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu. Lỗi và mong muốn xin gửi tới <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-ccv4_h = Định dạng thẻ CCV4
-ccv4_p = CCV4 là một định dạng thẻ nhân vật ở dạng bản nháp, được xây dựng từ các khối văn bản nhỏ có thể định địa chỉ bằng TOML, lưu trong các chunk của PNG. Đọc <a href="{ccv4}">bản tổng quan CCV4</a>, gồm đặc tả đầy đủ, thuật toán lắp ráp prompt, một ví dụ tham chiếu và một sân chơi trực tiếp.
+cards_p = Cardwave nhập thẻ PNG của SillyTavern và thẻ CCV4. Ứng dụng xuất thẻ dưới dạng SillyTavern V3 hoặc CCV4, và cuộc trò chuyện theo định dạng của SillyTavern.
+guides_h = Hướng dẫn và công cụ
+g_where = <a href="{where}">Nơi tìm nhân vật</a>
+g_where_d = Các trang chia sẻ thẻ để tải về.
+g_roleplay = <a href="{roleplay}">Mô hình nhập vai phổ biến</a>
+g_roleplay_d = Các mô hình hàng đầu, kèm giá, cập nhật hằng ngày.
+g_costs = <a href="{calculator}">Công cụ tính ngân sách lượt trò chuyện</a>
+g_costs_d = Một khoản ngân sách mua được bao nhiêu lượt.
+g_ccv4 = <a href="{ccv4}">Định dạng thẻ CCV4</a>
+g_ccv4_d = Bản nháp một định dạng thẻ, kèm playground trực tiếp.
+status_h = Miễn phí, và đang beta
+status_p1 = Cardwave miễn phí, do một người xây dựng và phát hành nguyên trạng.
+status_p2 = Đây là bản phát hành công khai đầu tiên, và nó thay đổi nhanh. Một bản cập nhật có thể không giữ lại những gì phiên bản trước đã lưu, vì vậy hãy xuất những thẻ bạn quý và giữ một bản sao lưu.
+status_p3 = Lỗi và mong muốn xin gửi tới <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
 footer = Cardwave © 2026. <a href="{disclaimer}">Tuyên bố miễn trừ &amp; Điều khoản</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

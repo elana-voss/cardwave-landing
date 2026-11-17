@@ -35,7 +35,7 @@
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/style.css?v=596d3cd425" />
+  <link rel="stylesheet" href="/style.css?v=b3abb0d0bf" />
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="Vyii1vivGp5eoVeTLVRAwA" async></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://cardwave.cc/#organization", "name": "Cardwave", "url": "https://cardwave.cc/", "logo": "https://cardwave.cc/logo_icon.png", "sameAs": ["https://github.com/elana-voss/cardwave", "https://discord.gg/C62KZVg6J"]}, {"@type": "WebSite", "@id": "https://cardwave.cc/#website", "name": "Cardwave", "url": "https://cardwave.cc/", "publisher": {"@id": "https://cardwave.cc/#organization"}}]}</script>
 </head>
@@ -80,11 +80,22 @@
   </nav>
 
   <p class="downloads">
-    <a href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
+    <a id="download" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Windows용 다운로드</a>
   </p>
+  <script>
+    // The installer's name carries its version, so the link is set to the latest release's .exe here;
+    // without an answer from GitHub it keeps the release page.
+    fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((release) => {
+        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
+        if (exe) document.getElementById("download").href = exe.browser_download_url;
+      })
+      .catch(() => {}); // the release page stays the link
+  </script>
 
   <figure class="shots" aria-label="Cardwave 화면">
     <div class="shots-box">
@@ -137,52 +148,46 @@
 
   <h2>기능</h2>
   <ul>
-    <li><strong>채팅.</strong> 한 캐릭터나 여러 캐릭터와 대화하세요. 캐릭터들은 차례로 말하거나 자기들끼리 대화를 이어 갑니다. 어느 메시지로든 돌아가 다른 길을 시도할 수 있습니다.</li>
-    <li><strong>카드.</strong> 캐릭터를 처음부터 만들거나 AI와 대화하며 만들고, 캐릭터만의 페이지에서 편집하세요.</li>
-    <li><strong>라이브러리.</strong> 이름, 태그, 내용으로 캐릭터를 찾으세요. AI가 카드에 태그를 달고 요약합니다.</li>
-    <li><strong>기억.</strong> 캐릭터는 있었던 일을 기억하고, 내가 준 문서를 참고할 수 있습니다.</li>
-    <li><strong>컴패니언.</strong> 바탕 화면의 3D 피규어가 나와 이야기하고, 답을 소리 내어 읽어 주며 곁에 있어 줍니다. 일상의 도우미로도 쓸 수 있습니다.</li>
-    <li><strong>음성.</strong> 답을 캐릭터마다 고유한 목소리로, 내 컴퓨터에서 읽어 줍니다. 타이핑 대신 받아쓰기도 됩니다.</li>
-    <li><strong>이미지.</strong> 채팅 안에서 이미지를 만드세요.</li>
-    <li><strong>도구.</strong> 모델이 웹을 검색하고, 한 폴더에서 작업하거나 명령을 실행하게 하세요. 모두 내가 허락한 만큼만 합니다.</li>
-    <li><strong>코딩 팀.</strong> 목표와 폴더를 주면 AI 에이전트 팀이 나 대신 작업합니다.</li>
-    <li><strong>로컬 모델.</strong> 키도 계정도 없이 내 컴퓨터에서 모델을 실행하세요.</li>
-    <li><strong>탭과 테마.</strong> 여러 채팅과 카드를 탭으로 열어 두세요. 라이트, 다크 또는 다섯 가지 다른 테마 중 하나.</li>
-    <li><strong>잠금과 백업.</strong> 비밀번호로 앱을 잠그고, 백업은 파일 하나입니다.</li>
-    <li><strong>휴대폰과 다른 컴퓨터.</strong> 집 네트워크에 있는 휴대폰이나 다른 컴퓨터의 브라우저에서 Cardwave를 여세요. 초기 단계로, 아직 충분히 테스트되지 않았습니다.</li>
-    <li><strong>내 언어로.</strong> Cardwave는 12개 언어를 지원합니다.</li>
+    <li><strong>카드.</strong> 캐릭터를 직접 쓰거나, 생성하거나, AI와 함께 만드세요.</li>
+    <li><strong>필요별.</strong> 원하는 것을 고르면 그것을 제공하는 캐릭터를 볼 수 있습니다.</li>
+    <li><strong>기억.</strong> 캐릭터는 채팅에서 있었던 일을 기억합니다.</li>
+    <li><strong>컴패니언.</strong> 바탕 화면에서 나와 이야기하는 3D 피규어.</li>
+    <li><strong>버전.</strong> 카드의 모든 텍스트가 이전 버전을 보관합니다.</li>
+    <li><strong>번역.</strong> 카드를 다른 언어로 옮기고, 나란히 비교하세요.</li>
+    <li><strong>음성.</strong> 답을 캐릭터마다 고유한 목소리로 읽어 줍니다.</li>
+    <li><strong>자체 도구.</strong> AI가 샌드박스 안에서 스스로 쓸 작은 도구를 만듭니다.</li>
   </ul>
+  <p><a href="/all-features.html">모든 기능 보기</a></p>
 
   <h2>프라이버시</h2>
-  <p>Cardwave는 카드, 채팅, 키, 설정을 내 컴퓨터의 암호화된 데이터베이스에 저장합니다. 가입 없음, 동기화 없음, 앱 내 분석 없음. 인터넷에는 내가 요청한 일에만 연결합니다: API 키를 입력한 제공사로 가는 메시지, 내가 시작한 다운로드(검색 모델, 음성), 켜 둔 웹 도구, 그리고 GitHub에서 새 버전 확인(설정에서 끌 수 있습니다).</p>
+  <p>카드, 채팅, 키, 설정은 내 컴퓨터의 암호화된 데이터베이스에 저장됩니다. 가입 없음, 동기화 없음, 앱 내 분석 없음.</p>
 
   <h2>내 AI 사용하기</h2>
-  <p>이미 쓰고 있는 AI를 그대로 쓰세요. API 키를 붙여 넣으면 Cardwave가 어느 곳의 키인지 알아봅니다: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT 그리고 <a href="/providers.html">150곳 이상</a>. OpenAI 호환 서버도 주소만 있으면 됩니다.</p>
-  <p>또는 내 컴퓨터에서 모델을 실행하세요: GGUF 파일이 있는 폴더를 지정하면 Cardwave가 직접 실행하며, 가능하면 그래픽 카드를 씁니다.</p>
+  <p>API 키를 붙여 넣으면 Cardwave가 어디의 키인지 알아봅니다: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT 그리고 <a href="/providers.html">그 밖의 150곳 이상</a>. OpenAI 호환 서버도 쓸 수 있습니다.</p>
+  <p>또는 내 컴퓨터에서 모델을 실행하세요. GGUF 파일이 있는 폴더를 지정하면 Cardwave가 가능하면 그래픽 카드로 실행합니다.</p>
 
   <h2>지원하는 제공사</h2>
   <p><a href="/providers.html">Cardwave가 지원하는 AI 제공사 목록</a>을 확인하세요. 각 사이트로 가는 링크가 있습니다.</p>
 
   <h2>카드</h2>
-  <p>Cardwave는 SillyTavern PNG 카드와 CCV4 카드를 '만들기'에서, 또는 라이브러리에 끌어다 놓아 가져옵니다. 카드는 SillyTavern V3나 CCV4로, 채팅은 SillyTavern의 채팅 형식으로 내보냅니다.</p>
+  <p>Cardwave는 SillyTavern PNG 카드와 CCV4 카드를 가져옵니다. 카드는 SillyTavern V3 또는 CCV4로, 채팅은 SillyTavern 형식으로 내보냅니다.</p>
 
-  <h2>캐릭터 찾는 곳</h2>
-  <p>Cardwave는 어디서 받은 카드든 열 수 있습니다. 다운로드해서 Cardwave로 가져올 수 있는 <a href="/where-to-find-characters.html">캐릭터 카드를 제공하는 사이트 목록</a>을 확인하세요.</p>
+  <h2>가이드와 도구</h2>
+  <dl>
+    <dt><a href="/where-to-find-characters.html">캐릭터 찾는 곳</a></dt>
+    <dd>다운로드할 카드를 올려 두는 사이트.</dd>
+    <dt><a href="/roleplay-models.html">롤플레이 인기 모델</a></dt>
+    <dd>상위 모델과 가격, 매일 갱신.</dd>
+    <dt><a href="/chat-turn-budget-calculator.html">채팅 턴 예산 계산기</a></dt>
+    <dd>예산으로 몇 턴을 쓸 수 있는지.</dd>
+    <dt><a href="/ccv4.html">CCV4 카드 포맷</a></dt>
+    <dd>초안 단계의 카드 포맷과 라이브 플레이그라운드.</dd>
+  </dl>
 
-  <h2>비용 추정</h2>
-  <p>채팅 비용은 대화가 길어질수록 커집니다. 매 턴마다 히스토리를 다시 전송하기 때문입니다. <a href="/chat-turn-budget-calculator.html">채팅 턴 예산 계산기</a>는 모델별 토큰 단가로 예산이 몇 턴을 감당하는지 추정합니다.</p>
-
-  <h2>롤플레이 인기 모델</h2>
-  <p>OpenRouter에서 <a href="/roleplay-models.html">가장 인기 있는 롤플레이 모델</a>과 가격. 매일 업데이트.</p>
-
-  <h2>프로젝트 범위</h2>
-  <p>Cardwave는 무료이며 한 사람이 만듭니다. 있는 그대로 배포됩니다.</p>
-
-  <h2>베타</h2>
-  <p>Cardwave는 활발히 개발 중이며, 이번이 첫 공개 릴리스입니다. 업데이트가 이전 버전이 저장한 것을 유지하지 못할 수 있으니, 아끼는 카드는 내보내고 백업을 해 두세요. 버그와 바라는 점은 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>로 보내 주세요.</p>
-
-  <h2>CCV4 카드 포맷</h2>
-  <p>CCV4는 TOML로 된 작고 주소 지정 가능한 텍스트 블록을 PNG 청크에 저장하는 초안 단계의 캐릭터 카드 포맷입니다. 전체 사양, 프롬프트 조립 알고리즘, 참조 예제, 라이브 플레이그라운드가 포함된 <a href="/ccv4.html">CCV4 개요</a>를 읽어 보세요.</p>
+  <h2>무료, 베타 버전</h2>
+  <p>Cardwave는 무료이며, 한 사람이 만들고, 있는 그대로 배포됩니다.</p>
+  <p>이번이 첫 공개 릴리스이며, 빠르게 바뀝니다. 업데이트가 이전 버전이 저장한 것을 유지하지 못할 수 있으니, 아끼는 카드는 내보내고 백업을 해 두세요.</p>
+  <p>버그와 바라는 점은 <a href="https://github.com/elana-voss/cardwave/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>로 보내 주세요.</p>
 
   <hr />
   <footer>Cardwave © 2026. <a href="/disclaimer.html">면책 조항 및 약관</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a></footer>

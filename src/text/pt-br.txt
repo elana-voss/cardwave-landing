@@ -14,39 +14,35 @@ slide_companion = O companheiro na sua área de trabalho
 slide_lorebook = Um lorebook
 slide_chat_dark = Um chat no tema escuro
 features_h = Recursos
-f_chat = <strong>Chat.</strong> Converse com um personagem ou com vários, que se revezam ou continuam conversando entre si. Volte a qualquer mensagem e tente outro caminho.
-f_cards = <strong>Cartões.</strong> Crie um personagem do zero ou numa conversa com a IA, e edite-o na própria página dele.
-f_library = <strong>Biblioteca.</strong> Encontre um personagem pelo nome, por uma tag ou pelo assunto. A IA cria tags e resumos para os seus cartões.
-f_memory = <strong>Memória.</strong> Os personagens lembram o que aconteceu e podem se apoiar em documentos que você der a eles.
-f_companion = <strong>Companheiro.</strong> Uma figura 3D na sua área de trabalho que conversa com você, lê as respostas em voz alta e faz companhia, também como assistente no dia a dia.
-f_voices = <strong>Vozes.</strong> Respostas lidas em voz alta com a voz de cada personagem, no seu computador. Dite em vez de digitar.
-f_pictures = <strong>Imagens.</strong> Crie uma imagem dentro de um chat.
-f_tools = <strong>Ferramentas.</strong> Deixe o modelo pesquisar na web, trabalhar em uma pasta ou executar comandos, cada coisa só se você permitir.
-f_coding = <strong>Equipe de programação.</strong> Dê a ela um objetivo e uma pasta, e uma equipe de agentes de IA trabalha nisso para você.
-f_local = <strong>Modelos locais.</strong> Rode modelos no seu próprio computador, sem chave e sem conta.
-f_tabs = <strong>Abas e temas.</strong> Mantenha vários chats e cartões abertos em abas. Claro, escuro ou um de mais cinco temas.
-f_locked = <strong>Protegido e com backup.</strong> Uma senha bloqueia o app; um backup é um único arquivo.
-f_devices = <strong>Celulares e outros computadores.</strong> Abra o Cardwave no navegador de um celular ou de outro computador da sua rede doméstica. Versão inicial, ainda não testada a fundo.
-f_language = <strong>Seu idioma.</strong> O Cardwave fala doze idiomas.
+f_cards = <strong>Cartões.</strong> Escreva um personagem, gere um ou crie um com a IA.
+f_need = <strong>Por necessidade.</strong> Escolha do que você precisa e veja quais personagens oferecem isso.
+f_memory = <strong>Memória.</strong> Os personagens lembram o que aconteceu nos seus chats.
+f_companion = <strong>Companheiro.</strong> Uma figura 3D na sua área de trabalho que conversa com você.
+f_versions = <strong>Versões.</strong> Cada texto de um cartão guarda suas versões anteriores.
+f_translate = <strong>Traduzir.</strong> Passe um cartão para outro idioma, lado a lado.
+f_voices = <strong>Vozes.</strong> Respostas lidas em voz alta com a voz de cada personagem.
+f_own_tools = <strong>Ferramentas próprias.</strong> A IA cria pequenas ferramentas para si, num sandbox.
+features_more = <a href="{features}">Ver todos os recursos</a>
 privacy_h = Privacidade
-privacy_p = O Cardwave guarda cartões, chats, chaves e configurações no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app. Ele só se conecta à internet para o que você pede: uma mensagem ao provedor cuja chave de API você informou, um download que você inicia (o modelo de busca, uma voz), as ferramentas da web que você ativa, e uma consulta ao GitHub por uma nova versão, que você pode desativar nas Configurações.
+privacy_p = Cartões, chats, chaves e configurações ficam no seu computador, em um banco de dados criptografado. Sem cadastro, sem sincronização, sem analytics no app.
 byo_h = Use a sua própria IA
-byo_p1 = Use a IA que você já usa. Cole uma chave de API e o Cardwave sabe de quem ela é: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT e <a href="{providers}">mais de 150 outros</a>. Qualquer servidor compatível com a OpenAI também funciona, pelo endereço dele.
-byo_p2 = Ou rode modelos no seu próprio computador: aponte o Cardwave para uma pasta de arquivos GGUF e ele mesmo os executa, na sua placa de vídeo quando possível.
+byo_p1 = Cole uma chave de API e o Cardwave sabe de quem ela é: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT e <a href="{providers}">mais de 150 outros</a>. Qualquer servidor compatível com a OpenAI também funciona.
+byo_p2 = Ou rode modelos no seu próprio computador. Aponte o Cardwave para uma pasta de arquivos GGUF, e ele os executa na sua placa de vídeo quando possível.
 providers_h = Provedores compatíveis
 providers_p = Veja a <a href="{providers}">lista de provedores de IA compatíveis com o Cardwave</a>, cada um com um link para o site dele.
 cards_h = Cartões
-cards_p = O Cardwave importa cartões PNG do SillyTavern e cartões CCV4, pelo botão Criar ou soltando-os na sua biblioteca. Ele exporta um cartão como SillyTavern V3 ou CCV4, e um chat no formato de chat do SillyTavern.
-where_h = Onde encontrar personagens
-where_p = O Cardwave abre cartões de qualquer lugar. Veja a <a href="{where}">lista de sites que hospedam cartões de personagem</a> que você pode baixar e importar no Cardwave.
-costs_h = Estimando custos
-costs_p = O custo do chat cresce conforme a conversa se alonga, porque cada nova mensagem reenvia o histórico. A <a href="{calculator}">calculadora de orçamento de turnos</a> estima quantos turnos um orçamento compra para o preço por token de qualquer modelo.
-roleplay_h = Modelos populares para roleplay
-roleplay_p = <a href="{roleplay}">Os modelos de roleplay mais populares</a> no OpenRouter, com preços. Atualizado todo dia.
-scope_h = Escopo
-scope_p = O Cardwave é gratuito e feito por uma pessoa só. Distribuído como está.
-beta_h = Beta
-beta_p = O Cardwave está em desenvolvimento ativo, e esta é a primeira versão pública. Uma atualização pode não manter o que uma versão anterior guardou, então exporte os cartões que importam para você e mantenha um backup. Bugs e pedidos vão para o <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-ccv4_h = Formato de cartão CCV4
-ccv4_p = CCV4 é um rascunho de formato de cartão de personagem feito de pequenos blocos de texto endereçáveis em TOML, armazenados em chunks de PNG. Leia a <a href="{ccv4}">visão geral do CCV4</a>, com a especificação completa, o algoritmo de montagem de prompt, um exemplo de referência e um playground ao vivo.
+cards_p = O Cardwave importa cartões PNG do SillyTavern e cartões CCV4. Ele exporta um cartão como SillyTavern V3 ou CCV4, e um chat no formato do SillyTavern.
+guides_h = Guias e ferramentas
+g_where = <a href="{where}">Onde encontrar personagens</a>
+g_where_d = Sites que hospedam cartões para baixar.
+g_roleplay = <a href="{roleplay}">Modelos populares para roleplay</a>
+g_roleplay_d = Os modelos mais usados, com preços, atualizados diariamente.
+g_costs = <a href="{calculator}">Calculadora de orçamento de turnos</a>
+g_costs_d = Quantos turnos um orçamento compra.
+g_ccv4 = <a href="{ccv4}">Formato de cartão CCV4</a>
+g_ccv4_d = Um rascunho de formato de cartão, com playground ao vivo.
+status_h = Gratuito e em beta
+status_p1 = O Cardwave é gratuito, feito por uma pessoa só e distribuído como está.
+status_p2 = Esta é a primeira versão pública, e ela muda rápido. Uma atualização pode não manter o que uma versão anterior salvou, então exporte os cartões que importam para você e mantenha um backup.
+status_p3 = Bugs e pedidos vão para o <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
 footer = Cardwave © 2026. <a href="{disclaimer}">Aviso legal e termos</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

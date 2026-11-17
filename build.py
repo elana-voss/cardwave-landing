@@ -5,7 +5,7 @@ wrote (GitHub Pages serves the files as they are). Standard library only.
 
 - src/index.template.html: the page. `{{key}}` is a text of the language's file; `{{@name}}` is filled in here
   (the language row, the hreflang alternates, the picture box, the page's own address and language).
-- src/text/<code>.txt: one language's texts, a line `key = value` each; inline HTML is allowed, and `{where}`,
+- src/text/<code>.txt: one language's texts, a line `key = value` each; inline HTML is allowed, and `{where}`, `{features}`,
   `{calculator}`, `{ccv4}`, `{disclaimer}`, `{providers}` and `{issues}` become their links. en.txt is the golden file: every
   other language is translated from it, and the build stops when a file lacks one of its keys or has one more.
 - Writes index.html (English) and <code>/index.html for every other language, each page's links absolute
@@ -19,7 +19,7 @@ wrote (GitHub Pages serves the files as they are). Standard library only.
   else that commit's day. `python build.py sitemap` writes only the sitemap (the daily job, after renewing a page).
 - Writes providers.html (English only) from src/providers.json, which cardwave-next's tools/provider_page.py
   writes from the app's own provider list: the online services in columns, the local servers apart.
-- The other English-only pages (ccv4, calculator, disclaimer, where to find characters) are not written here; their
+- The other English-only pages (ccv4, calculator, disclaimer, where to find characters, all features) are not written here; their
   stylesheet link, and roleplay-models.html's, is renewed here (stamp_pages).
 - style.css and the pictures are linked as `/<path>?v=<hash of the file>` (asset()): a browser holding an older copy
   (http.server and GitHub Pages let it keep one for hours) must not pair the old style with a new page, which
@@ -61,6 +61,7 @@ OTHER_PAGES = [
     ("roleplay-models.html", "daily", "0.7"),
     ("ccv4.html", "monthly", "0.7"),
     ("where-to-find-characters.html", "monthly", "0.7"),
+    ("all-features.html", "monthly", "0.7"),
     ("chat-turn-budget-calculator.html", "monthly", "0.7"),
     ("disclaimer.html", "yearly", "0.3"),
 ]
@@ -69,6 +70,7 @@ SLIDES = ["chat", "library", "card", "companion", "lorebook", "chat-dark"]
 
 LINKS = {
     "where": "/where-to-find-characters.html",
+    "features": "/all-features.html",
     "calculator": "/chat-turn-budget-calculator.html",
     "ccv4": "/ccv4.html",
     "disclaimer": "/disclaimer.html",
@@ -124,7 +126,7 @@ def asset(name):
 
 STYLE_LINK = re.compile(r'<link rel="stylesheet" href="/?style\.css(\?v=\w+)?" />')
 STAMPED = ["ccv4.html", "chat-turn-budget-calculator.html", "disclaimer.html", "where-to-find-characters.html",
-           "roleplay-models.html"]
+           "roleplay-models.html", "all-features.html"]
 
 
 def json_ld(data):

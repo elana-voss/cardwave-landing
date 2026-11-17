@@ -14,39 +14,35 @@ slide_companion = Pendamping di desktop kamu
 slide_lorebook = Sebuah lorebook
 slide_chat_dark = Obrolan dengan tema gelap
 features_h = Fitur
-f_chat = <strong>Obrolan.</strong> Bicaralah dengan satu karakter atau beberapa, yang bergiliran berbicara atau terus mengobrol di antara mereka sendiri. Kembali ke pesan mana pun dan coba jalan lain.
-f_cards = <strong>Kartu.</strong> Buat karakter dari nol atau dalam percakapan dengan AI, lalu sunting di halamannya sendiri.
-f_library = <strong>Pustaka.</strong> Temukan karakter berdasarkan nama, tag, atau isinya. AI memberi tag dan meringkas kartu kamu.
-f_memory = <strong>Ingatan.</strong> Karakter mengingat apa yang terjadi dan dapat bersandar pada dokumen yang kamu berikan.
-f_companion = <strong>Pendamping.</strong> Sosok 3D di desktop kamu yang berbicara dengan kamu, membacakan balasannya, dan menemani kamu, juga sebagai asisten sehari-hari.
-f_voices = <strong>Suara.</strong> Balasan dibacakan dengan suara masing-masing karakter, di komputer kamu. Dikte alih-alih mengetik.
-f_pictures = <strong>Gambar.</strong> Buat gambar langsung di dalam obrolan.
-f_tools = <strong>Alat.</strong> Biarkan model mencari di web, bekerja di satu folder, atau menjalankan perintah, masing-masing hanya jika kamu izinkan.
-f_coding = <strong>Tim pemrograman.</strong> Beri tim itu sebuah tujuan dan sebuah folder, dan sekelompok agen AI mengerjakannya untuk kamu.
-f_local = <strong>Model lokal.</strong> Jalankan model di komputer kamu sendiri, tanpa kunci dan tanpa akun.
-f_tabs = <strong>Tab dan tema.</strong> Biarkan beberapa obrolan dan kartu terbuka di tab. Terang, gelap, atau salah satu dari lima tema lain.
-f_locked = <strong>Terkunci dan dicadangkan.</strong> Kata sandi mengunci aplikasi; cadangan hanyalah satu file.
-f_devices = <strong>Ponsel dan komputer lain.</strong> Buka Cardwave di browser ponsel atau komputer lain di jaringan rumah kamu. Masih tahap awal, belum diuji secara menyeluruh.
-f_language = <strong>Bahasamu.</strong> Cardwave berbicara dalam dua belas bahasa.
+f_cards = <strong>Kartu.</strong> Tulis karakter, buat otomatis, atau rancang bersama AI.
+f_need = <strong>Menurut kebutuhan.</strong> Pilih yang kamu butuhkan, lihat karakter yang menawarkannya.
+f_memory = <strong>Ingatan.</strong> Karakter mengingat apa yang terjadi di obrolan kamu.
+f_companion = <strong>Pendamping.</strong> Figur 3D di desktop kamu yang berbicara dengan kamu.
+f_versions = <strong>Versi.</strong> Setiap teks kartu menyimpan versi-versi sebelumnya.
+f_translate = <strong>Terjemahkan.</strong> Ubah kartu ke bahasa lain, berdampingan.
+f_voices = <strong>Suara.</strong> Balasan dibacakan dengan suara masing-masing karakter.
+f_own_tools = <strong>Alat sendiri.</strong> AI menulis alat kecil untuk dirinya sendiri, di dalam sandbox.
+features_more = <a href="{features}">Lihat semua fitur</a>
 privacy_h = Privasi
-privacy_p = Cardwave menyimpan kartu, obrolan, kunci, dan pengaturan di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi. Aplikasi ini hanya terhubung ke internet untuk hal yang kamu minta: pesan ke penyedia yang kunci API-nya kamu masukkan, unduhan yang kamu mulai (model pencarian, sebuah suara), alat web yang kamu aktifkan, dan pemeriksaan versi baru di GitHub, yang dapat dimatikan di Pengaturan.
+privacy_p = Kartu, obrolan, kunci, dan pengaturan tetap di komputer kamu, dalam basis data terenkripsi. Tanpa pendaftaran, tanpa sinkronisasi, tanpa analitik di aplikasi.
 byo_h = Bawa AI kamu sendiri
-byo_p1 = Gunakan AI yang sudah kamu pakai. Tempelkan kunci API dan Cardwave tahu milik siapa: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT, dan <a href="{providers}">lebih dari 150 lainnya</a>. Server apa pun yang kompatibel dengan OpenAI juga bisa, lewat alamatnya.
-byo_p2 = Atau jalankan model di komputer kamu sendiri: arahkan Cardwave ke folder berisi file GGUF dan ia menjalankannya sendiri, di kartu grafis kamu bila bisa.
+byo_p1 = Tempelkan kunci API dan Cardwave tahu milik siapa: OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, OpenRouter, NanoGPT, dan <a href="{providers}">lebih dari 150 lainnya</a>. Server apa pun yang kompatibel dengan OpenAI juga bisa.
+byo_p2 = Atau jalankan model di komputer kamu sendiri. Arahkan Cardwave ke folder berisi file GGUF, dan ia menjalankannya di kartu grafis kamu bila bisa.
 providers_h = Penyedia yang didukung
 providers_p = Lihat <a href="{providers}">daftar penyedia AI yang didukung Cardwave</a>, masing-masing dengan tautan ke situsnya.
 cards_h = Kartu
-cards_p = Cardwave mengimpor kartu PNG SillyTavern dan kartu CCV4, dari Buat atau dengan menjatuhkannya ke pustaka kamu. Kartu dapat diekspor sebagai SillyTavern V3 atau CCV4, dan obrolan dalam format obrolan SillyTavern.
-where_h = Tempat menemukan karakter
-where_p = Cardwave membuka kartu dari mana saja. Lihat <a href="{where}">daftar situs yang menyediakan kartu karakter</a> yang dapat kamu unduh dan impor ke Cardwave.
-costs_h = Memperkirakan biaya
-costs_p = Biaya obrolan bertambah seiring percakapan memanjang, karena setiap giliran mengirim ulang riwayatnya. <a href="{calculator}">Kalkulator anggaran giliran obrolan</a> memperkirakan berapa giliran yang bisa dibeli sebuah anggaran dengan harga per token model mana pun.
-roleplay_h = Model roleplay populer
-roleplay_p = <a href="{roleplay}">Model roleplay terpopuler</a> di OpenRouter, lengkap dengan harga. Diperbarui setiap hari.
-scope_h = Cakupan
-scope_p = Cardwave gratis dan dibuat oleh satu orang. Dirilis apa adanya.
-beta_h = Beta
-beta_p = Cardwave sedang aktif dikembangkan, dan ini rilis publik pertamanya. Pembaruan mungkin tidak mempertahankan apa yang disimpan versi sebelumnya, jadi ekspor kartu yang penting bagi kamu dan simpan cadangan. Bug dan keinginan silakan kirim ke <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-ccv4_h = Format kartu CCV4
-ccv4_p = CCV4 adalah rancangan format kartu karakter yang tersusun dari blok teks kecil yang dapat dialamatkan dalam TOML, disimpan dalam chunk PNG. Baca <a href="{ccv4}">ikhtisar CCV4</a>, dengan spesifikasi lengkap, algoritma penyusunan prompt, contoh referensi, dan playground langsung.
+cards_p = Cardwave mengimpor kartu PNG SillyTavern dan kartu CCV4. Kartu dapat diekspor sebagai SillyTavern V3 atau CCV4, dan obrolan dalam format SillyTavern.
+guides_h = Panduan dan alat
+g_where = <a href="{where}">Tempat menemukan karakter</a>
+g_where_d = Situs yang menyediakan kartu untuk diunduh.
+g_roleplay = <a href="{roleplay}">Model roleplay populer</a>
+g_roleplay_d = Model teratas, dengan harga, diperbarui setiap hari.
+g_costs = <a href="{calculator}">Kalkulator anggaran giliran obrolan</a>
+g_costs_d = Berapa giliran yang bisa dibeli sebuah anggaran.
+g_ccv4 = <a href="{ccv4}">Format kartu CCV4</a>
+g_ccv4_d = Draf format kartu, dengan playground langsung.
+status_h = Gratis, dan masih beta
+status_p1 = Cardwave gratis, dibuat oleh satu orang, dan dirilis apa adanya.
+status_p2 = Ini rilis publik pertamanya, dan ia berubah dengan cepat. Pembaruan mungkin tidak mempertahankan apa yang disimpan versi sebelumnya, jadi ekspor kartu yang penting bagi kamu dan simpan cadangan.
+status_p3 = Laporkan bug dan keinginan di <a href="{issues}" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
 footer = Cardwave © 2026. <a href="{disclaimer}">Penafian &amp; Ketentuan</a> · <a href="https://discord.gg/C62KZVg6J">Discord</a>

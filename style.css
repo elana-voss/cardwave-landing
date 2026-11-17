@@ -70,6 +70,8 @@ h1 img { width: 44px; height: auto; display: block; position: relative; top: 3px
 h2 { margin-top: 40px; font-size: 20px; }
 ul { padding-left: 20px; }
 li { margin: 4px 0; }
+dt { margin-top: 14px; font-weight: 600; }
+dd { margin: 2px 0 0 20px; color: #555; }
 hr { border: 0; border-top: 1px solid #eee; margin: 40px 0 20px; }
 
 footer { color: #888; font-size: 14px; }
