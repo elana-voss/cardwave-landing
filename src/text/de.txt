@@ -1,8 +1,10 @@
-title = Cardwave: KI-Charakterchat und Karteneditor für Windows
-description = Chat-App für KI-Charaktere und Karteneditor für Windows. Bring deinen eigenen KI-Anbieter mit. Karten, Chats und Schlüssel bleiben auf deinem Computer.
+title = Cardwave: KI-Charakterchat und Karteneditor für Windows und Linux
+description = Chat-App für KI-Charaktere und Karteneditor für Windows und Linux. Bring deinen eigenen KI-Anbieter mit. Karten, Chats und Schlüssel bleiben auf deinem Computer.
 langs_label = Sprachen
 download = Für Windows herunterladen
-intro = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows. Nutze jeden KI-Anbieter, den du schon verwendest. Deine Karten, Chats und Schlüssel bleiben auf deinem Computer.
+download_appimage = Für Linux (AppImage) herunterladen
+download_deb = Für Linux (.deb) herunterladen
+intro = Eine App für Chats mit KI-Charakteren und ein Karteneditor für Windows und Linux. Nutze jeden KI-Anbieter, den du schon verwendest. Deine Karten, Chats und Schlüssel bleiben auf deinem Computer.
 shots_label = Bilder von Cardwave
 shot_prev = Vorheriges Bild
 shot_next = Nächstes Bild

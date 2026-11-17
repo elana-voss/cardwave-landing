@@ -1,8 +1,10 @@
-title = Cardwave：適用於 Windows 的 AI 角色聊天與角色卡編輯器
-description = 適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。
+title = Cardwave：適用於 Windows 和 Linux 的 AI 角色聊天與角色卡編輯器
+description = 適用於 Windows 和 Linux 的 AI 角色聊天應用程式與角色卡編輯器。接入你自己的 AI 服務商。角色卡、聊天和金鑰都留在你的電腦上。
 langs_label = 語言
 download = 下載 Windows 版
-intro = 適用於 Windows 的 AI 角色聊天應用程式與角色卡編輯器。接入你已在使用的任何 AI 服務商。你的角色卡、聊天和金鑰都留在你的電腦上。
+download_appimage = 下載 Linux (AppImage) 版
+download_deb = 下載 Linux (.deb) 版
+intro = 適用於 Windows 和 Linux 的 AI 角色聊天應用程式與角色卡編輯器。接入你已在使用的任何 AI 服務商。你的角色卡、聊天和金鑰都留在你的電腦上。
 shots_label = Cardwave 截圖
 shot_prev = 上一張
 shot_next = 下一張

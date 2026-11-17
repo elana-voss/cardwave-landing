@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cardwave: Windows용 AI 캐릭터 채팅 및 카드 에디터</title>
-  <meta name="description" content="Windows용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
+  <title>Cardwave: Windows 및 Linux용 AI 캐릭터 채팅 및 카드 에디터</title>
+  <meta name="description" content="Windows 및 Linux용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
   <link rel="canonical" href="https://cardwave.cc/ko/" />
   <link rel="alternate" hreflang="en" href="https://cardwave.cc/" />
   <link rel="alternate" hreflang="de" href="https://cardwave.cc/de/" />
@@ -23,15 +23,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cardwave" />
   <meta property="og:url" content="https://cardwave.cc/ko/" />
-  <meta property="og:title" content="Cardwave: Windows용 AI 캐릭터 채팅 및 카드 에디터" />
-  <meta property="og:description" content="Windows용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
+  <meta property="og:title" content="Cardwave: Windows 및 Linux용 AI 캐릭터 채팅 및 카드 에디터" />
+  <meta property="og:description" content="Windows 및 Linux용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
   <meta property="og:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
   <meta property="og:locale" content="ko_KR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cardwave: Windows용 AI 캐릭터 채팅 및 카드 에디터" />
-  <meta name="twitter:description" content="Windows용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
+  <meta name="twitter:title" content="Cardwave: Windows 및 Linux용 AI 캐릭터 채팅 및 카드 에디터" />
+  <meta name="twitter:description" content="Windows 및 Linux용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 남습니다." />
   <meta name="twitter:image" content="https://cardwave.cc/landing_desktop.jpg" />
   <link rel="icon" href="/logo_icon.png" />
   <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -62,7 +62,7 @@
     </span>
   </header>
 
-  <p>Windows용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰고 있는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 그대로 남습니다.</p>
+  <p>Windows 및 Linux용 AI 캐릭터 채팅 앱 겸 카드 에디터. 이미 쓰고 있는 AI 제공사를 그대로 연결하세요. 카드, 채팅, 키는 내 컴퓨터에 그대로 남습니다.</p>
 
   <nav class="langs" aria-label="언어">
     <a lang="en" href="/">English</a> ·
@@ -84,15 +84,20 @@
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>Windows용 다운로드</a>
+    <a id="download-appimage" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>Linux (AppImage)용 다운로드</a>
+    <a id="download-deb" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>Linux (.deb)용 다운로드</a>
   </p>
   <script>
-    // The installer's name carries its version, so the link is set to the latest release's .exe here;
-    // without an answer from GitHub it keeps the release page.
+    // The installers' names carry their version, so each link is set to the latest release's file here
+    // (Windows' .exe, Linux's .AppImage and .deb); without an answer from GitHub each keeps the release page.
     fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
       .then((r) => (r.ok ? r.json() : null))
       .then((release) => {
-        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
-        if (exe) document.getElementById("download").href = exe.browser_download_url;
+        const links = { download: "-setup.exe", "download-appimage": ".AppImage", "download-deb": ".deb" };
+        for (const [id, end] of Object.entries(links)) {
+          const file = release && release.assets.find((a) => a.name.endsWith(end));
+          if (file) document.getElementById(id).href = file.browser_download_url;
+        }
       })
       .catch(() => {}); // the release page stays the link
   </script>

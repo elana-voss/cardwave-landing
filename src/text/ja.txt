@@ -1,8 +1,10 @@
-title = Cardwave：Windows向けAIキャラクターチャット兼カードエディタ
-description = Windows向けのAIキャラクターチャットアプリ兼カードエディタ。使い慣れたAIプロバイダをそのまま使えます。カード、チャット、キーはあなたのコンピュータに保存されます。
+title = Cardwave：Windows・Linux向けAIキャラクターチャット兼カードエディタ
+description = Windows・Linux向けのAIキャラクターチャットアプリ兼カードエディタ。使い慣れたAIプロバイダをそのまま使えます。カード、チャット、キーはあなたのコンピュータに保存されます。
 langs_label = 言語
 download = Windows版をダウンロード
-intro = Windows向けのAIキャラクターチャットアプリ兼カードエディタ。使い慣れたAIプロバイダをそのまま持ち込めます。カード、チャット、キーはあなたのコンピュータの中にとどまります。
+download_appimage = Linux (AppImage)版をダウンロード
+download_deb = Linux (.deb)版をダウンロード
+intro = Windows・Linux向けのAIキャラクターチャットアプリ兼カードエディタ。使い慣れたAIプロバイダをそのまま持ち込めます。カード、チャット、キーはあなたのコンピュータの中にとどまります。
 shots_label = Cardwaveの画面
 shot_prev = 前の画像
 shot_next = 次の画像

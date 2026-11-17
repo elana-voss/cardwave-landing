@@ -1,9 +1,11 @@
 # The golden file: every other language is translated from it and has exactly its keys (build.py checks).
-title = Cardwave: AI character chat and card editor for Windows
-description = An AI character chat app and card editor for Windows. Bring your own AI provider. Cards, chats and keys stay on your computer.
+title = Cardwave: AI character chat and card editor for Windows and Linux
+description = An AI character chat app and card editor for Windows and Linux. Bring your own AI provider. Cards, chats and keys stay on your computer.
 langs_label = Languages
 download = Download for Windows
-intro = An AI character chat app and card editor for Windows. Bring any AI provider you already use. Your cards, chats and keys stay on your computer.
+download_appimage = Download for Linux (AppImage)
+download_deb = Download for Linux (.deb)
+intro = An AI character chat app and card editor for Windows and Linux. Bring any AI provider you already use. Your cards, chats and keys stay on your computer.
 shots_label = Pictures of Cardwave
 shot_prev = Previous picture
 shot_next = Next picture

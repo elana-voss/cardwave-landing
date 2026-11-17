@@ -1,8 +1,10 @@
-title = Cardwave: obrolan karakter AI dan editor kartu untuk Windows
-description = Aplikasi obrolan karakter AI dan editor kartu untuk Windows. Bawa penyedia AI kamu sendiri. Kartu, obrolan, dan kunci tetap di komputer kamu.
+title = Cardwave: obrolan karakter AI dan editor kartu untuk Windows dan Linux
+description = Aplikasi obrolan karakter AI dan editor kartu untuk Windows dan Linux. Bawa penyedia AI kamu sendiri. Kartu, obrolan, dan kunci tetap di komputer kamu.
 langs_label = Bahasa
 download = Unduh untuk Windows
-intro = Aplikasi obrolan karakter AI dan editor kartu untuk Windows. Gunakan penyedia AI mana pun yang sudah kamu pakai. Kartu, obrolan, dan kunci kamu tetap di komputer kamu.
+download_appimage = Unduh untuk Linux (AppImage)
+download_deb = Unduh untuk Linux (.deb)
+intro = Aplikasi obrolan karakter AI dan editor kartu untuk Windows dan Linux. Gunakan penyedia AI mana pun yang sudah kamu pakai. Kartu, obrolan, dan kunci kamu tetap di komputer kamu.
 shots_label = Gambar Cardwave
 shot_prev = Gambar sebelumnya
 shot_next = Gambar berikutnya

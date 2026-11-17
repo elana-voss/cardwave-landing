@@ -61,15 +61,20 @@
         <path
           d="M0 3.449 9.75 2.1v9.451H0M10.949 1.949 24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851" />
       </svg>{{download}}</a>
+    <a id="download-appimage" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>{{download_appimage}}</a>
+    <a id="download-deb" href="https://github.com/elana-voss/cardwave/releases/latest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17V3zM4 19h16v2H4z" /></svg>{{download_deb}}</a>
   </p>
   <script>
-    // The installer's name carries its version, so the link is set to the latest release's .exe here;
-    // without an answer from GitHub it keeps the release page.
+    // The installers' names carry their version, so each link is set to the latest release's file here
+    // (Windows' .exe, Linux's .AppImage and .deb); without an answer from GitHub each keeps the release page.
     fetch("https://api.github.com/repos/elana-voss/cardwave/releases/latest")
       .then((r) => (r.ok ? r.json() : null))
       .then((release) => {
-        const exe = release && release.assets.find((a) => a.name.endsWith("-setup.exe"));
-        if (exe) document.getElementById("download").href = exe.browser_download_url;
+        const links = { download: "-setup.exe", "download-appimage": ".AppImage", "download-deb": ".deb" };
+        for (const [id, end] of Object.entries(links)) {
+          const file = release && release.assets.find((a) => a.name.endsWith(end));
+          if (file) document.getElementById(id).href = file.browser_download_url;
+        }
       })
       .catch(() => {}); // the release page stays the link
   </script>

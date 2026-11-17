@@ -1,8 +1,10 @@
-title = Cardwave: chat com personagens de IA e editor de cartões para Windows
-description = Um app de chat com personagens de IA e editor de cartões para Windows. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador.
+title = Cardwave: chat com personagens de IA e editor de cartões para Windows e Linux
+description = Um app de chat com personagens de IA e editor de cartões para Windows e Linux. Use seu próprio provedor de IA. Cartões, chats e chaves ficam no seu computador.
 langs_label = Idiomas
 download = Baixar para Windows
-intro = Um app de chat com personagens de IA e editor de cartões para Windows. Use qualquer provedor de IA que você já tem. Seus cartões, chats e chaves ficam no seu computador.
+download_appimage = Baixar para Linux (AppImage)
+download_deb = Baixar para Linux (.deb)
+intro = Um app de chat com personagens de IA e editor de cartões para Windows e Linux. Use qualquer provedor de IA que você já tem. Seus cartões, chats e chaves ficam no seu computador.
 shots_label = Imagens do Cardwave
 shot_prev = Imagem anterior
 shot_next = Próxima imagem
